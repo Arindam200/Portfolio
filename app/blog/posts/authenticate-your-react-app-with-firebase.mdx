@@ -1,0 +1,418 @@
+---
+title: "Authenticate Your React App with Firebase"
+datePublished: Mon Dec 04 2023 07:28:53 GMT+0000 (Coordinated Universal Time)
+cuid: clpqlbhnn001808l38c0m696i
+slug: authenticate-your-react-app-with-firebase
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1695094573471/a8a4ec0f-bf9c-460e-9fdf-eb574da0e9a6.png
+tags: javascript, firebase, web-development, reactjs, wemakedevs
+---
+
+## Introduction
+
+Authentication is a feature that most apps need. Firebase is the most popular service provider for user authentication. In this article, we'll see how to perform user authentication with Firebase SDK.
+
+So, Let's Start!
+
+![Let'S Start Alex GIF - Let'S Start Alex Engvid GIFs](https://imgs.search.brave.com/nuSt98E4igGW6Hsuw3ywOZ-P4nF3Ra7tvOU690afTMA/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS50ZW5vci5jb20v/TzBoaWN1ZGJ5STRB/QUFBTS9sZXQncy1z/dGFydC1hbGV4Lmdp/Zg.gif align="center")
+
+## Project Setup:
+
+In this section, we'll install Firebase and complete the setup for our project.
+
+1. At first, let's go to the [Firebase Console](https://console.firebase.google.com/u/0/). You'll find this interface:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695095876395/1d71c3e0-c729-4b45-8d44-4048d87df061.png align="center")
+
+> Don't worry if your interface is empty, These are some previous projects of mine.
+
+1. Now Go to `Add Project` . Here we'll get a three-step process. In this case, we'll name our project "Demo-project". In the next steps, we'll enable Google Analytics and complete the process.
+
+   ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695096120841/9b50ff95-3035-4356-8744-c3b33821c024.png align="center")
+
+2. Now, Firebase will start creating our Project.
+3. ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695096855539/f37f865d-e03b-44d2-9782-fc092dc3ce71.png align="center")
+
+   After creating our project, We'll create our Firebase App.
+
+4. ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695098308965/4bf47b4f-8853-4ca7-8e58-7a4b068a1d4c.png align="center")
+
+   Then We'll get the Firebase config file. We'll copy that code and use that in the later sections.
+
+   ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695099691342/0810b8c2-9ad6-4960-80f3-4cb851ef4d07.png align="center")
+
+5. Before using the Config file, We need to Install Firebase on our project.
+
+   To install Firebase use the following code:
+
+   ```javascript
+   npm install firebase // if you are using npm
+   yarn add firebase // if you are using yarn
+
+   // optionally you can install the firebase-cli
+   npm i firebase-tools
+   yarn add firebase-tools
+   ```
+
+   To confirm that you have successfully installed Firebase in your project, GO to `Package.json` file, It'll look like this :
+
+   ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695102328323/9bfca136-b939-421c-bbe4-d6400c29cfb4.png align="center")
+
+   <div data-node-type="callout">
+     <div data-node-type="callout-emoji">💡</div>
+     <div data-node-type="callout-text">
+       You can also install <code>firebase-tools</code> globally according to
+       your use case.
+     </div>
+   </div>
+
+   Congratulations, We have successfully set up our Firebase Console. Our next screen will be the Firebase console dashboard.
+
+## **Setting Up Firebase Authentication:**
+
+In the previous section, we have set up our Firebase Console. In this section, we'll initialize Firebase in our project.
+
+On the first hand, We'll create our React App using Vite. Then We'll create `src/config/firebase.js` file and add the Config file That we got in the last section.
+
+```javascript
+// src/config/firebase.js
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCf3j8bjI4Ld0xFCU5P1kWRtLkETEy940o",
+  authDomain: "fir-project-a14ba.firebaseapp.com",
+  projectId: "fir-project-a14ba",
+  storageBucket: "fir-project-a14ba.appspot.com",
+  messagingSenderId: "526873336909",
+  appId: "1:526873336909:web:25ceda068b2ad7b16b9004",
+  measurementId: "G-7KZ587NQCM",
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+```
+
+<div data-node-type="callout">
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    Don't copy-paste this code, It won't work as I'll delete this project. So
+    put your own config file.
+  </div>
+</div>
+
+Now, We have successfully initialized Firebase in our project.
+
+To Start using Firebase SDK we need to export the products we'd like to use. So now the code will look like:
+
+```javascript
+// src/config/firebase.js
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// Import the 'getAuth' function from Firebase Authentication.
+import { getAuth } from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCf3j8bjI4Ld0xFCU5P1kWRtLkETEy940o",
+  authDomain: "fir-project-a14ba.firebaseapp.com",
+  projectId: "fir-project-a14ba",
+  storageBucket: "fir-project-a14ba.appspot.com",
+  messagingSenderId: "526873336909",
+  appId: "1:526873336909:web:25ceda068b2ad7b16b9004",
+  measurementId: "G-7KZ587NQCM",
+};
+
+const app = initializeApp(firebaseConfig);
+export const analytics = getAnalytics(app);
+// Initialize Firebase Authentication and get a reference to the service
+export const auth = getAuth(app);
+```
+
+## **Authenticate Your React App:**
+
+### Signing-in Users:
+
+Let's go to the Firebase console and then Authentication.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695111325868/959408da-5677-4ccc-b29b-af08956f40a9.png align="center")
+
+Then You'll get one interface like this:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695111380455/b31325a0-0970-47ea-a7c6-4de25e937eb6.png align="center")
+
+It's the place where the User Data will be stored. Now, We'll set up our sign-in Methods!
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695111749170/b9332d70-5a75-4a33-8540-939182e0a1fd.png align="center")
+
+Firebase Authentication allows users to sign in to your app using different sign-in methods. But for this example, we'll be working with Email-Passwords & Google Auth.
+
+Now, We'll create our Main Component (I'm naming it as `auth.js` ).In this component, we'll be using `createUserWithEmailAndPassword` method from Firebase to create a new user.
+
+Here's the Source Code of the Component:
+
+```javascript
+import { auth } from "../config/firebase.js";
+import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
+export const Auth = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // This function handles user sign-up using Firebase authentication.
+  const handleSignUp = async () => {
+    try {
+      // We await the createUserWithEmailAndPassword function from the 'auth' object,
+      // which is assumed to be initialized elsewhere in the code. This function
+      // is used to create a new user account with the provided email and password.
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  return (
+    <>
+      <div>
+        <h1>Sign Up</h1>
+        <input
+          type="text"
+          placeholder="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleSignUp}>Sign Up</button>
+      </div>
+    </>
+  );
+};
+```
+
+Okay! So We have created Our Sign-in Component. Now, We have to check if it's working or not! To check that We'll log the user's email.
+
+```javascript
+console.log(auth.currentUser.email); // Might Throw errors.
+console.log(auth?.currentUser?.email); //handles potential null or undefined values
+```
+
+At first, I signed in with a Demo email "arindam@gmail.com" and a password. Let's check the Firebase console now:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695122673519/0df563cb-8ef6-4041-8045-7e04a318d8b9.png align="center")
+
+Amazing! It's Working! Now let's check the console if it's showing the mail or not!
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695122729691/ecd12386-4fa8-4ed1-9502-48ddaa1866d0.png align="center")
+
+Congrats! We have successfully implemented the Sign-in component.
+
+Great Going!
+
+### Signing in With Google:
+
+Now, we'll implement another famous way of signing in users that's through Google!
+
+Let's go to the Firebase console again and enable the Google auth option.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695123152655/b3b48fb7-e0fd-4e67-9817-410ae99090aa.png align="center")
+
+Next, we'll update the `firebase.js` file. We have to import GoogleAuthProvider from Firebase to perform Google auth. After updating the code will look like this:
+
+```javascript
+// src/config/firebase.js
+
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// Import the GoogleAuthProvider class from the Firebase Authentication module.
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+
+const firebaseConfig = {
+  ... // Add your API-keys
+};
+
+const app = initializeApp(firebaseConfig);
+export const analytics = getAnalytics(app);
+export const auth = getAuth(app);
+// Create a GoogleAuthProvider instance to enable Google authentication.
+export const googleProvider = new GoogleAuthProvider();
+```
+
+Next, we'll add the necessary Singin with Google function in the `auth.jsx` file.
+
+```javascript
+// src/Components/Auth.jsx
+
+import { useState } from "react";
+import { auth, googleProvider } from "../config/firebase";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+
+export const Auth = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  console.log(auth?.currentUser?.email);
+  const handleSignUp = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return (
+    <>
+      <div>
+        <h1>Sign Up</h1>
+        <input
+          type="text"
+          placeholder="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleSignUp}>Sign Up</button>
+        <button onClick={signInWithGoogle}>Signin with Google</button>
+      </div>
+    </>
+  );
+};
+```
+
+Firebase Authentication also provides other sign-in methods, including using GitHub, Microsoft, Apple, or a federated identity provider, such as [Facebook Login](https://firebase.google.com/docs/auth/web/facebook-login).
+
+### Logging in Users:
+
+Logging in User is almost similar to Sign-in. Instead of calling `createUserWithEmailAndPassword` , we'll call `signInWithEmailAndPassword` .
+
+```javascript
+// src/Components/Auth.jsx
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+const handleLogIn = async () => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Add this button yo handle login
+// <button onClick={handleLogIn}>Log In</button>
+```
+
+### Logging out Users:
+
+It's time to create the log-out function. This is pretty simple, We just need to import the `signout` method.
+
+```javascript
+// src/Components/Auth.jsx
+import { signOut } from "firebase/auth";
+
+const logout = async () => {
+  try {
+    await signOut(auth);
+  } catch (err) {
+    console.error(err);
+  }
+};
+// Add this button yo handle logout
+// <button onClick={logout}>Log Out</button>
+```
+
+### Final Result:
+
+The Final Code will look like this:
+
+```javascript
+// src/Components/Auth.jsx
+
+import { useState } from "react";
+import { auth, googleProvider } from "../config/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+
+export const Auth = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  console.log(auth?.currentUser?.email);
+  const handleSignUp = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleLogIn = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const logout = async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return (
+    <>
+      <div>
+        <h1>Sign Up</h1>
+        <input
+          type="text"
+          placeholder="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleSignUp}>Sign Up</button>
+        <button onClick={handleLogIn}>Log In</button>
+        <button onClick={logout}>Log Out</button>
+        <button onClick={signInWithGoogle}>Sign in with Google</button>
+      </div>
+    </>
+  );
+};
+```
+
+---
+
+## Conclusion:
+
+If you found this blog post helpful, please consider sharing it with others who might benefit. You can also follow me for more content on Javascript, React, and other web Development topics.
+
+For Paid collaboration mail me at : [arindammajumder2020@gmail.com](mailto:arindammajumder2020@gmail.com)
+
+Connect with me on [Twitter](https://twitter.com/intent/follow?screen_name=Arindam_1729), [LinkedIn](https://www.linkedin.com/in/arindam2004/), [Youtube](https://www.youtube.com/channel/@Arindam_1729) and [GitHub](https://github.com/Arindam200).
+
+Thank you for Reading :)
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695103962178/191cdb23-3b84-4f55-87b5-36befdf50632.png align="center")

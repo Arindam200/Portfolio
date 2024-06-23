@@ -1,0 +1,121 @@
+---
+title: "Understanding Javascript Call-Stack"
+datePublished: Sun Nov 05 2023 11:08:10 GMT+0000 (Coordinated Universal Time)
+cuid: clolddsnl000608l3duxzhv7n
+slug: understanding-javascript-call-stack
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1691010494159/fdec98fe-4a9e-45dc-9019-96b3aec3ec7c.png
+tags: javascript, web-development, developer, beginners, wemakedevs
+---
+
+## Introduction
+
+One of the fundamental concepts of JavaScript is the call stack, which is a mechanism that tracks the execution of code in a JavaScript program.
+
+In this article, we will explore the call stack of JavaScript, its role in the execution of code, and how it works.
+
+## What is the Call Stack?
+
+> A **call stack** is a mechanism to keep track of its place in a script that calls multiple [functions](https://developer.mozilla.org/en-US/docs/Glossary/function) — what function is currently being run and what functions are called from within that function.
+
+In simple words, The call stack is like a list of tasks that your computer keeps track of when you run a program written in JavaScript.Whenever a function is called, it's added to the top of the list.
+
+### Basic Terminologies:
+
+Before learning Call-stacks workflow, let's go through some common terminologies that are used here to understand things better.
+
+1. Top: It means the Top most element that is currently being executed.
+2. Push: When we add a function to the top of the call stack, the process is called Push.
+3. Pop: After executing the process where the functions are removed from the call stack is known as Pop.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690718542688/72f74baf-dfb9-4f25-97b0-7fb120695da1.png align="center")
+
+## How does the Call Stack Work?
+
+Call Stack basically works on the LIFO(Last In, First Out ) principle. That means the function that enters the stack at last finishes at first, and then the remaining functions finish.
+
+Sounds confusing?
+
+Let's understand this with diagrams and examples,
+
+```javascript
+function firstFunction() {
+  console.log("first Function completed");
+}
+function secondFunction() {
+  firstFunction();
+  console.log("second Function completed");
+}
+secondFunction();
+// output
+// first Function completed
+// second Function completed
+```
+
+So From the output, you can understand that `firstFunction()` is executed before then `secondFunction()` completes its execution. As mentioned before it's because of the LIFO principle.
+
+Now Let's understand how it's working behind the scenes with some diagrams.
+
+At first Global object/Window object is created in the Call stack
+
+![Image 1](https://cdn.hashnode.com/res/hashnode/image/upload/v1690733891882/d940308e-fee6-439d-87b8-ebf0b6d0146c.png align="center")
+
+Next when `secondFunction()` is called, it creates an empty stack frame & its execution context. And the stack is pushed to the Top of the Call-stack.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690737088574/9f926f0f-6195-4032-b97f-427b8eb93f30.png align="center")
+
+Then when `secondFunction()` starts executing, it calls another function `firstFunction()` . Just like the previous one, it creates another empty stack and pushes it to the Top of the call stack.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690739362297/67ec0109-b62e-49a5-ad7e-071045924c1c.png align="center")
+
+At this point, all of the required functions are **pushed** to the Class Stack in a particular sequence, where the `firstFunction()` function is at the **top** of the Class Stack
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690740244502/296a6e2d-28b9-4d53-b9c7-0b25defc9e77.png align="center")
+
+Now, the `firstFunction()` executes and Pops it out from the call stack.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690740740197/202d5bfa-cd69-4da5-8702-29197904816f.png align="center")
+
+After the removal of the `firstFunction()` , `secondFunction()` is the Top function. And just like the previous function it executes and pops out from the stack.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690741980575/bd9fc065-149c-4c98-9fb4-ac28a42685af.png align="center")
+
+As soon as the execution of `secondFunction()` function gets complete, and **Call Stack** becomes **empty**, the JavaScript engine will **stop** the **execution** and move toward the other execution tasks:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690742281353/91ed3ce2-f740-443a-93a1-e83beaa532b5.png align="center")
+
+## What is Stack-Overflow?
+
+Wait wait; we are not discussing about the popular website where you can ask your questions and get answers!
+
+![Stack Overflow Launches Free Tier of Stack Overflow for Teams | Business  Wire](https://mms.businesswire.com/media/20210317005585/en/865528/23/logo-stackoverflow.jpg align="left")
+
+We are discussing the concept of Stackoverflow.
+
+Let's understand this concept,
+
+The call stack has a maximum size of memory allotted. Stack Overflow occurs when the number of function calls added to the stack increases the stack’s maximum limit (the call stack has a maximum size).
+
+One example is Recursion without a base case,
+
+```javascript
+function Recursion() {
+  Recursion();
+}
+Recursion();
+```
+
+Here We haven't added the base case, So it's an infinite recursive call. The `Recursion()` will run until the browser throws a “Maximum call size exceeded”. And that is a stack overflow.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690745730807/45c3e612-25b1-4bae-a322-c8d9c004cff7.png align="center")
+
+## Conclusion:
+
+If you found this blog post helpful, please consider sharing it with others who might benefit. You can also follow me for more content on Javascript, React, and other web Development topics.
+
+For Paid collaboration mail me at : [arindammajumder2020@gmail.com](mailto:arindammajumder2020@gmail.com)
+
+Connect with me on [Twitter](https://twitter.com/intent/follow?screen_name=Arindam_1729), [LinkedIn](https://www.linkedin.com/in/arindam2004/), [Youtube](https://www.youtube.com/channel/@Arindam_1729) and [GitHub](https://github.com/Arindam200).
+
+Thank you for Reading :)
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690700134149/7f093686-4ce5-4aa2-8807-643cc3b715c4.png align="center")

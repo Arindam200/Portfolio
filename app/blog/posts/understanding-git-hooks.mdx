@@ -1,0 +1,218 @@
+---
+title: "Understanding Git Hooks"
+datePublished: Thu Oct 12 2023 16:18:58 GMT+0000 (Coordinated Universal Time)
+cuid: clnndx1rz000109lb1rp17yk1
+slug: understanding-git-hooks
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1695826403824/4e86c5c8-314a-4091-820e-2db03c4732b8.png
+tags: github, git, beginners, gitcommands, wemakedevs
+---
+
+## Introduction
+
+Git Hooks are a very useful yet overlooked feature of Git. With this feature, we can perform various operations to enhance our Version Control Workflow.
+
+In this article, we will understand What is Git-Hooks, its types and implementation.
+
+Let's dive deep into Githooks!
+
+## What are Git Hooks?
+
+![Linting Git Commit Messages Using Husky: A Guide to Cleaner Version Control](https://imgs.search.brave.com/BPD3k_YcVZ-QnQwsnEW0G_FToO9qPOV8tfXj6i7KGas/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9taXJv/Lm1lZGl1bS5jb20v/djIvMSpqTUZ2bkFn/X0VBRF9xbnhjT0ls/LTNBLmpwZWc align="left")
+
+Git Hooks are the scripts that run automatically when a particular event happens inside our Git Repository.
+
+For example, If we want to make a commit, A git hook can run before and after the commit!
+
+### Types of Git Hooks:
+
+There are basically two types of Git hooks:
+
+1. Client-side/local hooks, which are prompted by events on the local repository, such as when a developer commits or merges code.
+2. Server-side/remote hooks, which are run on the network hosting the repository, and are prompted by events such as receiving pushes.
+
+## Why to Use?
+
+There are many reasons to Use Git Hooks! These are some of them :
+
+- Git hooks automate actions before or after specific Git events.
+- It can also run tests, format code, or trigger deployments.
+- They enhance collaboration by maintaining code consistency.
+- Git hooks help prevent common mistakes and streamline development processes.
+
+## Implement Git Hooks:
+
+Now we have a clear understanding of What is Git Hooks And Why we should use them! So, It's time to get our hands dirty with it!
+
+At first, We'll create a Folder and initialize git. Here I have created a Folder named "git-hooks" and added one `Index.html` file to it.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695791085102/1fb27026-7c0d-4fd5-b7a0-aac731a8fcb6.png align="center")
+
+To initialize git run:
+
+```bash
+git init
+```
+
+Now we have initialized git in our directory. Let's navigate the files by running the `ls` command.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695791116866/60ad580c-734a-420f-9f63-adb03a371ae1.png align="center")
+
+Okay, We got the `index.html` file but where are the other ones (ie. git files)?
+
+Those folders are hidden. Basically, the file name starts with a dot (.), is hidden by default.
+
+To access the hidden folders use the command:
+
+```bash
+ls -a
+```
+
+We'll get all files and directories, including hidden ones.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695791137683/23cade5b-7fbf-4ce2-a161-d21cd56dd2d8.png align="center")
+
+Now we'll go to the `.git` folder and navigate its files.
+
+```bash
+cd .git
+ls
+```
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695791206031/efa812c9-5a8f-4c75-8f87-ae489f3b201a.png align="center")
+
+So now we have got the hooks folder. Next, We'll navigate this hooks folder.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695791265479/4f944e3f-ade8-4b71-a1e8-5153a006c339.png align="center")
+
+Here we can see most of the available hooks, but the `.sample` extension prevents them from executing by default.
+
+<div data-node-type="callout">
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    To make these hooks executable remove the <code>.sample</code> part. For
+    example the file name of <code>pre-commit.sample</code> will be{" "}
+    <code>pre-commit</code>
+  </div>
+</div>
+
+Now, Let's navigate one Hooks. We'll check the `pre-commit.sample` file. For that run this command:
+
+```bash
+cat pre-commit.sample
+```
+
+After running this code we'll get this :
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695793924318/6f58cf5c-693a-42af-9dd1-4ad3a0ca6d53.png align="center")
+
+<div data-node-type="callout">
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    Hooks are not executable by default, We have to make them executable
+    otherwise they will not work.
+  </div>
+</div>
+
+To make the hook executable run the following:
+
+```bash
+chmod +x name-of-the-hook
+# Replace name-of-the-hook with the hook you want to execute!
+```
+
+Here we'll be taking the `pre-commit` hook and making it executable.
+
+```bash
+chmod +x pre-commit
+```
+
+Now, Let's test if it works or not! For that, we'll make some changes in the `index.html` file and commit them.
+
+<div data-node-type="callout">
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    Don't forget to return back to the main directory that is{" "}
+    <code>./git-hooks</code> . Otherwise, it won't work.
+  </div>
+</div>
+
+Now we made some changes and committed them using the following command:
+
+```bash
+git add .
+git commit -m "Pre-commit hook test"
+```
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695797650355/02ac47b9-3283-470b-97c5-8d543b654dcf.png align="center")
+
+And it worked properly! It didn't show anything as we didn't encounter any errors.
+
+In the later sections, we'll create our custom hook and there we'll print statements in the terminal so that we can understand things properly!
+
+### How to Navigate Hidden Folders in VS Code:
+
+If we don't want to open the folder in the terminal, We can open these hidden files in VS Code as well. It's pretty simple!
+
+First open Settings in your VS Code. Search Exclude and you will find this:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695794990131/128b7b03-a359-426d-819e-2b59fa971630.png align="center")
+
+Now it is simple, Just remove the `.git` Pattern from the list and you can see the .git folder in your VS Code.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695795202505/e9d9993b-ec70-4115-8dc8-8f742d400869.png align="center")
+
+## Creating Custom Hooks:
+
+In this section, we'll create our Custom hooks! Sounds Interesting Right?
+
+So Let's jump into it!
+
+We'll create a File named post-commit and start writing our code.
+
+The default files are written as shell scripts, but we can use any scripting language as long as it can be run as an executable. This includes Bash, Python, Ruby, Perl, Rust, Swift, and Go.
+
+At first, we'll define our language of choice in the first line, using the shebang (#!) sign. It helps Git to interpret the subsequent scripts.
+
+<div data-node-type="callout">
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    Note: you need to include the path of your interpreter. For example, if we
+    want to use bash then the first line will be <code>#!/bin/bash</code>
+  </div>
+</div>
+
+In this case, we'll be using shell scripts. Here's the code of our custom hook.
+
+```bash
+#!/bin/sh
+
+echo "I'm post-commit hook"
+```
+
+It will print "I'm post-commit hook" in the terminal after the commit completes.
+
+So let's check that. So, We'll make this file executable. Write the following code in the `.git/hooks` directory.
+
+```bash
+chmod +x post-commit
+```
+
+Now let's check if it works or not!
+
+We'll go to the `/git-hooks` directory then change the `index.html` file and commit the changes. We'll get :
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695799048914/53684989-79a3-4ca4-847a-03b1fd6e1b1a.png align="center")
+
+Amazing It Works!! Now you can create your own custom hooks according to your requirements!
+
+## Conclusion
+
+If you found this blog post helpful, please consider sharing it with others who might benefit. You can also follow me for more content on Javascript, React, and other web Development topics.
+
+For Paid collaboration mail me at : [arindammajumder2020@gmail.com](mailto:arindammajumder2020@gmail.com)
+
+Connect with me on [Twitter](https://twitter.com/intent/follow?screen_name=Arindam_1729), [LinkedIn](https://www.linkedin.com/in/arindam2004/), [Youtube](https://www.youtube.com/channel/@Arindam_1729) and [GitHub](https://github.com/Arindam200).
+
+Thank you for Reading :)
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1695825733486/961cb452-b40d-4398-93e7-27cb939d0fb9.png align="center")

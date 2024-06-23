@@ -1,0 +1,86 @@
+---
+title: "Demystifying JavaScript IIFE"
+datePublished: Mon Oct 02 2023 04:20:55 GMT+0000 (Coordinated Universal Time)
+cuid: cln8dv3vw000108ig216uefz0
+slug: demystifying-javascript-iife
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1691010026311/7865c2a3-3895-42e7-8986-904e59177b12.png
+tags: javascript, web-development, developer, javascript-framework, wemakedevs
+---
+
+## Introduction:
+
+Immediately Invoked Function Expression (IIFE) is one of the most popular design patterns in JavaScript. It pronounces like "iify".
+
+The Name sounds Complex?
+
+Don't worry! In this article we'll understand what is IIFE, It's usecase and many more! After completing this article you'll have a clear understanding of IIFE.
+
+## What is IIFE?
+
+![Demystifying Automatic Semicolon Insertion in JavaScript](https://imgs.search.brave.com/I-WKciK1kulobb42P9xXsDCa62fVXanBgqXMHmTLBZI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9taXJv/Lm1lZGl1bS5jb20v/djIvMSpvVzI5QU9P/UFpvdzRiMGd0bmVM/aDRRLnBuZw align="left")
+
+IIFE stands for `Immediately Invoked Function Expression` .
+
+> "An IIFE (Immediately Invoked Function Expression) is a JavaScript function that is executed immediately after it is defined. It is a self-invoking function that is commonly used to create a private scope, encapsulate code, and prevent variable pollution in the global namespace."
+
+Let's understand the syntax:
+
+```javascript
+(function Greet() {
+  console.log("Hello Folks");
+})();
+
+// Output: Hello Folks
+```
+
+Have you noticed the Difference here??
+
+Here we have wrapped the function with parenthesis and then invoked it.
+
+But why?
+
+We wrap the function with parentheses to treat the function as an expression rather than a function declaration. And we use another set of parentheses to invoke the function immediately.
+
+**But What will happen if we don't use the outer parenthesis?**
+
+Let's see this with an example,
+
+```javascript
+function Greet(){
+    console.log("Hello Folks");
+}()
+
+// Output: Uncaught SyntaxError: Unexpected token ')'
+```
+
+This throws an error simply because in the normal function syntax we can't invoke a function directly. For this case, we have to invoke the function explicitly.
+
+So to use IIFE, we need to use the outer parenthesis.
+
+## Why is it used?
+
+There are many reasons to use IIFE. Here are some of them
+
+### 1\. Isolate Scope Creation:
+
+IIFEs create a new function scope, which helps to prevent variable and function name collisions with other parts of the code. Variables defined inside an IIFE are not accessible from the outside scope, keeping them private and isolated.
+
+### 2\. Avoiding Global Scope Pollution:
+
+As you know, variables declared in the global scopes are accessible by every function. Sometimes this creates conflicts and errors. To avoid this, IIFE is very useful, as It creates its own scope and keeps them safe from Global scope pollution
+
+### 3\. One-Time Usage:
+
+IIFEs are useful for executing code that needs to run only once during the application's initialization.
+
+## Conclusion:
+
+If you found this blog post helpful, please consider sharing it with others who might benefit. You can also follow me for more content on Javascript, React, and other web Development topics.
+
+For Paid collaboration mail me at : [arindammajumder2020@gmail.com](mailto:arindammajumder2020@gmail.com)
+
+Connect with me on [Twitter](https://twitter.com/intent/follow?screen_name=Arindam_1729), [LinkedIn](https://www.linkedin.com/in/arindam2004/), [Youtube](https://www.youtube.com/channel/@Arindam_1729) and [GitHub](https://github.com/Arindam200).
+
+Thank you for Reading :)
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690697017967/37521c8d-59fb-4f86-99ef-36877e7fc7a8.png align="center")

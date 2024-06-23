@@ -1,0 +1,354 @@
+---
+title: "Create a CRUD App with Prisma ORM & Node Js"
+seoTitle: "CRUD App with Prisma ORM & Node.js"
+seoDescription: "Learn to build a CRUD app using Prisma ORM, Node.js, and PostgreSQL with this comprehensive guide"
+datePublished: "2024-05-15"
+cuid: clw8a04uz00010al25alu3v40
+slug: create-a-crud-app-with-prisma-orm-node-js
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1703796322266/abf36ae9-1939-4492-97d2-7dfa4eb20679.png
+tags: postgresql, javascript, nodejs, prisma
+---
+
+## Introduction
+
+Ever feel like working with databases & SQL queries is a bit of a headache?
+
+You are not alone!
+
+But, Now with Prisma we don't have to take that headache. Prisma is a powerful ORM for TypeScript projects that takes care of all of these
+
+In this article, we're gonna explore how to use Prisma to build an CRUD App with Node JS and PostgreSQL
+
+So Without Delaying further, Let's BEGIN!
+
+## What is Prisma?
+
+Before moving forward let's understand what is Prisma. So, Prisma is a next-generation ORM (Object Relational Mapping) tool that provides several components for database management and access.
+
+It is a server-side library that helps developers read and write data to the database in an intuitive, efficient and safe way.
+
+In contrast to classical ORMs, with TypeScript, we don’t manually write models; instead, we define a schema, and Prisma generates everything needed, complete with TypeScript types.
+
+## Steps:
+
+### Project Setup:
+
+To start off, we'll initialize our Node project with:
+
+```javascript
+npm init
+```
+
+Next We will install the required dependencies:
+
+```javascript
+npm i --save-dev prisma typescript ts-node @types/node nodemon
+```
+
+For TypeScript configuration,we'll create a `tsconfig.json` file and add the following settings:
+
+```javascript
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "dist",
+    "strict": true,
+    "lib": ["esnext"],
+    "esModuleInterop": true
+  }
+}
+```
+
+Now, We'll Initialize our Prisma! For that execute the command:
+
+```javascript
+npx prisma init
+```
+
+We can also specify the database during Prisma initialization. For this Project, We are using PostgreSQL so the Command will be:
+
+```javascript
+npx prisma init --datasource-provider postgresql
+```
+
+These steps will generate essential configuration and setup files for our project.
+
+![Configuration and setup files](https://cdn.hashnode.com/res/hashnode/image/upload/v1703487969504/99cc5ed8-0445-4c01-8ef2-b4cd77c40e60.png)
+
+> Tip: Use The Prisma Extension for code highlighting!
+>
+> ![Prisma Extension](https://cdn.hashnode.com/res/hashnode/image/upload/v1703488096533/5ce7a4c6-f1b1-437c-99d7-015ec56c00b5.png align="center")
+
+Now that we've set up our project environment, let's move on to defining our Prisma models.
+
+### Prisma Model Setup:
+
+Here, we'll define the User Model for our application in the `schema.prisma` file.
+
+```javascript
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
+
+So, we have created our User model but our database is not yet connected.Before utilizing these models to interact with our database We need to establish a proper database connection.
+
+### Prisma Migration:
+
+Till now Prisma and our database is completely separate! They are able to interact with each other but defining something in prisma won't do anything in the database!
+
+Suppose We made changes to our schema, To reflect those changes in our DB, we have to migrate our new schema! For that we have to use a command:
+
+```javascript
+npx prisma migrate dev --name init
+```
+
+> Note: Here the --name is optional
+
+Before Migration, Don't forget to change the `DATABASE_URL` to according to your DB.
+
+So This command will do something like this:
+
+![Image of Terminal](https://cdn.hashnode.com/res/hashnode/image/upload/v1703527624368/c66f9096-a174-44f7-adef-5fa974d79362.png align="center")
+
+After that, It will create a migration file. This migration file will communicatewith our postgres database.
+
+This file contains nothing but the SQL commands of our schema. It looks something like this:
+
+![Migrated code in VS Code](https://cdn.hashnode.com/res/hashnode/image/upload/v1703527928894/6720fd2d-e795-4d32-b9eb-cf8bd9ef5370.png align="center")
+
+### Prisma client:
+
+The Client is essentially all of the code for interacting to our database.
+
+Now, if we see the console , we'll find something interesting!
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1703528240208/e7f5d902-d36d-43c6-bcd4-8a488fc8a89f.png align="center")
+
+So, As we can see here,after the migration it has created a brand new prisma client and pushed that into the nodemodules!
+
+That's what it does every time we make a migration or changes to our database it creates a new prisma client.
+
+But We don't have the client yet as we haven't installed the client library! To install that run this:
+
+```javascript
+npm i @prisma/client
+```
+
+By doing this migration we have already generate dout prisma client but if we want to generate/regenerate the prisma client manually, We have to use the following command:
+
+```javascript
+npx prisma generate
+```
+
+Now to use the Prisma Client, We have to add the following code:
+
+```javascript
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+```
+
+And with this we can perform our desired operations (like Create,Read,Update & Delete).
+
+### CRUD Operations with Prisma Client:
+
+Now We'll perform CRUD operations with the prisma client that we have created in the previous section.
+
+For that, We'll create a new file script.ts. And start Implementing CRUD!
+
+```javascript
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+async function main() {
+  // ... We will write our Prisma Client queries here
+}
+
+main()
+  .catch((e) => {
+    throw e;
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
+```
+
+Here, We have created an async function as almost all the operations in Prisma are asynchronous!
+
+We are also catching our errors with the .catch method and in the end we are disconnecting from the Prisma database.
+
+Now in side main we'll write our functions!
+
+#### **CREATE:**
+
+Now, Let's Create our first user.
+
+```javascript
+async function main() {
+  const user = await prisma.user.create({
+    data: {
+      email: "arindammajumder2020@gmail.com",
+      name: "Arindam Majumder",
+      password: "12345678",
+    },
+  });
+  console.log(user);
+}
+```
+
+Here We are creating our first user using the prisma.user.create method.
+
+> Before that We will add one script to the package.json file in order to run the code.
+>
+> ```javascript
+> // package.json
+> "scripts": {
+>     "test": "echo \"Error: no test specified\" && exit 1",
+>     "devStart": "nodemon script.ts"
+>   },
+> ```
+
+Let's start the app and see if it works or not!
+
+![Starting the server in terminal](https://cdn.hashnode.com/res/hashnode/image/upload/v1703537545166/552e0751-384a-4659-8fb3-f825db42cd13.png align="center")
+
+Great! We have created our first user!
+
+And if We want to add multiple users at time then the code will belike this:
+
+```javascript
+const usersToCreate = [
+  {
+    email: "john.doe@example.com",
+    name: "John Doe",
+    password: "password123",
+  },
+  {
+    email: "jane.smith@example.com",
+    name: "Jane Smith",
+    password: "pass@123",
+  },
+  {
+    email: "robert.brown@example.com",
+    name: "Robert Brown",
+    password: "securepwd",
+  },
+  // Add more user objects as needed
+];
+async function main() {
+  // ...other functions
+
+  const createdUsers = await prisma.user.createMany({
+    data: usersToCreate,
+    skipDuplicates: true, // Optional: Skip duplicate entries if any
+  });
+  console.log(createdUsers);
+}
+```
+
+This will create multiple users.
+
+<div data-node-type="callout">
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    Note: It's better to add <code>skipDuplicates: true</code> to ignore the
+    duplicate values
+  </div>
+</div>
+
+#### **READ:**
+
+Till now, We have created many users.So, It's time to check those data!
+
+To, View all records add the following code to the main function:
+
+```javascript
+const allUsers = await prisma.user.findMany();
+console.log(allUsers);
+```
+
+Let's Run this and see the results:
+
+![Console Output](https://cdn.hashnode.com/res/hashnode/image/upload/v1703538969431/662be8a1-77b0-494f-8af0-330dcefda52d.png align="center")
+
+Great! So we got all the records!
+
+We can also retrieve a single data with unique identifier! Suppose We want to get the user Arindam, We'll use the id and retrive Arindam's data! Here's the code for that:
+
+```javascript
+const userById = await prisma.user.findUnique({
+  where: {
+    id: "84e37ff7-0f7e-41c6-9cad-d35ceb002991",
+  },
+});
+console.log(userById);
+```
+
+And The Output is as expected :
+
+![A terminal screen displaying a JSON object with user information, including an ID, email, name, password, and timestamps for creation and update. The terminal also shows a message indicating a clean exit and waiting for changes before restart.](https://cdn.hashnode.com/res/hashnode/image/upload/v1703539223447/a9998cb8-9e3d-4637-9849-f978c407b4ee.png align="center")
+
+#### **UPDATE:**
+
+This operation is quite similar to the read operations. Previously We are only reading the data, here we'll read and manipulate the data using the queries.
+
+Suppose We want to change the Name to "Arindam" , the code will be:
+
+```javascript
+const updatedUser = await prisma.user.update({
+  where: {
+    id: "84e37ff7-0f7e-41c6-9cad-d35ceb002991",
+  },
+  data: {
+    name: "Arindam",
+  },
+});
+```
+
+And See the Console! The name is changed!
+
+![Console output 03](https://cdn.hashnode.com/res/hashnode/image/upload/v1703539836899/0763a115-6ae7-4068-ad4e-e83025375db0.png align="center")
+
+#### DELETE:
+
+Okay, Now we will delete a user using it's id!
+
+Here's the code for that:
+
+```javascript
+const deletedUser = await prisma.user.delete({
+  where: {
+    id: "84e37ff7-0f7e-41c6-9cad-d35ceb002991",
+  },
+});
+```
+
+This will Delete the user named Arindam! To verify that if we check allUsers again!
+
+![A terminal window displaying output from a Node.js script. The output includes three user objects with fields for id, email, name, password, createdAt, and updatedAt. The users are "John Doe," "Jane Smith," and "Robert Brown." The script is running with nodemon, which is waiting for changes before restarting.](https://cdn.hashnode.com/res/hashnode/image/upload/v1703540161843/040f5b35-1a75-4a55-8d8e-9995bc837224.png align="center")
+
+And, There's no user named Arindam! We have successfully deleted the user!
+
+With that We have Completed our basic CRUD operations in our Node+Postgres app using Prisma.
+
+Pretty Simple Right?
+
+For Reference, You can check the Code Here:
+
+## Conclusion
+
+If you found this blog post helpful, please consider sharing it with others who might benefit. You can also follow me for more content on Javascript, React, and other web Development topics.
+
+For Paid collaboration mail me at : [arindammajumder2020@gmail.com](mailto:arindammajumder2020@gmail.com)
+
+Connect with me on [Twitter](https://twitter.com/intent/follow?screen_name=Arindam_1729), [LinkedIn](https://www.linkedin.com/in/arindam2004/), [Youtube](https://www.youtube.com/channel/@Arindam_1729) and [GitHub](https://github.com/Arindam200).
+
+Thank you for Reading :)
+
+![Thank You Image](https://cdn.hashnode.com/res/hashnode/image/upload/v1703568045497/3fd3e9c4-bbf4-4c3f-a646-ef83ad78a6fb.png align="center")

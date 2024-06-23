@@ -1,0 +1,153 @@
+---
+title: "The Inner Workings of Web Browsers!"
+datePublished: Sat Nov 18 2023 05:26:09 GMT+0000 (Coordinated Universal Time)
+cuid: clp3lw12r000208lab1h26e0d
+slug: the-inner-workings-of-web-browsers
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1696045850164/f4bee677-92d2-452c-936a-5b0279f63204.png
+tags: javascript, browsers, web-development, developer, wemakedevs
+---
+
+## Introduction:
+
+We, Developers, use browsers almost every day! But Have you ever thought How the Browser internally works? How do they show pages from HTML, CSS, and Javascript?
+
+If you haven't! Don't worry!
+
+In this article we'll be exploring the internal workings of a browser, What it is, How it works and many more!
+
+So without delaying further, Let's START!
+
+## **What is a Browser?**
+
+Many of us think that Browser is just another piece of software! But let me tell you that's not the actual case! The Browser has evolved into something much more powerful. We can even compare it to an Operating System as well.
+
+![Inner Structure of Browser. Learnt it from @Hitesh_Choudhury](https://cdn.hashnode.com/res/hashnode/image/upload/v1696164965835/fc3d3989-ad39-4512-86b2-4c362f461659.png align="center")
+
+### Why to learn ?
+
+Because if you are a web developer you should know the internal working of the software your job depends on. Also, Browsers are not like other software, they are special. What makes them really special is their popularity. _They are the most widely used software right now in the world._
+
+### It's Components:
+
+To truly understand a browser's inner workings, let's break it down into its essential components:
+
+1. **Data Portion:** The First and major portion of our browser is taken by the Data portion that manages different types of data.
+2. **User Interface:** This is the place where the user can interact with the browser.
+3. **Browser Engine:** This critical component performs multiple complex works. It interprets and executes the HTML, CSS and Javascript Codes.
+4. **Rendering Engine:** This engine plays an important role in rendering the web page / perform painting.
+5. **JavaScript Engine:** These engines execute Javascript Code and make the Static website dynamic.
+6. **Networking:** Browsers have robust networking capabilities, allowing them to communicate with servers, retrieve HTML, CSS, and other resources, and display them to users.
+7. **Timer:** Our Javascript Engines don't have any timer. We perform various timer functions using the browser's API. NodeJs also has its own implementation of Timer.
+
+## **Understanding HTML: The Building Block of the Web**
+
+We, Developers very often make memes and jokes about HTML. But We should appreciate HTML. Let me explain this to you!
+
+HTML is not a programming language! right?
+
+So How did it have so much power that it can come into our browser (which is itself an operating system) and render the pixels for us!! Isn't it Fascinating?
+
+### How does a Browser load an HTML?
+
+Now, We'll understand load the HTML and Display text on our Screen. You might think it's pretty simple, but it's not that simple! There's a lot going on behind the scenes!
+
+To understand that simply write:
+
+```javascript
+document.getElementsByName("h2");
+```
+
+Guess what output we'll get!
+
+All the H2 tags? or An array of H2 tags?
+
+NO! We'll get a NodeList!
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696167927681/9d8ebc81-d232-4cfb-9bab-10ba135f6f24.png align="center")
+
+But we never write HTML in the form of `NodeList` How did this happen?
+
+Here Comes the Rendering Engine! Rendering Engine Converts the HTML code to NodeList.And most of the engines are written in C++ so Though we are writing our code in HTML, it's being parsed in the form of C++.
+
+### How HTML works:
+
+Now, Let's see how HTML works!
+
+1. **Loading the File:** The first step for any browser to work is to load the file. The job of a browser is to display the data and give the ability to interact with that data. When the Browser loads any file, It gets that as a raw byte code.
+2. **Character Encoding:** After getting the Raw Bytes, the browser converts the byte code into Characters based on the specific character encoding (example: UTF-8). This process is called Character Encoding.
+3. **Tokenization:** Next, like other programming languages, HTML creates tokens out of the Characters. It helps the web browser to understand and process the content effectively.
+4. **Object Creation:** After the Tokenization it's required to put a structure around it. Here it creates Huge objects out of the tokens and stores a lot of information about these tokens.
+5. **Relation Establishment:** So every token has its objects and they are scattered and very hard to manage. That's where the importance of building relationships was felt. Then Relationships between elements, such as parent-child or sibling connections, are established.
+6. **NodeList Creation:** Now we know the relationship between the Objects, the next step is creating a Node/NodeList according to the relationship.
+7. **DOM Generation:** Now, a DOM tree is generated, representing the structured hierarchy of web page elements.
+
+<div data-node-type="callout">
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    Remember! Having a DOM doesn't mean we have something to show on the screen!
+    It's just that we have a DOM created in the memory.
+  </div>
+</div>
+
+### How CSS Works:
+
+When a browser receives an HTML file, it doesn't stop there. It also requests and receives external CSS files linked to the page.
+
+After getting the Raw data it works just like HTML and creates Objects. These objects also need some relations, So relations are set up and that establishes a model.
+
+So just like DOM(Document Object Model) CSS creates its own Object Model, that is CssOM(CSS Object Model).
+
+## **The Render Tree** 🌳: Painting the Web
+
+Now, We have the DOM and CSSOM, Can we paint the picture on the Web?
+
+NO! But Why?
+
+Let's understand what happens behind the scenes!
+
+When the Browser loads an HTML file it starts working on it's DOM. But the moment it sees a link for CSS it starts working with CssOM parallelly. But as of now we don't have any relations between DOM and CssOM.
+
+Here Comes a New Tree 🌳 that is "Render Tree". The Render Tree is the result of combining the DOM and CSSOM. The Render Tree creates a structure to represent the visual elements on the web page.
+
+After the creation of the render Tree, the Browser starts calculating the size of that screen and according to that, it determines the layout and positioning of each element.
+
+And after all these Hard works, the Browser starts painting (that means rendering the web page on our screen)
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696188684052/6b783391-6342-40d6-9422-267ba9bf9ecb.png align="center")
+
+## **JavaScript: The Key to Interactivity**
+
+So, we have the painted web page on our Screen. But it's still not interactive! To make it interactive we need to add Javascript to it. So let's understand How Javascript works!
+
+While executing the code, the moment the browser sees a Script tag it stops executing all its works. Javascript gets the Highest Priority as it has the power to manipulate the DOM as well as the CSS. So Browser collects all the information from Javascript and then it renders the files.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696192070371/9ce7d174-2f0c-4d5e-909e-adce06cc6a5f.png align="center")
+
+Now we have discussed the relation between DOM and JS. and We know that our DOM execution will be halted until Javascript completely executes.
+
+But What Happens with the CSSOM and Javascript? What will happen if the CSSOM is not yet ready and we have hit the Javascript tag?
+
+Surprisingly, our Javascript execution will be halted until the CssOM is Ready!
+
+So, The Priority order looks like this :
+
+> CSSOM &gt; JavaScript &gt; DOM
+
+<div data-node-type="callout">
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    Note: We can also load our Javascript at the very end by making that async.
+  </div>
+</div>
+
+## Conclusion:
+
+If you found this blog post helpful, please consider sharing it with others who might benefit. You can also follow me for more content on Javascript, React, and other web Development topics.
+
+For Paid collaboration mail me at : [arindammajumder2020@gmail.com](mailto:arindammajumder2020@gmail.com)
+
+Connect with me on [Twitter](https://twitter.com/intent/follow?screen_name=Arindam_1729), [LinkedIn](https://www.linkedin.com/in/arindam2004/), [Youtube](https://www.youtube.com/channel/@Arindam_1729) and [GitHub](https://github.com/Arindam200).
+
+Thank you for Reading :)
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696169954556/6dbca184-cf46-4ba7-bb71-0c99ddbb3f2f.png align="center")

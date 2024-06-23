@@ -1,0 +1,373 @@
+---
+title: "Authenticate your React App with Supabase"
+datePublished: Sat Dec 09 2023 07:15:20 GMT+0000 (Coordinated Universal Time)
+cuid: clpxq1c21000308l89cl0133w
+slug: authenticate-your-react-app-with-supabase
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1695829688791/111c5c18-a25c-467a-a818-1ea32c4e5eea.png
+tags: software-development, authentication, javascript, web-development, reactjs, beginners, hashnode, supabase
+---
+
+## Introduction
+
+User authentication is a crucial aspect of modern web applications. Implementing user authentication can be complex and time-consuming, especially when developing an application from scratch, That's where different service providers like Supabase come in to make our work easy.
+
+In this article, We'll explore How to implement User Authentication using Supabase in our React App.
+
+So, Without delaying further, Let's Start!
+
+## What is Supabase?
+
+![](https://user-images.githubusercontent.com/8291514/213727225-56186826-bee8-43b5-9b15-86e839d89393.png#gh-dark-mode-only align="left")
+
+First, Let's understand what's Supabse!
+
+Supabase is an Open Source Alternative to Firebase. It offers a hosted Postgres database, authentication and authorization, auto-generated APIs, functions, file storage, and an AI and Vector/Embeddings Toolkit.
+
+And I really like that We can self-host it on our own server or a cloud provider.
+
+## Project Setup:
+
+To set up our project, First, we have to sign up in [Supabase](http://supabase.com).
+
+After Signing up we will get this kind of Dashboard:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696046996187/e2f69f4a-2f0c-4ff8-89cf-e1b4b8651b3e.png align="center")
+
+Then We'll have to choose our Organisation's name under which we'll add our projects! In this case, I'm giving it as "Arindam's Org", You can give anything you want!
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696047118048/822aef18-a76c-4a31-8b17-9ad25ae487ce.png align="center")
+
+After that, we have to give our Project name and choose our Region! I have chosen Mumbai, You can choose your nearby region!
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696047266276/db49c7f0-924b-4825-8dbb-d3ff6d7e6f2e.png align="center")
+
+<div data-node-type="callout">
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    Don't forget to Copy the Database password in your Clipboard. This password
+    is actually the password for our database, specifically for the{" "}
+    <code>postgres</code> user.
+  </div>
+</div>
+
+Then We'll Click "Create Project," and Supabase will set up our project on the server.
+
+The setup is now complete, we'll gain access to the various features on the left-hand side of our dashboard.
+
+## Auth Implementation:
+
+On the Left of our Dashboard, We'll find the Authentication Tab like this:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696049528136/16a57279-a960-4f60-9f6c-3580bdeb0af0.png align="center")
+
+After clicking the authentication Tab we'll find a table listing all registered users. It displays information such as email, phone, provider, creation date, and user ID.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696050034650/f88509be-89ed-498a-8b71-d235923e3266.png align="center")
+
+Now the Table is Empty as we don't have any users! But Don't Worry we'll add some users after implementing the Auth. So Stay Tuned!
+
+### **Inviting Users:**
+
+We can add users by inviting them as well. Supabase offers a seamless method for inviting users to join our application.
+
+All we have to do is to add the email of the potential user and after that, Supabase will send one mail with an invitation link to that user. When the user clicks the link he/she will be redirected to our application. Quite Easy! Isn't it?
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696051442128/f4e7511e-d655-44d7-a595-e403c2d5b4d8.png align="center")
+
+### **Integrating Auth into Front-End:**
+
+Here Comes the Interesting part! We'll integrate Supabase into our React Project.
+
+First, We'll Create our React Project.
+
+Then We'll install the Supabase libraries. Mainly we'll be using the `React-auth-ui` to skip the designing part of the project. use the following command for that:
+
+```bash
+npm install @supabase/supabase-js @supabase/auth-ui-react @supabase/auth-ui-shared
+```
+
+So we have installed all the required libraries!
+
+Now we'll add the Auth component that Supabase provides us! To do so add the following code in the file you want to add the auth :
+
+```javascript
+import { createClient } from "@supabase/supabase-js";
+import { Auth } from "@supabase/auth-ui-react";
+
+const supabase = createClient(
+  "<INSERT PROJECT URL>",
+  "<INSERT PROJECT ANON API KEY>",
+);
+
+const App = () => <Auth supabaseClient={supabase} />;
+export default App;
+```
+
+Here We have to add the project URL and the Anon API key! You'll Get that key [Here](https://supabase.com/dashboard/project/_/settings/api).
+
+After adding those URLs let's see How it looks! It looks like this:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696061202782/b320028e-dd9b-4413-ad90-423d19c37fec.png align="center")
+
+Bit weird right? That's because we haven't added the styling yet! To add those we have to add the predefined theme. So we'll import the predefined theme and add that to the Auth component.
+
+```javascript
+import { createClient } from "@supabase/supabase-js";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
+
+const supabase = createClient(
+  "<INSERT PROJECT URL>",
+  "<INSERT PROJECT ANON API KEY>",
+);
+
+const App = () => (
+  <Auth appearance={{ theme: ThemeSupa }} supabaseClient={supabase} />
+);
+
+export default App;
+```
+
+After adding the styles, It looks like this:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696053798183/5cbf31a5-9938-440f-8124-55ac15f6a8c9.png align="center")
+
+You can customise your UI accordingly. For that check [this](https://supabase.com/docs/guides/auth/auth-helpers/auth-ui).
+
+But we haven't added any functionality to it yet! We'll add that now. We'll use the `useEffect` hook to manage the authentication state of a user within our web application.
+
+```javascript
+const [session, setSession] = useState(null);
+useEffect(() => {
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    setSession(session);
+  });
+}, []);
+```
+
+Here we are fetching the current user's session using `supabase.auth.getSession()` function and after getting the status, we are updating session state using `setSession()`.
+
+```javascript
+const [session, setSession] = useState(null);
+
+useEffect(() => {
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    setSession(session);
+  });
+
+  const {
+    data: { subscription },
+  } = supabase.auth.onAuthStateChange((_event, session) => {
+    setSession(session);
+  });
+
+  return () => subscription.unsubscribe();
+}, []);
+```
+
+Then We are setting up an event listener `supabase.auth.onAuthStateChange()` to monitor Auth state changes. So, When the auth state changes (for example, when a user logs in or out) the callback function starts executing.
+
+In this case, the callback function updates the session information using `setSession()` . So, whenever a user logs in or out, the session data in the component's state is refreshed to reflect the updated authentication status.
+
+```javascript
+if (!session) {
+  return (
+    <>
+      <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+    </>
+  );
+} else {
+  return <div>User Logged in!</div>;
+}
+```
+
+After managing auth states, we will conditionally render different components according to the auth state of the user. If there is no `session` (user is not authenticated) we'll render the Auth page otherwise we'll show that the User is Logged In.
+
+Now the code looks like:
+
+```javascript
+import { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
+
+const supabase = createClient(
+  "<INSERT PROJECT URL>",
+  "<INSERT PROJECT ANON API KEY>",
+);
+
+const App = () => {
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  if (!session) {
+    return (
+      <>
+        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+      </>
+    );
+  } else {
+    return <div>User Logged in!</div>;
+  }
+};
+
+export default App;
+```
+
+Let's see if it works or not! I have given one email to try and guess what? it's working!
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696072601128/ae977afd-a4a7-4f54-adab-525c2ed6b916.png align="center")
+
+Also, the Logged page is rendered! Great Work! You can also check the Dashboard to confirm it:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696073315651/fb0730b9-4b99-4ecd-a8a1-7ef2249f7f7e.png align="center")
+
+### Sign out:
+
+So far, We have added Sign-in/Log-in Functions. Now it's time to add the logout/sign-out function.
+
+Don't worry it's pretty easy!
+
+We'll add an Async function and one button to trigger that event.
+
+```javascript
+async function signOut() {
+  const { error } = await supabase.auth.signOut();
+  console.log(error);
+}
+
+// Add this in the Logged in page
+<button
+  onClick={() => {
+    signOut();
+  }}
+>
+  sign out
+</button>;
+```
+
+And This works perfectly!
+
+### Sign in with using OAuth:
+
+Supabase supports a suite of social providers which makes the sign-in process seamless.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696073673313/33acfac5-667d-4a2b-850d-90e35e0be591.png align="center")
+
+For this example, we'll be using GitHub Auth. For that, we have to activate the GitHub Auth provider from the Auth dashboard.
+
+So for that, we need a few details that we'll get from the [GitHub OAuth Page](https://github.com/settings/developers). There we have to Register a new App to get the required details. To register our app we'll need our callback URL, It looks like this: `https://<project-ref>.`[`supabase.co/auth/v1/callback`](http://supabase.co/auth/v1/callback) . After that, we'll enable our GitHub Auth.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696074050228/bda77e6e-2023-4bab-86fc-b23e808e234e.png align="center")
+
+To add the GitHub Auth functionality to our project we have to add the following code:
+
+```javascript
+async function signInWithGitHub() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "github",
+  });
+}
+```
+
+Now Let's see if it works or not!
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696074614385/d425396f-7a05-4d9d-b64e-04eb0b9be981.png align="center")
+
+Yay! It's working! Now it will also be reflected in the dashboard:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696078042282/dd779bbe-34b5-471f-82ed-831bee844ace.png align="center")
+
+In the same way, you can add the other auth providers!
+
+### Finally:
+
+In the end, the code looks like this:
+
+```javascript
+// import "./index.css";
+import { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
+
+const supabase = createClient(
+  "<INSERT PROJECT URL>",
+  "<INSERT PROJECT ANON API KEY>",
+);
+
+const App = () => {
+  const [session, setSession] = useState(null);
+  async function signOut() {
+    const { error } = await supabase.auth.signOut();
+    console.log(error);
+  }
+  async function signInWithGitHub() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "github",
+    });
+  }
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  if (!session) {
+    return (
+      <>
+        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+      </>
+    );
+  } else {
+    return (
+      <div>
+        <h1>User Logged in!</h1>{" "}
+        <button
+          onClick={() => {
+            signOut();
+          }}
+        >
+          sign out
+        </button>
+      </div>
+    );
+  }
+};
+
+export default App;
+```
+
+## Conclusion
+
+If you found this blog post helpful, please consider sharing it with others who might benefit. You can also follow me for more content on Javascript, React, and other web Development topics.
+
+For Paid collaboration mail me at : [arindammajumder2020@gmail.com](mailto:arindammajumder2020@gmail.com)
+
+Connect with me on [Twitter](https://twitter.com/intent/follow?screen_name=Arindam_1729), [LinkedIn](https://www.linkedin.com/in/arindam2004/), [Youtube](https://www.youtube.com/channel/@Arindam_1729) and [GitHub](https://github.com/Arindam200).
+
+Thank you for Reading :)
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1696064233439/05056b06-80bb-4148-a772-724bf2f03119.png align="center")
