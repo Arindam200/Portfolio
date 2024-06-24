@@ -1,10 +1,13 @@
 export default function NotFound() {
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        404 - Page Not Found
+      <h1 className="font-medium text-2xl mb-8 tracking-tighter">
+        Oh no! This page doesn't exist.
       </h1>
-      <p className="mb-4">The page you are looking for does not exist.</p>
+      <p>
+        If you expected to see something here, let me know
+        (<a href="mailto:arindammajumder2020@gmail.com" className="underline">arindammajumder@gmail.com</a>).
+      </p>
     </section>
   );
 }

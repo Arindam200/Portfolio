@@ -1,42 +1,54 @@
-# Portfolio Blog Starter
+# Arindam's Portoflio
 
-This is a porfolio site template complete with a blog. Includes:
+Welcome to my portfolio repository! This repository contains the source code for my personal portfolio website. The website showcases my projects, skills, and experiences
 
-- MDX and Markdown support
-- Optimized for SEO (sitemap, robots, JSON-LD schema)
-- RSS Feed
-- Dynamic OG images
-- Syntax highlighting
-- Tailwind v4
-- Vercel Speed Insights / Web Analytics
-- Geist font
+## Technologies Used
 
-## Demo
+- Framework: [Next.js](https://nextjs.org/)
+- Styling: [Tailwind CSS](https://tailwindcss.com/)
+- Hosting: [Vercel](https://vercel.com/)
+- Analytics: [Vercel Analytics](https://vercel.com/docs/analytics)
+- Mail: [Resend](https://resend.com/)
 
-https://portfolio-blog-starter.vercel.app
+## Installation
 
-## How to Use
+To run this project locally, follow these steps:
 
-You can choose from one of the following two methods to use this repository:
+1. **Clone the repository:**
 
-### One-Click Deploy
+   ```bash
+   git clone https://github.com/Arindam200/portfolio.git
+   ```
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+2. **Navigate to the project directory:**
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/blog&project-name=blog&repository-name=blog)
+   ```bash
+   cd portfolio
+   ```
 
-### Clone and Deploy
+3. **Install dependencies:**
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
+   ```bash
+   npm install
+   ```
 
-```bash
-pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/blog blog
-```
+4. **Start the development server:**
+   ```bash
+   npm start
+   ```
 
-Then, run Next.js in development mode:
+## Usage
 
-```bash
-pnpm dev
-```
+Once the development server is running, you can view the portfolio by opening your web browser and navigating to `http://localhost:3000`.
 
-Deploy it to the cloud with [Vercel](https://vercel.com/templates) ([Documentation](https://nextjs.org/docs/app/building-your-application/deploying)).
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+Feel free to reach out to me via email at [arindammajumder2020@gmail.com](mailto:arindammajumder2020@gmail.com) or connect with me on [Twitter](https://x.com/Arindam_1729) and [LinkedIn](https://www.linkedin.com/in/arindam2004/).
+
+## Acknowledgements
+
+This portfolio was built using an open-source template created by [Lee Robinson](https://leerob.io).
