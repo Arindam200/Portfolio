@@ -140,27 +140,27 @@ export default function Page() {
       </div>
       <div className="my-8 flex h-12 w-full flex-row space-x-2 overflow-x-auto">
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
-          <a href="https://Github.com/Arindam200">
+          <a target="_blank" href="https://Github.com/Arindam200" aria-label="GitHub Profile">
             <GitHubIcon />
           </a>
         </div>
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
-          <a href="https://x.com/Arindam_1729">
+          <a target="_blank" href="https://x.com/Arindam_1729" aria-label="Twitter Profile">
             <TwitterIcon />
           </a>
         </div>
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
-          <a href="https://arindam1729.hashnode.dev/">
+          <a target="_blank" href="https://arindam1729.hashnode.dev/" aria-label="Hashnode Blog">
             <HashnodeIcon />
           </a>
         </div>
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
-          <a href="https://www.linkedin.com/in/arindam2004/">
+          <a target="_blank" href="https://www.linkedin.com/in/arindam2004/" aria-label="LinkedIn Profile">
             <LinkedInIcon />
           </a>
         </div>
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
-          <a href="https://www.youtube.com/@Arindam_1729">
+          <a target="_blank" href="https://www.youtube.com/@Arindam_1729" aria-label="YouTube Channel">
             <YoutubeIcon />
           </a>
         </div>
