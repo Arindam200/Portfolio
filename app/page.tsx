@@ -69,7 +69,7 @@ export default function Page() {
         </span>
         , where I create content, host events, and help the community to grow.
       </p>
-      <div className="flex items-start md:items-center my-8 flex-col md:flex-row ">
+      <div className="flex items-start md:items-center my-8 gap-2 flex-row md:flex-row ">
         <Image
           src={ab}
           alt="Arindam's image"
@@ -77,7 +77,7 @@ export default function Page() {
           height={120}
           className="rounded-full"
         />
-        <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-1 text-neutral-500 dark:text-neutral-400">
+        <div className="mt-6 md:mt-0 ml-0 md:ml-6 space-y-1 text-neutral-500 dark:text-neutral-400">
           <p className="flex items-center gap-2">
             <span>
               <TwitterIcon />
