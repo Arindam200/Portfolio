@@ -17,11 +17,16 @@ export const metadata: Metadata = {
   description: "Developer, Technical Writer, Community Builder",
   openGraph: {
     title: "Arindam Majumder",
-    description: "This is my portfolio.",
+    description: "DevRel, Technical Writer, Community Builder",
     url: baseUrl,
     siteName: "Arindam Majumder",
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    title: 'Arindam Majumder',
+    card: 'summary_large_image',
+    description: "DevRel, Technical Writer, Community Builder",
   },
   robots: {
     index: true,
@@ -34,6 +39,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+
 };
 
 const cx = (...classes) => classes.filter(Boolean).join(" ");
