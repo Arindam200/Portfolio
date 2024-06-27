@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from 'next';
 import { CustomMDX } from "app/components/mdx";
 import { formatDate, getBlogPosts } from "app/blog/utils";
 import { baseUrl } from "app/sitemap";
+import React, { Suspense } from 'react';
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -11,23 +13,21 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+export async function generateMetadata({
+  params,
+}): Promise<Metadata | undefined> {
+  let post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
     return;
   }
 
-  const {
+  let {
     title,
     datePublished: publishedTime,
     summary: description,
-    image,
     cover,
   } = post.metadata;
-  const ogImage = image
-    ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
-
+  let ogImage = cover ? `${cover}` : `/og?title=${encodeURIComponent(title)}`;
   return {
     title,
     description,
@@ -42,7 +42,6 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
           url: ogImage,
         },
       ],
-      cover,
     },
     twitter: {
       card: "summary_large_image",
@@ -53,12 +52,17 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
+const ImageWithSuspense = React.lazy(() => import('next/image'));
+
 export default function Blog({ params }: { params: { slug: string } }) {
   const post = getBlogPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
     notFound();
   }
+  console.log(post.metadata);
+
+  const imageSrc = post.metadata.cover ? `${post.metadata.cover}` : '/default-image-path.jpg';
 
   return (
     <section>
@@ -73,29 +77,34 @@ export default function Blog({ params }: { params: { slug: string } }) {
             datePublished: post.metadata.datePublished,
             dateModified: post.metadata.datePublished,
             description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+            image: imageSrc,
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
               "@type": "Person",
-              name: "My Portfolio",
+              name: "Arindam Majumder",
             },
           }),
         }}
       />
-      <img
-        className="pb-10"
-        src={post.metadata.cover}
-        alt={post.metadata.title}
-      />
+      <Suspense fallback={<div>Loading image...</div>}>
+        <ImageWithSuspense
+          className="pb-10"
+          src={imageSrc}
+          alt={post.metadata.title}
+          layout="responsive"
+          width={700}
+          height={365}
+        />
+      </Suspense>
       <h1 className="title font-semibold text-2xl tracking-tighter">
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        <Suspense fallback={<p className="h-5" />}>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.datePublished)}
-        </p>
+          </p>
+        </Suspense>
       </div>
       <article className="prose">
         <CustomMDX source={post.content} />
