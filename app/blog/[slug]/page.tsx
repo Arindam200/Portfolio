@@ -60,7 +60,6 @@ export default function Blog({ params }: { params: { slug: string } }) {
   if (!post) {
     notFound();
   }
-  console.log(post.metadata);
 
   const imageSrc = post.metadata.cover ? `${post.metadata.cover}` : '/default-image-path.jpg';
 

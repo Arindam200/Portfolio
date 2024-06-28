@@ -25,7 +25,7 @@ function parseFrontmatter(fileContent: string) {
   });
 
   content = removeAlignProperty(content);
-
+  content = formatCallout(content);
   return { metadata: metadata as Metadata, content };
 }
 
@@ -36,6 +36,23 @@ function removeAlignProperty(markdown: string): string {
     return match.replace(/\s+align=".*?"/, "");
   });
 }
+
+function formatCallout(markdown) {
+  const calloutRegex = /<div data-node-type="callout">\s*<div data-node-type="callout-emoji">(.*?)<\/div>\s*<div data-node-type="callout-text">([\s\S]*?)<\/div>\s*<\/div>/g;
+  
+  return markdown.replace(calloutRegex, (match) => {
+    const emojiMatch = match.match(/<div data-node-type="callout-emoji">(.*?)<\/div>/);
+    const textMatch = match.match(/<div data-node-type="callout-text">([\s\S]*?)<\/div>/);
+    if (emojiMatch && textMatch) {
+      const emoji = emojiMatch[1].trim();
+      const text = textMatch[1].trim();
+      return `<Callout emoji="${emoji}">${text}</Callout>`;
+    }
+
+    return match;
+  });
+}
+
 
 function getMDXFiles(dir) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
@@ -64,7 +81,7 @@ export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
 }
 
-export function formatDate(date: string, includeRelative = false) {
+export function formatDate(date: string, includeRelative = true) {
   let currentDate = new Date();
   if (!date.includes("T")) {
     date = `${date}T00:00:00`;

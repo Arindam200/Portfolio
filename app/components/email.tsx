@@ -64,7 +64,6 @@ export default function EmailForm() {
         body: JSON.stringify(data),
       });
 
-      console.log(response);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }

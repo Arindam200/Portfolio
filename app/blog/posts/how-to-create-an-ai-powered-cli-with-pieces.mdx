@@ -1,0 +1,525 @@
+---
+title: "How to Create an AI-Powered CLI with Pieces"
+seoDescription: "Create an AI CLI with Pieces OS Client for efficient coding, Stack Overflow searches, and interactive sessions. Step-by-step guide included"
+datePublished: Mon Jun 24 2024 15:02:01 GMT+0000 (Coordinated Universal Time)
+cuid: clxt3w5ig000409jk1ljo8958
+slug: how-to-create-an-ai-powered-cli-with-pieces
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1718447395178/44f33ae9-9767-44e8-a9f5-5b05b21d6a6e.png
+tags: ai, javascript, web-development, opensource, nodejs, backend, cli
+
+---
+
+## Introduction
+
+Integrating AI into Command Line Interfaces (CLIs) can transform how developers interact with their tools, making tasks more efficient and intelligent.
+
+In this article, we'll learn how to use Pieces to build a CLI that can ask questions, get formatted responses, and search Stack Overflow for relevant coding issues
+
+Sounds Interesting?
+
+So, without delaying further, Let's START!
+
+## **What is Pieces OS Client?**
+
+![Pieces.app](https://imgs.search.brave.com/Oiz4adBhN9QGVVUFO5yfQS2sz7gIGqmTOezyvht3wkU/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9kb2Nz/LnBpZWNlcy5hcHAv/YXNzZXRzL2ltYWdl/cy9yb2JvdHNfd2lu/ZG93cy0xMTNiNGY2/OGJjMzhhZTA0ZTBj/YzU5Nzc2MzEyMjBk/Ni5wbmc align="left")
+
+Pieces OS Client is a flexible database that helps us to save, create, and improve code snippets throughout our development process. It includes built-in Local Large Language Models that can answer questions and generate strong code solutions, no matter which development tool we use.
+
+Pieces offers different language-based SDKs to utilize the wide range of functionalities provided by Pieces OS. For this tutorial, we'll be using the [TypeScript SDK](https://github.com/pieces-app/pieces-os-client-sdk-for-typescript).
+
+## **What Can our CLI Do?**
+
+Here is a high-level list of some of the feature, our CLI will be able to perform by the end of this Article:
+
+1. Answer Coding Questions: Provide answers to coding-related questions using its built-in language models.
+    
+2. Search Stack Overflow: Search Stack Overflow for relevant answers to coding issues.
+    
+3. Interactive Mode: An interactive mode where developers can have a continuous conversation with the AI.
+    
+
+You can perform several other actions through the Pieces OS Client and can discover the other endpoints and SDKs through the [Open Source by Pieces Repo](https://github.com/pieces-app/opensource).
+
+## Building Pieces CLI
+
+### Prerequisites
+
+Before Starting the Project, make sure you've Pieces OS running in the background. This is crucial because the Pieces OS will serve as the backbone of our CLI, providing the necessary database and language model functionalities.
+
+You can Download Pieces OS from [here](https://docs.pieces.app/installation-getting-started/what-am-i-installing).
+
+### Basic Setup
+
+First, we'll create a Simple Nodejs Project with the following Command:
+
+```javascript
+npm init -y
+```
+
+This command will create a `package.json` file with default settings. The `-y` flag automatically answers "yes" to all prompts, allowing for a quick setup.
+
+Next, we'll install the required packages by running the following command:
+
+```javascript
+npm i @pieces.app/pieces-os-client os
+```
+
+Now, We'll create an `index.js` file in the root directory of our project. This file will serve as the entry point for our CLI application.We'll also import the required packages that we have just installed
+
+```javascript
+#!/usr/bin/env node
+import * as Pieces from '@pieces.app/pieces-os-client';
+import os from 'os';
+```
+<Callout emoji="💡">
+The `#!/usr/bin/env node` line at the top of the file is called a shebang. It allows the script to be run as an executable from the command line.
+</Callout>
+
+
+**Pieces OS** uses different localhost ports depending on the operating system. We'll check the user's platform and set the appropriate port. Add the following code to `index.js`:
+
+```javascript
+const platform = os.platform();
+const port = platform === 'linux' ? 5323 : 1000;
+```
+
+Here, the `os.platform()` gets the user's OS and changes the port accordingly.
+
+Next, we'll create a instance of the QGPTApi with Pieces Configuration.This instance will allow us to interact with the Pieces OS API.
+
+```javascript
+const configuration = new Pieces.Configuration({
+  basePath: `http://localhost:${port}`
+});
+const apiInstance = new Pieces.QGPTApi(configuration);
+```
+
+In this code, we create a new `Configuration` object with the `basePath` set to the appropriate localhost URL based on the user's platform.
+
+With that, we have completed the basic setup of our project.
+
+> (optional) To verify that everything is working correctly, write this code in the index.js file
+> 
+> ```javascript
+> const healthInstance = new Pieces.WellKnownApi(configuration)
+> 
+> async function fetchHealthData() {
+>   try {
+>     const data = await healthInstance.getWellKnownHealth();
+>     console.log(data); // ok
+>   } catch (error) {
+>     console.error(error);
+>   }
+> }
+> 
+> fetchHealthData();
+> ```
+> 
+> and Run the following script:
+> 
+> ```javascript
+> node index.js
+> ```
+> 
+> If everything is set up correctly, you should see a message ie ok indicating that the connection to Pieces OS was successful.
+
+### Implementing the AskQuestion Function
+
+Next we'll create our main `askQuestion` function which will communicate with API instance of the `QGPTApi` that we have created previously.
+
+To improve the User experience we'll install a package `ora`.
+
+```javascript
+npm i ora
+```
+
+This package provides a nice animation while generating the response.
+
+Now, we will define the `askQuestion` function. This function will take a query as an argument, send it to the `QGPTApi`, and return the response.
+
+```javascript
+const askQuestion = async (query) => {
+  // Check if the CLI is not in interactive mode
+  if (!interactiveMode) {
+    // Start the spinner animation
+    const spinner = ora('Generating response...').start();
+  }
+
+  // Define the parameters for the API request
+  const params = {
+    query,
+    relevant: {
+      iterable: []
+    },
+  };
+
+  try {
+    // Send the query to the API and get the result
+    const result = await apiInstance.question({ qGPTQuestionInput: params });
+
+    // If the CLI is not in interactive mode, stop the spinner and display success message
+    if (!interactiveMode) {
+      spinner.succeed('Response generated.');
+    }
+
+    // Return the text of the first answer
+    return result.answers.iterable[0].text;
+  } catch (error) {
+    // If an error occurs, stop the spinner and display an error message
+    if (!interactiveMode) {
+      spinner.fail('Error generating response.');
+    }
+    console.error('Error calling API:', error);
+    throw error;
+  }
+};
+```
+
+> Note:
+> 
+> The QGPT endpoint handles queries and provide relevant responses using the QGPT model. This endpoint is part of the QGPTApi and is used to interact with the model by sending questions and receiving answers.
+> 
+> The endpoint processes the input query, utilizes relevant context if provided, and generates a response based on the QGPT model's capabilities.  
+>   
+> For more information, check out the [docs](https://docs.pieces.app/build/reference/typescript/apis/QGPTApi).
+
+### Displaying Help and Version Information
+
+While building a CLI, one of the crucial steps is providing a clear instructions on how to use the tool. We usually provide a help message to show all commands that a user can use with that CLI tool.
+
+Let's Implement that in our tool:
+
+```javascript
+const displayHelp = () => {
+  console.log(
+`\x1b[1mWelcome to Pieces CLI | By Arindam\x1b[0m
+
+Usage: pieces-cli [options] [query]
+
+Options:
+  -i, --interactive  Enter interactive mode
+  -h, --help         Display this help message
+  -v, --version      Display the version number
+
+Examples:
+  pieces-cli "What is the capital of France?"
+  pieces-cli -i
+  pieces-cli --help
+  pieces-cli --version`
+  );
+};
+
+const isHelp = process.argv.includes("-h") || process.argv.includes("--help");
+
+if(isHelp){
+  displayHelp();
+  process.exit(0);
+}
+```
+
+With this, if the user uses `-h` or `--help` in the command, it will show the help message.
+
+Similarly, we'll display the Version of the tool when the user uses the `-v` or `--version` command. Here's the code for that:
+
+```javascript
+import pkgJSON from './package.json';
+
+const version = pkgJSON.version || '1.0.4';
+
+const isVersion = process.argv.includes("-v") || process.argv.includes("--version");
+
+if(isVersion){
+  console.log(`pieces-cli version: ${version}`);
+  process.exit(0);
+}
+```
+
+This enhances the user experience and makes our tool more accessible.
+
+### Adding StackOverflow Search
+
+In this section, we'll add a function to search Stack Overflow for relevant coding issues based on a query. This will improve the User Experience by providing the links to relevant Stack Overflow discussions based on their queries.
+
+For that, let's install the `axios` package to make HTTP requests using the following command:
+
+```bash
+npm i axios
+```
+
+Now, we'll define the `searchStackOverflow` function. This function will take a query as an argument, send it to the Stack Overflow API, and return a list of relevant links.
+
+```javascript
+const searchStackOverflow = async (query) => {
+  // Check if the CLI is not in interactive mode
+  if (!interactiveMode) {
+    // Start the spinner animation
+    const spinner = ora('Searching Stack Overflow...').start();
+  }
+
+  try {
+    // Send the query to the Stack Overflow API and get the response
+    const response = await axios.get('https://api.stackexchange.com/2.3/search/advanced', {
+      params: {
+        order: 'desc',
+        sort: 'relevance',
+        q: query,
+        site: 'stackoverflow'
+      }
+    });
+
+    // If the CLI is not in interactive mode, stop the spinner and display success message
+    if (!interactiveMode) {
+      spinner.succeed('Stack Overflow search completed.');
+    }
+
+    // Return the list of links to relevant Stack Overflow discussions
+    return response.data.items.map(item => item.link);
+  } catch (error) {
+    // If an error occurs, stop the spinner and display an error message
+    if (!interactiveMode) {
+      spinner.fail('Error searching Stack Overflow.');
+    }
+    console.error('Error searching Stack Overflow:', error.message);
+    return [];
+  }
+};
+```
+
+By following these steps, we have successfully implemented the `searchStackOverflow` function. This feature can be particularly useful for developers looking for solutions to coding problems.
+
+### Implementing Interactive Mode
+
+Next, we'll create a Interactive mode that will allow users to continuously interact with the CLI. This feature will be super helpful for tasks that require ongoing input and feedback.
+
+First, we'll install readline package to handle input output:
+
+```javascript
+npm i readline
+```
+
+Next, we'll check if the user has passed the `-i` or `--interactive` flag to enter interactive mode:
+
+```javascript
+const isInteractiveMode = process.argv.includes("-i") || process.argv.includes("--interactive");
+```
+
+Now, we'll use the `readline` module to create an interface for reading input from the user. This interface will handle input and output streams and provide a prompt for the user.
+
+```javascript
+import readline from 'readline';
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  prompt: 'pieces-cli> ',
+  historySize: 100,
+  completer: (line) => {
+    const completions = ['exit', 'help', 'version', 'clear', 'model'];
+    const hits = completions.filter((c) => c.startsWith(line));
+    return [hits.length ? hits : completions, line];
+  }
+});
+```
+
+We'll then call `rl.prompt()` to display the prompt to the user.
+
+```javascript
+rl.prompt();
+```
+
+After that, we'll set up an event listener for the `line` event, which is triggered whenever the user enters a line of input. Here we will define the logic to handle specific commands.
+
+```javascript
+rl.on('line', async (line) => {
+  const input = line.trim();
+  switch (input.toLowerCase()) {
+    case 'exit':
+      rl.close();
+      break;
+    case 'help':
+      console.log("Available commands: exit, help, version, clear, model");
+      rl.prompt();
+      break;
+    case 'version':
+      console.log('pieces-cli version: 1.0.3'); 
+      rl.prompt();
+      break;
+    case 'clear':
+      console.clear();
+      rl.prompt();
+      break;
+    default:
+      // ...default case
+  }
+}).on('close', () => {
+  console.log('Exiting interactive mode.');
+  process.exit(0);
+});
+```
+
+Here, we have defined the logic to handle specific commands:
+
+* `exit`: Close the readline interface and exit the process.
+    
+* `help`: Display a list of available commands.
+    
+* `version`: Display the version number of the CLI.
+    
+* `clear`: Clear the terminal screen.
+    
+
+For any other input, we assume it might be a question or command that needs further processing. We call an asynchronous function `askQuestion(input)` to handle the input and print the formatted response using `formatResponse(response)`.
+
+```javascript
+// default case   
+ try {
+        const response = await askQuestion(input);
+        console.log(formatResponse(response));
+
+        // Check if the query is related to coding and search Stack Overflow if necessary
+        if (/code|error|exception|bug|issue|problem|function|method|class|variable|syntax|compile|runtime/i.test(input)) {
+          const stackOverflowLinks = await searchStackOverflow(input);
+          if (stackOverflowLinks.length > 0) {
+            console.log(chalk.blue("\nRelevant Stack Overflow links:"));
+            stackOverflowLinks.forEach(link => console.log(chalk.blue(link)));
+          } else {
+            console.log(chalk.yellow("\nNo relevant Stack Overflow links found."));
+          }
+        }
+      } catch (error) {
+        console.error('Error calling API:', error);
+      }
+      rl.prompt();
+      break;
+```
+
+If the input seems related to coding (determined by a regular expression test), it search Stack Overflow for relevant links. If links are found, we'll print them; otherwise, we'll indicate that no relevant links were found.
+
+Finally, when the `readline` interface is closed (e.g., by the `exit` command), the `close` event is triggered. We'll then log a message indicating that we are exiting interactive mode and then exit the process.
+
+```javascript
+.on('close', () => {
+  console.log('Exiting interactive mode.');
+  process.exit(0);
+});
+```
+
+### Formatting Responses
+
+When working with text responses, especially those that include code snippets, it's important to format them in a way that's easy to read and understand. It improves the user experience of the tool.
+
+Now let's Implement this in our CLI tool.
+
+First, we'll create a `formatResponse` function takes a text input and formats it by applying different styles to different parts of the text, such as code blocks, headers, and list items.
+
+```javascript
+const formatResponse = (text) => {
+  const lines = text.split('\n');
+  let formattedText = '';
+  let inCodeBlock = false;
+  let codeLang = '';
+
+  lines.forEach(line => {
+    if (line.startsWith('```')) {
+      inCodeBlock = !inCodeBlock;
+      codeLang = inCodeBlock ? line.slice(3).trim() : '';
+    } else if (inCodeBlock) {
+      const highlighted = codeLang ? hljs.highlight(line, { language: codeLang }).value : hljs.highlightAuto(line).value;
+      formattedText += applyChalk(highlighted) + '\n';
+    } else if (line.startsWith('# ')) {
+      formattedText += chalk.bold(line) + '\n';
+    } else if (line.startsWith('* ')) {
+      formattedText += chalk.green('• ') + line.slice(2) + '\n';
+    } else if (line.startsWith('**') && line.endsWith('**')) {
+      formattedText += chalk.bold(line.slice(2, -2)) + '\n';
+    } else {
+      formattedText += line + '\n';
+    }
+  });
+  return formattedText;
+};
+```
+
+Here, if a line starts with triple backticks (\`\`\`) it toggles the `inCodeBlock` flag and sets the `codeLang` if entering a code block.
+
+> Note: This Function Made the code blocks wrapped in HTML code so, we need to remove those unwanted HTML tags.
+
+So, we'll create the `cleanHtml` function that uses regular expression to remove HTML tags from a string and replaces HTML entities with their corresponding characters.
+
+```javascript
+const cleanHtml = (rawHtml) => {
+  let cleanText = rawHtml.replace(/<[^>]*>/g, '');
+
+  const htmlEntities = {
+    '&quot;': '"',
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&nbsp;': ' ',
+    '&apos;': "'",
+    '&cent;': '¢',
+    '&pound;': '£',
+    '&yen;': '¥',
+    '&euro;': '€',
+    '&copy;': '©',
+    '&reg;': '®'
+  };
+
+  cleanText = cleanText.replace(/&[a-zA-Z]+;/g, (match) => htmlEntities[match] || match);
+  cleanText = cleanText.replace(/\s+/g, ' ').trim();
+
+  return cleanText;
+};
+```
+
+Finally, we'll add the `applyChalk` function that applies chalk styles to highlighted code by replacing HTML span tags with corresponding chalk styles.
+
+```javascript
+const applyChalk = (highlighted) => {
+  return cleanHtml(highlighted.replace(/<span class="hljs-(\w+)">(.*?)<\/span>/g, (match, p1, p2) => {
+    switch (p1) {
+      case 'keyword': return chalk.blue(p2);
+      case 'string': return chalk.green(p2);
+      case 'built_in': return chalk.cyan(p2);
+      case 'comment': return chalk.gray(p2);
+      case 'title': return chalk.yellow(p2);
+      case 'params': return chalk.magenta(p2);
+      case 'function': return chalk.red(p2);
+      case 'operator': return chalk.white(p2);
+      default: return p2;
+    }
+  }));
+};
+```
+
+And with that We've successfully created our CLI tool using Pieces!!
+
+Kudos to us!!
+
+## What's Next?
+
+Now that you've built a basic CLI tool using Pieces OS Client, you can improve and add more features to it.
+
+I've also published the CLI tool as an npm package, which you can check out and use right away.
+
+%[https://www.npmjs.com/package/pieces-cli] 
+
+The code for this project is also public, and you can check it out on [GitHub](https://github.com/Arindam200/PiecesCLI). Feel free to contribute by fixing bugs, adding new features, or improving the documentation.
+
+Your contributions can help make this tool even more powerful and user-friendly.
+
+## Conclusion
+
+Overall, integrating AI into your CLI using Pieces OS Client provides a seamless and efficient way to enhance your terminal workflow. It not only improves productivity but also enables more sophisticated interactions with AI models.
+
+Install it today and transform your workflow with the ease of AI at your fingertips
+
+If you found this blog post helpful, please consider sharing it with others who might benefit.
+
+For Paid collaboration mail me at : [arindammajumder2020@gmail.com](mailto:arindammajumder2020@gmail.com)
+
+Connect with me on [Twitter](https://twitter.com/intent/follow?screen_name=Arindam_1729), [LinkedIn](https://www.linkedin.com/in/arindam2004/), [Youtube](https://www.youtube.com/channel/@Arindam_1729) and [GitHub](https://github.com/Arindam200).
+
+Thank you for Reading!
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1718447580202/67ab81f4-6d67-4955-93fb-81732f164562.png align="center")
