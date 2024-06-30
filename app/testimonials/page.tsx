@@ -1,5 +1,4 @@
 import React from "react";
-import ab from "./ab.png";
 import Alexandr from "./Alexandr.png";
 import Image from "next/image";
 import Dani from "./Dani.png";
@@ -7,6 +6,13 @@ import Suhas from "./Suhas.png";
 import Debajyati from "./debajyati.png";
 import { ArrowIcon } from "../components/icons";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Testimonials",
+  description: "See what people thinks about me.",
+};
+
 
 function CustomTweet({
   image,

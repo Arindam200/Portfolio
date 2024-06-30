@@ -1,6 +1,12 @@
 import React from "react";
 import Meeting from "app/components/cal";
 import Email from "app/components/email";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Conctact Me",
+  description: "Contact me for freelance work or full-time opportunities.",
+};
 
 export default function page() {
   return (
