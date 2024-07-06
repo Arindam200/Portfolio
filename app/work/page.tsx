@@ -210,6 +210,44 @@ export default function WorkPage() {
           These initiatives significantly boosted Showwcase's community presence
           and content impact, setting a new standard for engagement and quality.
         </p>
+
+        <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
+
+        <h2 className="font-medium text-xl mb-1 tracking-tighter">Other Experiences</h2>
+        <p className="mb-2">
+          In addition to my professional roles, I have also been involved in various other activities:
+        </p>
+        <ul className="mb-2">
+          <li>
+            Core team member for the Eastern India's largest hackathon community "
+            <a
+              className="underline"
+              target="_blank"
+              href="https://www.hack4bengal.tech/"
+            >
+              Hack4Bengal
+            </a>
+            ", where I played a key role in organizing and managing the event.
+          </li>
+          <li>
+            Writing articles for{" "}
+            <a
+              className="underline"
+              target="_blank"
+              href="https://leaddevrel.com"
+            >
+              LeadDevRel
+            </a>
+            , sharing insights and knowledge on developer relations and community building.
+          </li>
+          <li>
+            Hosting bi-weekly growth meetings with DevRels in the LeadDevRel
+            community.
+          </li>
+        </ul>
+        <p>
+          These experiences have further enriched my skills and provided me with additional platforms to contribute to the developer community.
+        </p>
       </div>
       <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
       <p>
