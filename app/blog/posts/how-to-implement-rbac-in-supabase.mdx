@@ -3,7 +3,7 @@ title: "How to Implement RBAC in Supabase"
 datePublished: "2024-05-14"
 slug: how-to-implement-rbac-in-supabase
 cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1719897059315/4a5643ec-cfdc-4c59-980e-d61952a17b56.jpeg
-tags: devrel, marketing ,developer, beginners 
+tags: devrel, marketing ,developer, beginners
 ---
 
 > This Article was orginally published on <u>[Permit.io](https://www.permit.io/blog/how-to-implement-rbac-in-supabase)</u>
@@ -23,9 +23,7 @@ Let's begin!
 To get started, let's create a new React project. To save time (and assuming you understand React basics), we already have a starter project set up where you'll find the simple to-do app we’ll be using in this tutorial.
 
 1. Make sure you have Node.js and npm installed on your machine. You can download them from the official Node.js website: <u>[**https://nodejs.org/en/**](https://nodejs.org/en/)</u>
-    
 2. Open a terminal window and create a new React project using the following command:
-    
 
 ```bash
 git clone <https://github.com/permitio/permit-supabase-example>
@@ -187,31 +185,26 @@ if(data.session){
 4\. In the same file, remove the comment markers surrounding the `signin` function. Additionally, locate the `useEffect` hook positioned immediately below the `signin` function. Remove the comment markers from its code as well.
 
 ```javascript
-const signin =async (email, password) => {
+const signin = async (email, password) => {
+  console.log(email, password);
 
-  console.log(email, password)
-
-const { data, error } =await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email: emailRef.current.value,
     password: passwordRef.current.value,
-  })
+  });
 
-if (data.session) {
-
-    localStorage.setItem("session", data.session.access_token)
-navigate('/');
-  };
+  if (data.session) {
+    localStorage.setItem("session", data.session.access_token);
+    navigate("/");
+  }
 
   console.log(data.session);
   console.log(error);
-
-}
+};
 
 useEffect(() => {
-
-if (localStorage.getItem("session"))navigate('/');
-
-}, [])
+  if (localStorage.getItem("session")) navigate("/");
+}, []);
 ```
 
 5\. Remove all the comment markers from the return statement
@@ -265,14 +258,10 @@ In this example, we have a user object with an id and a role property. The `dele
 
 This approach of hard-coding authorization rules using imperative if statements have several drawbacks:
 
-* **Lack of Centralization -** When authorization logic is spread across various parts of an app, it makes it challenging to manage and maintain the rules as the application scales. This potentially creates inconsistencies in the app’s authorization, which can be a major security issue.
-    
-* **Duplication -** Implementing authorization directly within function calls often leads to repetitive checks across multiple functions. Similar `if` conditions may be duplicated in various methods of handling different aspects of user management or content control. This repetition not only bloats the codebase but also increases the risk of errors during updates or modifications.
-    
-* **Complexity -** As the number of roles and permissions increases, the imperative approach can lead to highly complex and nested `if` statements. This complexity makes the code harder to read and understand and introduces bugs, as maintaining accurate logic across extensive conditional structures becomes more challenging.
-    
-* **Inflexibility -** Hard-coded conditional statements for authorization are inflexible and do not adapt well to changes, such as adding new roles or changing permission levels. Every change requires manual updates to the corresponding `if` statements throughout the application, which is time-consuming and prone to errors.
-    
+- **Lack of Centralization -** When authorization logic is spread across various parts of an app, it makes it challenging to manage and maintain the rules as the application scales. This potentially creates inconsistencies in the app’s authorization, which can be a major security issue.
+- **Duplication -** Implementing authorization directly within function calls often leads to repetitive checks across multiple functions. Similar `if` conditions may be duplicated in various methods of handling different aspects of user management or content control. This repetition not only bloats the codebase but also increases the risk of errors during updates or modifications.
+- **Complexity -** As the number of roles and permissions increases, the imperative approach can lead to highly complex and nested `if` statements. This complexity makes the code harder to read and understand and introduces bugs, as maintaining accurate logic across extensive conditional structures becomes more challenging.
+- **Inflexibility -** Hard-coded conditional statements for authorization are inflexible and do not adapt well to changes, such as adding new roles or changing permission levels. Every change requires manual updates to the corresponding `if` statements throughout the application, which is time-consuming and prone to errors.
 
 While this approach works for simple applications, it quickly becomes problematic as the application grows in complexity. This is why, it is recommended to use more structured and flexible authorization mechanisms, such as role-based access control (RBAC) or attribute-based access control (ABAC).
 
@@ -289,22 +278,17 @@ To get started with configuring permissions, log in to <u>[**app.permit.io**](ht
 To start with, we’ll create a role. Roles are an easy way to group permissions and assign them to users or other entities.
 
 1. Go to the Policy page and click Create &gt; Role
-    
 2. Add the following roles, with actions as depicted below:
-    
-    * Admin
-        
-    * Employee
-        
+
+   - Admin
+   - Employee
 
 ![image (72).png](https://media.graphassets.com/lATFhlwITlmSGiuLaBl3 align="left")
 
 With our roles created, let’s create a resource.
 
 1. Go to the Policy page and click Create &gt; Resource
-    
 2. Create the following resource and assign it with Actions:
-    
 
 ![image (73).png](https://media.graphassets.com/LtXkUMqISJCy2kC4gkZg align="left")
 
@@ -362,145 +346,140 @@ This is how your directory structure should look like :
 
 Now, let’s add logic in our edge functions :
 
-* `/check-permission/:id/:operation`
-    
-    * This function checks the user's permissions.
-        
-    * Clear the index.ts file in the check-permission directory and paste the following code:
-        
-    
-    ```javascript
-    import { Permit } from "npm:permitio";
-    
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': "*",
-      'Access-Control-Allow-Headers': 'Authorization, x-client-info, apikey, Content-Type',
-      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE',
+- `/check-permission/:id/:operation`
+  - This function checks the user's permissions.
+  - Clear the index.ts file in the check-permission directory and paste the following code:
+  ```javascript
+  import { Permit } from "npm:permitio";
+
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers":
+      "Authorization, x-client-info, apikey, Content-Type",
+    "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE",
+  };
+
+  Deno.serve(async (req) => {
+    const permit = new Permit({
+      // your API Key
+      token: Deno.env.get("PERMIT_TOKEN"),
+      pdp: "<https://cloudpdp.api.permit.io>",
+    });
+
+    if (req.method === "OPTIONS") {
+      return new Response("ok", { headers: corsHeaders });
     }
-    
-    Deno.serve(async (req) => {
-      
-      const permit = new Permit({
-        // your API Key
-        token: Deno.env.get("PERMIT_TOKEN"),
-        pdp: "<https://cloudpdp.api.permit.io>",
-    
+
+    const url = new URL(req.url);
+    const id = url.pathname.split("/")[2];
+    const operation = url.pathname.split("/")[3];
+
+    let response;
+
+    try {
+      const permitted = await permit.check(String(id), String(operation), {
+        type: "todo",
+        tenant: "todo-tenant",
       });
-    
-      if (req.method === 'OPTIONS') {
-        return new Response('ok', { headers: corsHeaders })
+
+      if (permitted) {
+        response = {
+          status: "permitted",
+        };
+      } else {
+        response = {
+          status: "not-permitted",
+        };
       }
-    
-      const url = new URL(req.url);
-      const id = url.pathname.split('/')[2];
-      const operation = url.pathname.split('/')[3];
-      
-      let response;
-    
-      try{
-    
-          const permitted = await permit.check( String(id) , String(operation) , {
-              type: "todo",
-              tenant: "todo-tenant",
-            });
-    
-          if (permitted) {
-              
-            response = {
-                "status" : "permitted"
-            }
-    
-          } else {
-              
-              response = {
-                  "status" : "not-permitted"
-              }
-          }
-    
-          return new Response(JSON.stringify(response), { headers:  corsHeaders  , status :  200 })
-        }catch(err){
-         
-          response = {
-              "problem": "internal server error",
-              "error" : err
-          }
-    
-          return new Response(JSON.stringify(response), { headers:  corsHeaders , status :  500 })
-      }
-    })
-    ```
-    
-* `/createUser`
-    
-    * This is for creating a user with an employee role in our permit directory.
-        
-    * Clear the index.ts file in the createUser directory and paste the following code:
-        
-    
-    ```javascript
-    import { Permit } from "npm:permitio";
-    
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': "*",
-      'Access-Control-Allow-Headers': 'Authorization, x-client-info, apikey, Content-Type',
-      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE',
+
+      return new Response(JSON.stringify(response), {
+        headers: corsHeaders,
+        status: 200,
+      });
+    } catch (err) {
+      response = {
+        problem: "internal server error",
+        error: err,
+      };
+
+      return new Response(JSON.stringify(response), {
+        headers: corsHeaders,
+        status: 500,
+      });
     }
-    
-    Deno.serve(async (req) => {
-      
-        const permit = new Permit({
-          // your API Key
-          token: Deno.env.get("PERMIT_TOKEN"),
-          pdp: "<https://cloudpdp.api.permit.io>",
-    
-        });
-    
-      if (req.method === 'OPTIONS') {
-        return new Response('ok', { headers: corsHeaders })
-      }
-    
-      const { data } = await req.json()
-    
-      const users = {
-          key: data.user.id ,
-          email: data.user.email ,
-      }
-    
-      const assignedRole = {
-          role : "Employee",
-          tenant : "todo-tenant",
-          user : data.user.id
-      }
-    
-      let response ;
-      
-      try{
-          await permit.api.createUser(users);
-          const response1 = await permit.api.assignRole(JSON.stringify(assignedRole));
-          const response2 = await permit.api.tenants.listTenantUsers({
-              tenantKey: "todo-tenant",
-              page: 1,
-              perPage: 100,
-          });
-          
-          response = {
-            msg : "employee with tenant role created successfully"
-          }
-    
-          return new Response(JSON.stringify(response), { headers: corsHeaders  , status : 200})
-    
-      }catch(err){
-          console.log(err);
-          response = {
-            error : err
-          }
-    
-          return new Response(JSON.stringify(response), { headers: corsHeaders , status : 500})
-      }
-    
-    })
-    ```
-    
+  });
+  ```
+- `/createUser`
+  - This is for creating a user with an employee role in our permit directory.
+  - Clear the index.ts file in the createUser directory and paste the following code:
+  ```javascript
+  import { Permit } from "npm:permitio";
+
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers":
+      "Authorization, x-client-info, apikey, Content-Type",
+    "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE",
+  };
+
+  Deno.serve(async (req) => {
+    const permit = new Permit({
+      // your API Key
+      token: Deno.env.get("PERMIT_TOKEN"),
+      pdp: "<https://cloudpdp.api.permit.io>",
+    });
+
+    if (req.method === "OPTIONS") {
+      return new Response("ok", { headers: corsHeaders });
+    }
+
+    const { data } = await req.json();
+
+    const users = {
+      key: data.user.id,
+      email: data.user.email,
+    };
+
+    const assignedRole = {
+      role: "Employee",
+      tenant: "todo-tenant",
+      user: data.user.id,
+    };
+
+    let response;
+
+    try {
+      await permit.api.createUser(users);
+      const response1 = await permit.api.assignRole(
+        JSON.stringify(assignedRole),
+      );
+      const response2 = await permit.api.tenants.listTenantUsers({
+        tenantKey: "todo-tenant",
+        page: 1,
+        perPage: 100,
+      });
+
+      response = {
+        msg: "employee with tenant role created successfully",
+      };
+
+      return new Response(JSON.stringify(response), {
+        headers: corsHeaders,
+        status: 200,
+      });
+    } catch (err) {
+      console.log(err);
+      response = {
+        error: err,
+      };
+
+      return new Response(JSON.stringify(response), {
+        headers: corsHeaders,
+        status: 500,
+      });
+    }
+  });
+  ```
 
 Now that we've implemented the logic, let's deploy our edge functions.
 
@@ -537,23 +516,23 @@ The main modification we made here is that before setting the session data in `
 2\. Go to **todo.jsx** in **todo** directory and uncomment all the commented code.
 
 ```javascript
-// An example of the editTodo endpoint using the check-permission 
+// An example of the editTodo endpoint using the check-permission
 
-async function editTodo(todo_id){
-      
-      const res = await fetch(`http://localhost:54321/functions/v1/check-permission/${id}/update`, {
-        headers: {
-          "Authorization" : `Bearer ${AuthHeader}`
-        }
-    })       
-        const response = await res.json();
-        if(response.status === "permitted"){
-          
-          todoRef.current.value = "";
-          setUpdatingTodo({id : todo_id});
-          
-        }
-  } 
+async function editTodo(todo_id) {
+  const res = await fetch(
+    `http://localhost:54321/functions/v1/check-permission/${id}/update`,
+    {
+      headers: {
+        Authorization: `Bearer ${AuthHeader}`,
+      },
+    },
+  );
+  const response = await res.json();
+  if (response.status === "permitted") {
+    todoRef.current.value = "";
+    setUpdatingTodo({ id: todo_id });
+  }
+}
 ```
 
 Now, try to sign up with employe1@gmail.com and admin1@gmail.com using our user interface:
@@ -568,45 +547,42 @@ Congrats, our Todo Application is fully functional now!
 
 We now have the following permissions in our application:
 
-* By default, all users (authenticated and un-authenticated) can read the todos
-    
-* Only admins can create todos
-    
-* Only admins can delete todos
-    
-* Admins and Employees can edit todos and mark todos as done
-    
+- By default, all users (authenticated and un-authenticated) can read the todos
+- Only admins can create todos
+- Only admins can delete todos
+- Admins and Employees can edit todos and mark todos as done
 
 Now let’s check out the functionalities :
 
 Currently, we don’t have any admin users, so our first task is to give [**admin@gmail.com**](mailto:admin@gmail.com) an admin role. To do that:
 
-* Go to the Permit Dashboard &gt; Directory
-    
-* Select todo-tenant as the tenant
-    
+- Go to the Permit Dashboard &gt; Directory
+- Select todo-tenant as the tenant
 
 ![Untitled (63).png](https://media.graphassets.com/JGuIg6QSLc8sDYE5iqAZ align="left")
 
-* Select edit, remove employee role, and assign admin role
-    
-    ![image (92).png](https://media.graphassets.com/gay931HnQWOXRCNmB5a0 align="left")
-    
+- Select edit, remove employee role, and assign admin role
+  ![image (92).png](https://media.graphassets.com/gay931HnQWOXRCNmB5a0 align="left")
 
 ![image (93).png](https://media.graphassets.com/6DtuFDreQFCmYAdcRITd align="left")
 
-* Save. That’s all we need to do to create an admin user.
-    
+- Save. That’s all we need to do to create an admin user.
 
 ![image (94).png](https://media.graphassets.com/vYw5bf1VQFi8fidTemiq align="left")
 
 Now, let’s see a demo of an Authorized user i.e. admin, trying to create todos:
 
-<u>[Vid1: Admin trying to create todos](https://media.graphassets.com/r8tbunEnQvSu2cq0ky53)</u>
+<u>
+  [Vid1: Admin trying to create
+  todos](https://media.graphassets.com/r8tbunEnQvSu2cq0ky53)
+</u>
 
 Here's a demo of an Unauthorized user i.e. employee trying to create todos :
 
-<u>[Vid2: Employee trying to create todos](https://media.graphassets.com/Jx4aVYywTYuKewKXePG8)</u>
+<u>
+  [Vid2: Employee trying to create
+  todos](https://media.graphassets.com/Jx4aVYywTYuKewKXePG8)
+</u>
 
 Let’s say we don’t want employees to be able to update our todos. Now, only admins should be able to do that. To change that, go to the policy editor and just check off the required row i.e. update. Now, our employees would not be able to edit or mark the todos as done:
 

@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 import { CustomMDX } from "app/components/mdx";
 import { formatDate, getBlogPosts } from "app/blog/utils";
 import { baseUrl } from "app/sitemap";
-import React, { Suspense } from 'react';
+import React, { Suspense } from "react";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -52,7 +52,7 @@ export async function generateMetadata({
   };
 }
 
-const ImageWithSuspense = React.lazy(() => import('next/image'));
+const ImageWithSuspense = React.lazy(() => import("next/image"));
 
 export default function Blog({ params }: { params: { slug: string } }) {
   const post = getBlogPosts().find((post) => post.slug === params.slug);
@@ -61,7 +61,9 @@ export default function Blog({ params }: { params: { slug: string } }) {
     notFound();
   }
 
-  const imageSrc = post.metadata.cover ? `${post.metadata.cover}` : '/default-image-path.jpg';
+  const imageSrc = post.metadata.cover
+    ? `${post.metadata.cover}`
+    : "/default-image-path.jpg";
 
   return (
     <section>
@@ -101,7 +103,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         <Suspense fallback={<p className="h-5" />}>
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.datePublished)}
+            {formatDate(post.metadata.datePublished)}
           </p>
         </Suspense>
       </div>

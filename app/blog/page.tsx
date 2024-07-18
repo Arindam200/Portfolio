@@ -14,8 +14,8 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    title: 'Blog | Arindam',
-    card: 'summary_large_image',
+    title: "Blog | Arindam",
+    card: "summary_large_image",
     description: "Blogs of Arindam Majumder.",
   },
 };

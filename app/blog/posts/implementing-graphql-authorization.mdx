@@ -19,20 +19,14 @@ Let's begin!
 The built-in authorization solutions in GraphQL can handle basic scenarios, but they often encounter several issues as your application's complexity increases.
 
 1. As your application grows, maintaining built-in authorization logic can become unwieldy. The nature of these solutions can lead to inconsistencies and increased complexity.
-    
 2. The built-in solutions provided by GraphQL make it difficult to execute consistent security policies across your application. They are black-boxed, making it impossible to configure them in depth, thus increasing the risk of misconfigured permissions and potential vulnerabilities.
-    
 3. Developing and maintaining a custom authorization system is time-intensive, diverting your team’s focus from building core features and improving user experience.
-    
 
 To solve these issues, we will use <u>[**Permit.io**](http://permit.io/)</u>, which addresses these limitations by providing a more comprehensive and flexible solution to managing permissions:
 
-* **Simplified Management**: Built-in solutions can become cumbersome as your application grows. <u>[**Permit.io**](http://permit.io/)</u> simplifies the process by centralizing your authorization logic.
-    
-* **Enhanced Security**: Enforce consistent security policies across your application, reducing the risk of misconfigured permissions.
-    
-* **Time-Saving**: Save time by leveraging <u>[**Permit.io**](http://permit.io/)</u>'s ready-to-use features instead of building and maintaining your authorization system.
-    
+- **Simplified Management**: Built-in solutions can become cumbersome as your application grows. <u>[**Permit.io**](http://permit.io/)</u> simplifies the process by centralizing your authorization logic.
+- **Enhanced Security**: Enforce consistent security policies across your application, reducing the risk of misconfigured permissions.
+- **Time-Saving**: Save time by leveraging <u>[**Permit.io**](http://permit.io/)</u>'s ready-to-use features instead of building and maintaining your authorization system.
 
 Using Permit allows you to ensure a secure, scalable, and efficient approach to GraphQL authorization, helping your team prioritize delivering exceptional features and experiences to your users rather than spending time developing and maintaining an authorization system from scratch.
 
@@ -45,113 +39,106 @@ This tutorial explains how to build a simple Task management app with different 
 To get started with the Apollo server with <u>[**Permit.io**](http://permit.io/)</u>, first create a Node.js project. To save time, we will use a Node.js starter template with GraphQL.
 
 1. Make sure you have Node.js and npm installed on your machine. You can download them from the official <u>[**Node.js website**](https://nodejs.org/en/)</u>.
-    
 2. Open up your code editor and clone the Node.js starter template by running the following code
-    
-    ```bash
-    git clone <https://github.com/Arindam200/node-apollo-starter.git>
-    ```
-    
-    This will create a new Nodejs project with the Apollo server.
-    
+
+   ```bash
+   git clone <https://github.com/Arindam200/node-apollo-starter.git>
+   ```
+
+   This will create a new Nodejs project with the Apollo server.
+
 3. After creating the project, navigate to the project directory by running the following command:
-    
-    ```bash
-    cd node-apollo-starter
-    ```
-    
+
+   ```bash
+   cd node-apollo-starter
+   ```
+
 4. Next, we'll install the required dependencies by running the following command:
-    
-    ```javascript
-    npm install
-    ```
-    
+
+   ```javascript
+   npm install
+   ```
+
 5. Create a `.env` file in the root directory to store the secret keys for our projects.
-    
-    ```ini
-    PERMIT_API_KEY=your_api_key
-    ```
-    
+
+   ```ini
+   PERMIT_API_KEY=your_api_key
+   ```
 
 With that, our Node.js project setup is done.
 
 ### **Configure** <u>[**Permit.io**](http://permit.io/)</u>**:**
 
 1. Create your first workspace
-    
-    ![graph_ql_workspace.png](https://media.graphassets.com/eAUs13hsSuKtyDJi5IyA align="left")
-    
+
+   ![graph_ql_workspace.png](https://media.graphassets.com/eAUs13hsSuKtyDJi5IyA align="left")
+
 2. Go to the Policy page, click `Create a Resource`, and add the following details
-    
-    ![graph_ql_new_resource.png](https://media.graphassets.com/2hJ1bheVQnWhJHut1gRF align="left")
-    
+
+   ![graph_ql_new_resource.png](https://media.graphassets.com/2hJ1bheVQnWhJHut1gRF align="left")
+
 3. Create a new role under the policy section using the following details, and click save.
-    
-    ![graph_ql_role.png](https://media.graphassets.com/M0iYIrhPRzSL5U6JuUnO align="left")
-    
+
+   ![graph_ql_role.png](https://media.graphassets.com/M0iYIrhPRzSL5U6JuUnO align="left")
+
 4. Go to the Policy Editor. Check all the checkboxes as shown below, and save the changes.
-    
-    ![graph_ql_policy.png](https://media.graphassets.com/msPZ3r8nRbycbdyLq1Et align="left")
-    
+
+   ![graph_ql_policy.png](https://media.graphassets.com/msPZ3r8nRbycbdyLq1Et align="left")
+
 5. Now, let’s create a user. Go to the permit directory, click Add User, and enter the following details. Then, click save.
-    
-    ![graph_cq_user.png](https://media.graphassets.com/036MQkv7T8ONF5KP3WGc align="left")
-    
+
+   ![graph_cq_user.png](https://media.graphassets.com/036MQkv7T8ONF5KP3WGc align="left")
 
 ### **Setup the environment**
 
 1. Get your environment API Key and add the environment key to the `.env` file
-    
-    ![graph_ql_copyenv.png](https://media.graphassets.com/SjoWBtXJR1OujRVvW2kV align="left")
-    
-2. **Install** <u>[**permit.io**](http://permit.io/)</u> **SDK**:
-    
-    ```javascript
-    npm install permitio
-    ```
-    
-3. **Create Apollo Server Instance**:  
-    Create a new file into `src/index.js`, and set up a basic Apollo Server instance that will run on port `4001   `[**Permit.io**](http://permit.io/) **Initialization**: Initialize <u>[**Permit.io**](http://permit.io/)</u> using your API key stored in the environment variable `PERMIT_API_KEY`.  
-    **Apollo Server Configuration**:
-    
 
-* **typeDefs**: The GraphQL schema definitions are imported from `schema.js`.
-    
-* **resolvers**: Resolvers imported from `taskResolvers.js` to handle GraphQL operations.
-    
-* **context**: Async function to set up the context for each GraphQL operation. It retrieves user information from the request using <u>[**Permit.io**](http://permit.io/)</u> and makes it available in the context.
-    
+   ![graph_ql_copyenv.png](https://media.graphassets.com/SjoWBtXJR1OujRVvW2kV align="left")
+
+2. **Install** <u>[**permit.io**](http://permit.io/)</u> **SDK**:
+
+   ```javascript
+   npm install permitio
+   ```
+
+3. **Create Apollo Server Instance**:  
+   Create a new file into `src/index.js`, and set up a basic Apollo Server instance that will run on port `4001   `[**Permit.io**](http://permit.io/) **Initialization**: Initialize <u>[**Permit.io**](http://permit.io/)</u> using your API key stored in the environment variable `PERMIT_API_KEY`.  
+   **Apollo Server Configuration**:
+
+- **typeDefs**: The GraphQL schema definitions are imported from `schema.js`.
+- **resolvers**: Resolvers imported from `taskResolvers.js` to handle GraphQL operations.
+- **context**: Async function to set up the context for each GraphQL operation. It retrieves user information from the request using <u>[**Permit.io**](http://permit.io/)</u> and makes it available in the context.
 
 **Server Setup:** Start the Apollo Server instance on port 4001
 
 ```javascript
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
-import Permit from 'permitio';
-import taskResolvers from './resolvers/taskResolvers.js';
-import typeDefs from './schema.js';
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import Permit from "permitio";
+import taskResolvers from "./resolvers/taskResolvers.js";
+import typeDefs from "./schema.js";
 
-const { Permit: PermitClass }=Permit;
+const { Permit: PermitClass } = Permit;
 
-const permit=new PermitClass({
-// don't forget to add key to the .env file
-		pdp: '<https://cloudpdp.api.permit.io>',
-    token: process.env.PERMIT_API_KEY,
+const permit = new PermitClass({
+  // don't forget to add key to the .env file
+  pdp: "<https://cloudpdp.api.permit.io>",
+  token: process.env.PERMIT_API_KEY,
 });
 
-const server=new ApolloServer({
-    typeDefs,
-    resolvers: taskResolvers,
-    context: async ({ req }) => {
-        const user=await permit.getUserFromRequest(req);
-        return { user, permit };
-    },
+const server = new ApolloServer({
+  typeDefs,
+  resolvers: taskResolvers,
+  context: async ({ req }) => {
+    const user = await permit.getUserFromRequest(req);
+    return { user, permit };
+  },
 });
 
 startStandaloneServer(server, {
-    listen: { port: 4001 },
+  listen: { port: 4001 },
 }).then(({ url }) => {
-    console.log(`🚀 Server ready at ${url}`);
+  console.log(`🚀 Server ready at ${url}`);
 });
 ```
 
@@ -161,17 +148,14 @@ This setup ensures that your Apollo Server is integrated with <u>[**Permit.io**]
 
 In this schema:
 
-* **Task Type**: Represents a task with `id`, `title`, and optional `description`.
-    
-* **Query Type**: Includes queries to fetch all tasks (`tasks`) and a specific task by its `id` (`task`).
-    
-* **Mutation Type**: Defines mutations for creating (`createTask`), updating (`updateTask`), and deleting (`deleteTask`) tasks.
-    
+- **Task Type**: Represents a task with `id`, `title`, and optional `description`.
+- **Query Type**: Includes queries to fetch all tasks (`tasks`) and a specific task by its `id` (`task`).
+- **Mutation Type**: Defines mutations for creating (`createTask`), updating (`updateTask`), and deleting (`deleteTask`) tasks.
 
 ```javascript
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
-const typeDefs=gql`
+const typeDefs = gql`
   type Task {
     id: ID!
     title: String!
@@ -199,77 +183,70 @@ This schema will serve as the foundation for your GraphQL API to manage tasks, a
 
 **Query Resolvers (**`Query` **object):**
 
-* **tasks:** Fetches all tasks. It uses `permit.check(user, 'read', 'task')` to verify if the user has permission to read tasks.
-    
-* **task:** Fetches a specific task by ID. Like `tasks`, it checks permissions before returning the task.
-    
+- **tasks:** Fetches all tasks. It uses `permit.check(user, 'read', 'task')` to verify if the user has permission to read tasks.
+- **task:** Fetches a specific task by ID. Like `tasks`, it checks permissions before returning the task.
 
 **Mutation Resolvers (**`Mutation` **object):**
 
-* **createTask:** Creates a new task with the provided `title` and `description`. Before adding to the `tasks` array, it verifies if the user is authorized to create tasks.
-    
-* **updateTask:** Updates an existing task identified by its `id`. It checks permissions (`permit.check(user, 'update', 'task')`) and modifies the task's `title` and `description` if provided.
-    
-* **deleteTask:** Deletes a task identified by its `id`. It ensures the user has the authorization to delete tasks (`permit.check(user, 'delete', 'task')`) before removing it from the `tasks` array.
-    
+- **createTask:** Creates a new task with the provided `title` and `description`. Before adding to the `tasks` array, it verifies if the user is authorized to create tasks.
+- **updateTask:** Updates an existing task identified by its `id`. It checks permissions (`permit.check(user, 'update', 'task')`) and modifies the task's `title` and `description` if provided.
+- **deleteTask:** Deletes a task identified by its `id`. It ensures the user has the authorization to delete tasks (`permit.check(user, 'delete', 'task')`) before removing it from the `tasks` array.
 
 **Authorization (**`permit.check`**):**
 
-* `permit.check(user, operation, resource)` is used to validate if the user (`user`) has permission (`operation`) to perform actions on a resource (`task`).
-    
+- `permit.check(user, operation, resource)` is used to validate if the user (`user`) has permission (`operation`) to perform actions on a resource (`task`).
 
 **Error Handling:**
 
-* Errors are thrown (`throw new Error(...)`) when tasks are not found (`updateTask`, `deleteTask`) or when authorization fails (`permit.check`).
-    
+- Errors are thrown (`throw new Error(...)`) when tasks are not found (`updateTask`, `deleteTask`) or when authorization fails (`permit.check`).
 
 ```javascript
-import { tasks } from '../models/task.js';
+import { tasks } from "../models/task.js";
 
 const taskResolvers = {
-    Query: {
-        // Fetch all tasks
-        tasks: async (_, __, { user, permit }) => {
-            // Check if user is authorized to read tasks
-            await permit.check(user, 'read', 'task');
-            return tasks;
-        },
-        // Fetch a specific task by ID
-        task: async (_, { id }, { user, permit }) => {
-            // Check if user is authorized to read tasks
-            await permit.check(user, 'read', 'task');
-            return tasks.find(task => task.id === id);
-        },
+  Query: {
+    // Fetch all tasks
+    tasks: async (_, __, { user, permit }) => {
+      // Check if user is authorized to read tasks
+      await permit.check(user, "read", "task");
+      return tasks;
     },
-    Mutation: {
-        // Create a new task
-        createTask: async (_, { title, description }, { user, permit }) => {
-            // Check if user is authorized to create tasks
-            await permit.check(user, 'create', 'task');
-            const newTask = { id: String(tasks.length + 1), title, description };
-            tasks.push(newTask);
-            return newTask;
-        },
-        // Update an existing task
-        updateTask: async (_, { id, title, description }, { user, permit }) => {
-            // Check if user is authorized to update tasks
-            await permit.check(user, 'update', 'task');
-            const task = tasks.find(task => task.id === id);
-            if (!task) throw new Error('Task not found');
-            if (title !== undefined) task.title = title;
-            if (description !== undefined) task.description = description;
-            return task;
-        },
-        // Delete a task by ID
-        deleteTask: async (_, { id }, { user, permit }) => {
-            // Check if user is authorized to delete tasks
-            await permit.check(user, 'delete', 'task');
-            const index = tasks.findIndex(task => task.id === id);
-            if (index === -1) throw new Error('Task not found');
-            tasks.splice(index, 1);
-            return true;
-        },
+    // Fetch a specific task by ID
+    task: async (_, { id }, { user, permit }) => {
+      // Check if user is authorized to read tasks
+      await permit.check(user, "read", "task");
+      return tasks.find((task) => task.id === id);
     },
+  },
+  Mutation: {
+    // Create a new task
+    createTask: async (_, { title, description }, { user, permit }) => {
+      // Check if user is authorized to create tasks
+      await permit.check(user, "create", "task");
+      const newTask = { id: String(tasks.length + 1), title, description };
+      tasks.push(newTask);
+      return newTask;
+    },
+    // Update an existing task
+    updateTask: async (_, { id, title, description }, { user, permit }) => {
+      // Check if user is authorized to update tasks
+      await permit.check(user, "update", "task");
+      const task = tasks.find((task) => task.id === id);
+      if (!task) throw new Error("Task not found");
+      if (title !== undefined) task.title = title;
+      if (description !== undefined) task.description = description;
+      return task;
+    },
+    // Delete a task by ID
+    deleteTask: async (_, { id }, { user, permit }) => {
+      // Check if user is authorized to delete tasks
+      await permit.check(user, "delete", "task");
+      const index = tasks.findIndex((task) => task.id === id);
+      if (index === -1) throw new Error("Task not found");
+      tasks.splice(index, 1);
+      return true;
+    },
+  },
 };
 
 export default taskResolvers;

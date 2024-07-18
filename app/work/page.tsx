@@ -213,13 +213,17 @@ export default function WorkPage() {
 
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
 
-        <h2 className="font-medium text-xl mb-1 tracking-tighter">Other Experiences</h2>
+        <h2 className="font-medium text-xl mb-1 tracking-tighter">
+          Other Experiences
+        </h2>
         <p className="mb-2">
-          In addition to my professional roles, I have also been involved in various other activities:
+          In addition to my professional roles, I have also been involved in
+          various other activities:
         </p>
         <ul className="mb-2">
           <li>
-            Core team member for the Eastern India's largest hackathon community "
+            Core team member for the Eastern India's largest hackathon community
+            "
             <a
               className="underline"
               target="_blank"
@@ -238,7 +242,8 @@ export default function WorkPage() {
             >
               LeadDevRel
             </a>
-            , sharing insights and knowledge on developer relations and community building.
+            , sharing insights and knowledge on developer relations and
+            community building.
           </li>
           <li>
             Hosting bi-weekly growth meetings with DevRels in the LeadDevRel
@@ -246,7 +251,8 @@ export default function WorkPage() {
           </li>
         </ul>
         <p>
-          These experiences have further enriched my skills and provided me with additional platforms to contribute to the developer community.
+          These experiences have further enriched my skills and provided me with
+          additional platforms to contribute to the developer community.
         </p>
       </div>
       <hr className="my-6 border-neutral-100 dark:border-neutral-800" />

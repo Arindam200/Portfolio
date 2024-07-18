@@ -6,7 +6,6 @@ cuid: clyifipwz000408jx3974ajst
 slug: create-a-spotify-playlist-generator-with-arcjet
 cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1720547859256/8b67eb0b-279c-4a9c-bd4f-c6f7fb7032df.png
 tags: express, web-development, nodejs, spotify, chaicode, arcjet
-
 ---
 
 ## **Introduction**
@@ -41,18 +40,12 @@ npm i express ejs spotify-web-api-node @arcjet/node express-session
 
 This will install the following packages:
 
-* **express:** A popular web framework for Node.js
-    
-* **ejs:** A simple templating language that lets you generate HTML markup with plain JavaScript
-    
-* **spotify-web-api-node:** A wrapper for the Spotify Web API
-    
-* **@arcjet/node:** Arcjet SDK for securing Node.js applications
-    
-* **dotenv**: Loads environment variables from a .env file
-    
-* **express-session:** Middleware for managing sessions in Express applications.
-    
+- **express:** A popular web framework for Node.js
+- **ejs:** A simple templating language that lets you generate HTML markup with plain JavaScript
+- **spotify-web-api-node:** A wrapper for the Spotify Web API
+- **@arcjet/node:** Arcjet SDK for securing Node.js applications
+- **dotenv**: Loads environment variables from a .env file
+- **express-session:** Middleware for managing sessions in Express applications.
 
 ### **Setup Environment Variables:**
 
@@ -60,16 +53,13 @@ Next, we'll create a .env folder to securely store our sensitive information suc
 
 **Spotify Setup:**
 
-For Spotify, go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) , click on the *Create an app* button, and enter the following information:
+For Spotify, go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) , click on the _Create an app_ button, and enter the following information:
 
-* App Name: Spotify Playlist Generator
-    
-* App Description: This Application to generate a playlist based on the user’s favourite artist and mood
-    
-* Redirect URI:  [http://localhost:3000/callback](http://localhost:3000/callback).
-    
+- App Name: Spotify Playlist Generator
+- App Description: This Application to generate a playlist based on the user’s favourite artist and mood
+- Redirect URI:  [http://localhost:3000/callback](http://localhost:3000/callback).
 
-Finally, check the *Developer Terms of Service* checkbox and tap on the *Create* button. This will create a new Spotify application.
+Finally, check the _Developer Terms of Service_ checkbox and tap on the _Create_ button. This will create a new Spotify application.
 
 Once the app is created, we’ll get the client ID and client secret from the Dashboard and add them to our .env file.
 
@@ -85,15 +75,13 @@ SPOTIFY_REDIRECT_URI=http://localhost:3000/callback
 Similarly, you need to set up your Arcjet account to obtain the API key:
 
 1. Create a free account on Arcjet.
-    
 2. After logging in, we’ll create a new site. This will generate an API key for your site.
-    
 
 Now, let’s add the Arcjet API key to our .env file:
 
 ```javascript
 //.env
-ARCJET_KEY=Your_Arcjet_Key
+ARCJET_KEY = Your_Arcjet_Key;
 ```
 
 **Adding Session Secret:**
@@ -102,7 +90,7 @@ Finally, we’ll add our session secret to the .env file:
 
 ```javascript
 //.env
-SESSION_SECRET=Your_Session_token
+SESSION_SECRET = Your_Session_token;
 ```
 
 ### **Create Express Server:**
@@ -110,22 +98,22 @@ SESSION_SECRET=Your_Session_token
 Now, we'll create an `index.js` file in the root directory and set up a basic express server. See the following code:
 
 ```javascript
-import express from 'express';
-import dotenv from 'dotenv'
+import express from "express";
+import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 //middleware provided by Express to parse incoming JSON requests.
-app.use(express.json()); 
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-})
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
 ```
 
@@ -174,7 +162,7 @@ With this, our basic project setup is done. Next, we’ll add functionalities to
 To begin, we need to set up the Spotify client, which will let our application to authenticate with Spotify and make API requests.
 
 ```javascript
-import SpotifyWebApi from 'spotify-web-api-node';
+import SpotifyWebApi from "spotify-web-api-node";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -190,14 +178,16 @@ This initializes a Spotify API client with the necessary credentials and configu
 To manage user sessions, we will add session management middleware to our application\*\*.\*\*
 
 ```javascript
-import session from 'express-session';
+import session from "express-session";
 
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  }),
+);
 ```
 
 This middleware will handle session management, allowing us to store and retrieve session data such as access tokens.
@@ -207,8 +197,8 @@ This middleware will handle session management, allowing us to store and retriev
 With the Spotify client set up, we’ll next create a `/login` route to handle user authentication. This route will redirect users to Spotify's authorization page.
 
 ```javascript
-app.get('/login', (req, res) => {
-  const scopes = ['playlist-modify-public', 'playlist-modify-private'];
+app.get("/login", (req, res) => {
+  const scopes = ["playlist-modify-public", "playlist-modify-private"];
   const authorizeURL = spotifyApi.createAuthorizeURL(scopes);
   res.redirect(authorizeURL);
 });
@@ -219,18 +209,18 @@ Here, we’ve defined the scopes required for our application, such as playlist-
 We’ll also create a /callback route to handle the callback from Spotify after the user authorizes our application.
 
 ```javascript
-app.get('/callback', async (req, res) => {
+app.get("/callback", async (req, res) => {
   const { code } = req.query;
   try {
     const data = await spotifyApi.authorizationCodeGrant(code);
-    req.session.accessToken = data.body['access_token'];
-    req.session.refreshToken = data.body['refresh_token'];
+    req.session.accessToken = data.body["access_token"];
+    req.session.refreshToken = data.body["refresh_token"];
     spotifyApi.setAccessToken(req.session.accessToken);
     spotifyApi.setRefreshToken(req.session.refreshToken);
-    res.redirect('/');
+    res.redirect("/");
   } catch (err) {
-    console.error('Error during authorization', err);
-    res.status(500).send('Authorization Error');
+    console.error("Error during authorization", err);
+    res.status(500).send("Authorization Error");
   }
 });
 ```
@@ -246,7 +236,7 @@ We'll implement an authentication check to secure our routes and ensure that onl
 ```javascript
 const checkAuth = (req, res, next) => {
   if (!req.session.accessToken) {
-    return res.redirect('/');
+    return res.redirect("/");
   }
   next();
 };
@@ -261,12 +251,12 @@ const refreshAccessToken = async (req, res, next) => {
   if (req.session.accessToken && req.session.refreshToken) {
     try {
       const data = await spotifyApi.refreshAccessToken();
-      req.session.accessToken = data.body['access_token'];
+      req.session.accessToken = data.body["access_token"];
       spotifyApi.setAccessToken(req.session.accessToken);
       next();
     } catch (error) {
-      console.error('Error refreshing access token', error);
-      res.status(500).send('Internal Server Error');
+      console.error("Error refreshing access token", error);
+      res.status(500).send("Internal Server Error");
     }
   } else {
     next();
@@ -322,29 +312,31 @@ Additionally, we have structured the generated tracks into a format that can be 
 Next up we’ll create a `/save-playlist` endpoint to save the generated playlist to the user's Spotify account:
 
 ```javascript
-app.post('/save-playlist', checkAuth, async (req, res) => {
+app.post("/save-playlist", checkAuth, async (req, res) => {
+  const { playlistName, trackUris } = req.body;
 
-  const { playlistName, trackUris } = req.body;
+  try {
+    const userData = await spotifyApi.getMe();
+    const userId = userData.body.id;
+    const newPlaylist = await spotifyApi.createPlaylist(userId, {
+      name: playlistName,
+      public: false,
+    });
 
-  try {
-    const userData = await spotifyApi.getMe();
-    const userId = userData.body.id;
-    const newPlaylist = await spotifyApi.createPlaylist(userId, {
-      name: playlistName,
-      public: false
-    });
-
-    await spotifyApi.addTracksToPlaylist(newPlaylist.body.id, JSON.parse(trackUris));
-    res.status(200).send(`Playlist '${playlistName}' created successfully!`);
-  } catch (error) {
-    console.error('Error creating playlist:', error);
-    if (error.response) {
-      console.error('Spotify API response:', error.response);
-      res.status(error.response.status).send(error.response.data);
-    } else {
-      res.status(500).send('Internal Server Error');
-    }
-  }
+    await spotifyApi.addTracksToPlaylist(
+      newPlaylist.body.id,
+      JSON.parse(trackUris),
+    );
+    res.status(200).send(`Playlist '${playlistName}' created successfully!`);
+  } catch (error) {
+    console.error("Error creating playlist:", error);
+    if (error.response) {
+      console.error("Spotify API response:", error.response);
+      res.status(error.response.status).send(error.response.data);
+    } else {
+      res.status(500).send("Internal Server Error");
+    }
+  }
 });
 ```
 
@@ -357,10 +349,10 @@ Now we’ll integrate EJS templating engine to create a user-friendly interface.
 For that, we have to set EJS as the view engine in app.js:
 
 ```javascript
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
-app.get('/', (req, res) => {
-  res.render('index', { loggedIn: !!req.session.accessToken });
+app.get("/", (req, res) => {
+  res.render("index", { loggedIn: !!req.session.accessToken });
 });
 ```
 
@@ -729,44 +721,36 @@ It provides a robust security layer that can be easily integrated into web appli
 
 **Features**
 
-* [Signup form protection](https://docs.arcjet.com/email-validation/concepts): Arcjet's server-side email verification is configured to block disposable providers and ensure that the domain has a valid MX record.
-    
-* [Bot protection](https://docs.arcjet.com/bot-protection/concepts): Protects the route from automated
-    
-* [Rate limiting](https://docs.arcjet.com/rate-limiting/concepts): Allows different rate limit configurations based on the user's authentication status. For example, logged-in users can make more requests than anonymous users..
-    
-* [Attack protection](https://docs.arcjet.com/shield/concepts): Detects and blocks suspicious behavior, such as SQL injection and cross-site scripting (XSS) attacks.
-    
+- [Signup form protection](https://docs.arcjet.com/email-validation/concepts): Arcjet's server-side email verification is configured to block disposable providers and ensure that the domain has a valid MX record.
+- [Bot protection](https://docs.arcjet.com/bot-protection/concepts): Protects the route from automated
+- [Rate limiting](https://docs.arcjet.com/rate-limiting/concepts): Allows different rate limit configurations based on the user's authentication status. For example, logged-in users can make more requests than anonymous users..
+- [Attack protection](https://docs.arcjet.com/shield/concepts): Detects and blocks suspicious behavior, such as SQL injection and cross-site scripting (XSS) attacks.
 
 ### **Implementing Arcjet shield to the project**
 
 To implement Arcjet shield in our project, let’s create a new `Arcjet` object with our API key and rules. This should be outside of the request handler.
 
 ```javascript
-import arcjet, { detectBot, shield, fixedWindow } from '@arcjet/node';
+import arcjet, { detectBot, shield, fixedWindow } from "@arcjet/node";
 
 const aj = arcjet({
   key: process.env.ARCJET_KEY,
   rules: [
     shield({
-      mode: "LIVE", 
+      mode: "LIVE",
     }),
     fixedWindow({
       mode: "LIVE",
       characteristics: ["ip.src"],
-      match:"/generate-playlist",
+      match: "/generate-playlist",
       window: "1m",
       max: 1,
     }),
     detectBot({
       mode: "LIVE",
-      block: [        
-        "AUTOMATED",
-      ],
+      block: ["AUTOMATED"],
       patterns: {
-        remove: [
-          "^curl",
-        ],
+        remove: ["^curl"],
       },
     }),
   ],
@@ -775,43 +759,38 @@ const aj = arcjet({
 
 Here, we’ve added multiple layers of security to our application:
 
-* **General Protection:** The shield rule provides a broad layer of protection against common attacks, including the [**OWASP Top 10**](https://owasp.org/www-project-top-ten/).
-    
-* **Rate Limiting:** The fixedWindow rule helps prevent abuse by limiting the number of requests to the /generate-playlist endpoint.
-    
-* **Bot Detection:** The `detectBot` rule helps identify and block automated bot traffic, ensuring that only legitimate users can access your application.
-    
+- **General Protection:** The shield rule provides a broad layer of protection against common attacks, including the [**OWASP Top 10**](https://owasp.org/www-project-top-ten/).
+- **Rate Limiting:** The fixedWindow rule helps prevent abuse by limiting the number of requests to the /generate-playlist endpoint.
+- **Bot Detection:** The `detectBot` rule helps identify and block automated bot traffic, ensuring that only legitimate users can access your application.
 
 Now, We’ll create a Middleware function to check if the request is secure. If not, the middleware will throw an error and end the request. Otherwise, it will allow the request to proceed.
 
 ```javascript
 app.use(async (req, res, next) => {
-  try {
-    const decision = await aj.protect(req);
-    if (decision.isDenied()) {
-
-      console.error("Arcjet protection denied", decision);
-      res.writeHead(403, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "Forbidden" }));
-
-    } else {
-      next();
-    }
-  } catch (error) {
-    console.error("Arcjet protection error", error);
-    res.status(500).send({ error: 'Internal Server Error' });
-  }
+  try {
+    const decision = await aj.protect(req);
+    if (decision.isDenied()) {
+      console.error("Arcjet protection denied", decision);
+      res.writeHead(403, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Forbidden" }));
+    } else {
+      next();
+    }
+  } catch (error) {
+    console.error("Arcjet protection error", error);
+    res.status(500).send({ error: "Internal Server Error" });
+  }
 });
 ```
 
 > Note: To Test Arcjet in the Development server. We need to add the following in our env folder:
-> 
+>
 > ```javascript
 > //.env
-> 
-> ARCJET_ENV=development
+>
+> ARCJET_ENV = development;
 > ```
-> 
+>
 > This will allow private/internal addresses so that the SDKs work correctly locally.
 
 You can get the whole code here: [https://github.com/Arindam200/spotify-playlist-generator](https://github.com/Arindam200/spotify-playlist-generator)

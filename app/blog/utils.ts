@@ -38,11 +38,16 @@ function removeAlignProperty(markdown: string): string {
 }
 
 function formatCallout(markdown) {
-  const calloutRegex = /<div data-node-type="callout">\s*<div data-node-type="callout-emoji">(.*?)<\/div>\s*<div data-node-type="callout-text">([\s\S]*?)<\/div>\s*<\/div>/g;
-  
+  const calloutRegex =
+    /<div data-node-type="callout">\s*<div data-node-type="callout-emoji">(.*?)<\/div>\s*<div data-node-type="callout-text">([\s\S]*?)<\/div>\s*<\/div>/g;
+
   return markdown.replace(calloutRegex, (match) => {
-    const emojiMatch = match.match(/<div data-node-type="callout-emoji">(.*?)<\/div>/);
-    const textMatch = match.match(/<div data-node-type="callout-text">([\s\S]*?)<\/div>/);
+    const emojiMatch = match.match(
+      /<div data-node-type="callout-emoji">(.*?)<\/div>/,
+    );
+    const textMatch = match.match(
+      /<div data-node-type="callout-text">([\s\S]*?)<\/div>/,
+    );
     if (emojiMatch && textMatch) {
       const emoji = emojiMatch[1].trim();
       const text = textMatch[1].trim();
@@ -52,7 +57,6 @@ function formatCallout(markdown) {
     return match;
   });
 }
-
 
 function getMDXFiles(dir) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");

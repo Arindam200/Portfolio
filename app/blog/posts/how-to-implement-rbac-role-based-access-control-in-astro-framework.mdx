@@ -3,7 +3,7 @@ title: "How to Implement RBAC in Astro Framework"
 datePublished: "2024-06-20"
 slug: how-to-implement-rbac-role-based-access-control-in-astro-framework
 cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1719897135438/353c289a-af55-46d6-a1be-77068748234c.jpeg
-tags: devrel, marketing ,developer, beginners 
+tags: devrel, marketing ,developer, beginners
 ---
 
 > This Article was orginally published on <u>[Permit.io](https://www.permit.io/blog/how-to-implement-rbac-role-based-access-control-in-astro-framework)</u>
@@ -33,9 +33,7 @@ Now that we understand the why let’s get to how to implement authorization int
 To get started, let's create a new Astro project. To save you time, we’ve got a basic Astro starting app that you can use to follow along.
 
 1. Make sure you have Node.js and npm installed on your machine. You can download them from the official <u>[**Node.js website**](https://nodejs.org/en/)</u>.
-    
 2. Next, open up your code editor and clone the starter code by running the following code :
-    
 
 ```scss
  git clone git@github.com:permitio/Astro-Framework-RBAC-Example.git
@@ -44,21 +42,18 @@ To get started, let's create a new Astro project. To save you time, we’ve got 
 This will create a new Astro project with the default settings.
 
 1. After creating the project, navigate to the project directory by running:
-    
 
 ```bash
  cd Astro-Framework-RBAC-Example
 ```
 
 1. Next, install the required dependencies by running:
-    
 
 ```javascript
 npm install
 ```
 
 1. Now we’ll create a `.env` file in the root directory to store the secret keys for our projects. It should look something like this:
-    
 
 ```ini
 PERMIT_TOKEN="your permit token”
@@ -79,14 +74,10 @@ After logging in, we’ll create a new workspace for this project. For this tuto
 To begin, we will create roles. Roles facilitate the grouping of permissions, which can then be assigned to users or other entities.
 
 1. Navigate to the Policy page and select Create a Role.
-    
 2. Add the following roles, specifying the actions as detailed below:
-    
 
-* Admin
-    
-* Employee
-    
+- Admin
+- Employee
 
 ![image - 2024-06-20T174728.199.png](https://media.graphassets.com/OJJxy9b1R262FnBPKF0L align="left")
 
@@ -95,44 +86,32 @@ To begin, we will create roles. Roles facilitate the grouping of permissions, wh
 Next, let’s create an Admin role:
 
 1. Go to the Roles section under Policy.
-    
 2. Click Create Role.
-    
 3. Fill in the details as shown below.
-    
 
 ![image - 2024-06-20T174808.622.png](https://media.graphassets.com/5o2as2LMSEezywyL1Lkx align="left")
 
 Similarly, let’s create the Employee role:
 
 1. Go to the Roles section under Policy.
-    
 2. Click Create Role.
-    
 3. Fill in the details as shown below.
-    
 
 ![image - 2024-06-20T174841.349.png](https://media.graphassets.com/tWnlEfZvSsXvpcDw9U0l align="left")
 
 Now that our roles are created let’s create a resource. A resource is the thing our Roles will be able to perform actions on.
 
 1. Navigate to the Resources section and click Create a Resource.
-    
 2. Create the resource as shown below and assign it with Actions read, update, and delete
-    
 3. Assign it two roles, Admin and Employee
-    
 
 ![image - 2024-06-20T174851.335.png](https://media.graphassets.com/VDqgQ3ET22wSWIdJ2Nvg align="left")
 
 Next, let’s create our policy:
 
 1. Go to the Policy Editor.
-    
 2. Check all the checkboxes as shown below.
-    
 3. Save the changes.
-    
 
 ![image - 2024-06-20T174911.856.png](https://media.graphassets.com/Ip9tb4NCSCCkjRHF7aZ8 align="left")
 
@@ -147,23 +126,18 @@ To create a new tenant, we need to fill in the name and description of the tenan
 Now let’s create a user :
 
 1. Go to the permit directory
-    
 2. Click on add user :
-    
 
 ![image - 2024-06-20T174954.510.png](https://media.graphassets.com/NSLI4OjcR6KzDyKx1t21 align="left")
 
 1. Fill in the fields as shown below :
-    
 
 ![image - 2024-06-20T175008.947.png](https://media.graphassets.com/moQ4canTS4WvFLxUU8Jq align="left")
 
 1. Click on Save
-    
 2. Look in the permit directory, you should be able to find your user there.
-    
-    ![image - 2024-06-20T175025.452.png](https://media.graphassets.com/y7DVUpRfGmtA1oMrwDQQ align="left")
-    
+
+   ![image - 2024-06-20T175025.452.png](https://media.graphassets.com/y7DVUpRfGmtA1oMrwDQQ align="left")
 
 That's all it took for us to create a Role-Based Access Control (RBAC) model that we can use in our applications. <u>[**Permit.io**](http://permit.io/)</u> provides us with a clean and easy-to-use user interface, which enhances the overall Software Development Life Cycle by allowing us to integrate authorization into our code smoothly.
 
@@ -172,9 +146,7 @@ That's all it took for us to create a Role-Based Access Control (RBAC) model tha
 To demonstrate the role-based access control features, Let’s add user details to our application :
 
 1. Go to src/utils/user.json file :
-    
 2. Next, enter the details of the previously created user and save the file:
-    
 
 Note: We're using a dummy user for this example. In a real application, you'd implement authentication and sync users with <u>[**Permit.io**](http://permit.io/)</u> using the `syncUser` API.
 
@@ -187,9 +159,7 @@ For <u>[**Permit.io**](http://permit.io/)</u> configuration, ensure you are in t
 ![image - 2024-06-20T175105.012.png](https://media.graphassets.com/SiWQ5GnTTYq1RP1zrqRv align="left")
 
 1. Go to Dashboard &gt; Settings &gt; API Keys and find the secret production key in the **Environment API Keys** section.
-    
 2. Copy the key and paste it in the `.env` file:
-    
 
 ```ini
 PERMIT_TOKEN=”your permit token”
@@ -211,13 +181,14 @@ This will spin up our Astro website on <u>[**http://localhost:4321**](http://loc
 
 In this demonstration, we will be showing how our employees can only read blogs but cannot edit or delete them :
 
-* **Read Blogs:** The user with an employee role can read the Blogs.
-    
-* **Restricted from Editing Blogs:** The user cannot modify existing Blog posts.
-    
-* **Restricted from Deleting Todos:** The user does not have permission to delete Blogs.
+- **Read Blogs:** The user with an employee role can read the Blogs.
+- **Restricted from Editing Blogs:** The user cannot modify existing Blog posts.
+- **Restricted from Deleting Todos:** The user does not have permission to delete Blogs.
 
-<u>[Vid 1: Demo of user with employee permissions](https://media.graphassets.com/8L6KBqwhTR6r268Euexq)</u>
+<u>
+  [Vid 1: Demo of user with employee
+  permissions](https://media.graphassets.com/8L6KBqwhTR6r268Euexq)
+</u>
 
 ### **Updating our user to admin :**
 
@@ -225,21 +196,25 @@ Next, we will demonstrate how to change the user's role from Employee to Admin u
 
 Watch the video below to see how the role change is performed:
 
-<u>[Vid 2: Updating our user to admin](https://media.graphassets.com/lgSOPzJdSjyXglxSoAs4)</u>
+<u>
+  [Vid 2: Updating our user to
+  admin](https://media.graphassets.com/lgSOPzJdSjyXglxSoAs4)
+</u>
 
 ### **Demo of Admin user with all the permissions:**
 
 After updating the role to Admin, the user now has full permissions within the application. As an Admin, the user can:
 
-* Update Blogs Title: Modify existing Blogs Title.
-    
-* Delete Blogs: Remove Blogs from the list.
-    
-* Read Blogs: Read existing Blogs.
+- Update Blogs Title: Modify existing Blogs Title.
+- Delete Blogs: Remove Blogs from the list.
+- Read Blogs: Read existing Blogs.
 
 The following video demonstrates the enhanced capabilities of the Admin role:
 
-<u>[Vid 3: Demo of Admin user with all the permissions](https://media.graphassets.com/dAUEUo2SCWMcURBnTQvS)</u>
+<u>
+  [Vid 3: Demo of Admin user with all the
+  permissions](https://media.graphassets.com/dAUEUo2SCWMcURBnTQvS)
+</u>
 
 ## **Understanding Authorization Flow in an Astro Application :**
 
@@ -263,14 +238,10 @@ Then we’ll receive `id` and `operation` parameters through query params which 
 
 After getting the data, we are going to use the **permit.check()** API to check for permissions. This takes the following parameters:
 
-* **user:** The key of the user
-    
-* **action:** The name of the operation, such as create, update, read, or delete.
-    
-* **resource:** A string or object that represents the resource the user is trying to interact with. This could refer to a type of resource or a specific instance of a resource.
-    
-* **context (optional):** An optional object that can be used to provide additional data for policy evaluation.
-    
+- **user:** The key of the user
+- **action:** The name of the operation, such as create, update, read, or delete.
+- **resource:** A string or object that represents the resource the user is trying to interact with. This could refer to a type of resource or a specific instance of a resource.
+- **context (optional):** An optional object that can be used to provide additional data for policy evaluation.
 
 The permit.check() function returns a boolean value.
 
