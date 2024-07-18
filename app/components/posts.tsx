@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { formatDate, getBlogPosts } from "app/blog/utils";
 
 export function BlogPosts() {

@@ -5,14 +5,13 @@ import Dani from "./Dani.png";
 import Suhas from "./Suhas.png";
 import Debajyati from "./debajyati.png";
 import { ArrowIcon } from "../components/icons";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Testimonials",
   description: "See what people thinks about me.",
 };
-
 
 function CustomTweet({
   image,
