@@ -12,6 +12,10 @@ import {
   LinkedInIcon,
   HashnodeIconGrey,
 } from "./components/icons";
+import dynamic from "next/dynamic";
+const Tooltip = dynamic(() => import("./components/tooltip"), {
+  ssr: false,
+});
 
 function BlogLink({ slug, name, desc }) {
   return (
@@ -55,18 +59,20 @@ export default function Page() {
           work
         </Link>
         {` as developer advoate at `}
-        <span className="not-prose">
-          <Badge href="https://pieces.app">
-            <Image
-              src={Pieces}
-              alt="Pieces Logo"
-              width={14}
-              height={14}
-              className="!mr-1"
-            />
-            Pieces for Developers
-          </Badge>
-        </span>
+        <Tooltip text="Pieces™ is an on-device AI coding assistant that boosts developer productivity by helping you solve complex development tasks through a contextual understanding of your entire workflow. ">
+          <span className="not-prose">
+            <Badge href="https://pieces.app">
+              <Image
+                src={Pieces}
+                alt="Pieces Logo"
+                width={14}
+                height={14}
+                className="!mr-1"
+              />
+              Pieces for Developers
+            </Badge>
+          </span>
+        </Tooltip>
         , where I create content, host events, and help the community to grow.
       </p>
       <div className="flex items-start md:items-center my-8 gap-2 flex-row md:flex-row ">

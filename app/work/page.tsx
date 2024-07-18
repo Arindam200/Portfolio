@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+const Tooltip = dynamic(() => import("../components/tooltip"), {
+  ssr: false,
+});
 
 export const metadata: Metadata = {
   title: "Work",
@@ -25,33 +29,72 @@ export default function WorkPage() {
         </p>
         <p className="mb-2">
           At{" "}
-          <a href="https://pieces.app/" target="_blank" className="underline">
-            {" "}
-            Pieces for Developers
-          </a>{" "}
+          <Tooltip text="Pieces is an on-device AI coding assistant that boosts developer productivity by helping you solve complex development tasks through a contextual understanding of your entire workflow. ">
+            <a href="https://pieces.app/" target="_blank" className="underline">
+              {" "}
+              Pieces for Developers
+            </a>{" "}
+          </Tooltip>
           , I have been instrumental in driving community engagement and product
           adoption. My contributions include:
         </p>
         <ul className="mb-2">
           <li>
             Developed a CLI tool "
-            <a
-              href="https://www.npmjs.com/package/pieces-cli"
-              target="_blank"
-              className="underline"
-            >
-              pieces-cli
-            </a>
+            <Tooltip text="pieces-cli is a command-line interface that helps developers interact with the Pieces SDK.">
+              <a
+                href="https://www.npmjs.com/package/pieces-cli"
+                target="_blank"
+                className="underline"
+              >
+                pieces-cli
+              </a>
+            </Tooltip>
             " using the Pieces SDK.
           </li>
-          <li>Created a Next.js chatbot leveraging the Pieces SDK.</li>
+          <li>
+            <Tooltip text="We received 900+ upvotes, 250+ feedbacks, 8k+ website visits, 1k+ downloads, and also became #4 for the week.">
+              Contributed to Pieces becoming the{" "}
+              <a
+                className="underline"
+                target="_blank"
+                href="https://www.producthunt.com/posts/pieces-copilot-2"
+              >
+                {" "}
+                Product Hunt Product of the Day{" "}
+              </a>{" "}
+              .
+            </Tooltip>
+          </li>
+          <li>
+            Created a "
+            <Tooltip text="This is a Sample Nextjs Chatbot with the integration of Pieces npm package.">
+              <a
+                href="https://github.com/Arindam200/example-Nextjs"
+                target="_blank"
+                className="underline"
+              >
+                Pieces x Nextjs Chatbot
+              </a>
+            </Tooltip>
+            " leveraging the Pieces SDK.
+          </li>
           <li>
             Authored educational articles detailing the development process and
             usage of these tools.
           </li>
           <li>
-            Improved the SDK documentation to make it more accessible and
-            user-friendly.
+            Improved the{" "}
+            <Tooltip text="I created Glossary and improved the SDK documentations to improve Developer Experience">
+              <a
+                href="https://docs.pieces.app/build/"
+                target="_blank"
+                className="underline"
+              >
+                SDK documentation
+              </a>
+            </Tooltip>{" "}
+            to make it more accessible and user-friendly.
           </li>
           <li>Maintained and contributed to their open-source project.</li>
           <li>
@@ -89,25 +132,29 @@ export default function WorkPage() {
           </li>
           <li>
             Helped in Hosting events such as{" "}
-            <a
-              href="https://keploy.io/gittogether"
-              target="_blank"
-              className="underline"
-            >
-              {" "}
-              "GitTogether"
-            </a>{" "}
+            <Tooltip text="GitTogether is an in-person Open Source Event hosted by Keploy on 29 February 2024 at Google RMZ, Bengaluru.">
+              <a
+                href="https://keploy.io/gittogether"
+                target="_blank"
+                className="underline"
+              >
+                {" "}
+                "GitTogether"
+              </a>{" "}
+            </Tooltip>
             to foster collaboration and knowledge sharing.
           </li>
           <li>
             Managed and contributed to their{" "}
-            <a
-              href="https://github.com/keploy/keploy"
-              target="_blank"
-              className="underline"
-            >
-              Open-source projects
-            </a>{" "}
+            <Tooltip text="I managed Keploy's Blog Site, sample applications, Created Good First Issues and reviewd PRs.">
+              <a
+                href="https://github.com/keploy/keploy"
+                target="_blank"
+                className="underline"
+              >
+                Open-source projects
+              </a>
+            </Tooltip>{" "}
             .
           </li>
           <li>Delivered demos of Keploy to showcase its capabilities.</li>
@@ -130,42 +177,44 @@ export default function WorkPage() {
         </p>
         <p className="mb-2">
           As a freelance writer for Permit.io, I have focused on creating
-          technical articles centered around authorization. My contributions
-          include:
+          technical articles centered around authorization. My articles are:
         </p>
         <ul className="mb-2">
           <li>
-            Authored an article on{" "}
             <a
               href="https://www.permit.io/blog/how-to-implement-rbac-in-supabase"
               target="_blank"
               className="underline"
             >
-              integrating Supabase with Permit.io
+              How to Implement RBAC in Supabase with Permit.io
             </a>{" "}
             .
           </li>
           <li>
-            Wrote a detailed guide on{" "}
             <a
               href="https://www.permit.io/blog/how-to-implement-rbac-role-based-access-control-in-astro-framework"
               target="_blank"
               className="underline"
             >
-              {" "}
-              integrating Astro with Permit.io{" "}
+              How to Implement RBAC in Astro with Permit.io
             </a>
             .
           </li>
           <li>
-            Continuing to write and contribute articles on a freelance contract
-            basis.
+            <a
+              href="https://permit.io/blog/implementing-graphql-authorization"
+              target="_blank"
+              className="underline"
+            >
+              Implementing GraphQL Authorization: A Practical Guide
+            </a>
           </li>
         </ul>
         <p>
           My work with Permit.io has allowed me to deepen my expertise in
           authorization and share valuable insights with the developer
-          community.
+          community. And I'm continuing to write articles on a freelance
+          contract basis.
         </p>
 
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
@@ -181,25 +230,29 @@ export default function WorkPage() {
         <ul className="mb-2">
           <li>
             Assisted in hosting a hackathon "
-            <a
-              className="underline"
-              target="_blank"
-              href="https://www.showwcase.com/article/34719/introducing-showwcase-hackfest-2023"
-            >
-              HackFest
-            </a>
+            <Tooltip text="Showwcase Hackfest is a 4 week long virtual hackathon organized by Showwcase, aimed at driving innovation and collaboration.">
+              <a
+                className="underline"
+                target="_blank"
+                href="https://www.showwcase.com/article/34719/introducing-showwcase-hackfest-2023"
+              >
+                HackFest
+              </a>
+            </Tooltip>
             ", driving innovation and collaboration.
           </li>
           <li>
             Organized multiple events in collaboration with various communities,
             such as "
-            <a
-              className="underline"
-              target="_blank"
-              href="https://x.com/GrowInComm/status/1665233663645347841"
-            >
-              Blog-a-Thon
-            </a>
+            <Tooltip text="Blog-a-Thon is a monthlong community-driven initiative by Showwcase in collaboration with GrowInCommunity to encourage content creation and sharing.">
+              <a
+                className="underline"
+                target="_blank"
+                href="https://x.com/GrowInComm/status/1665233663645347841"
+              >
+                Blog-a-Thon
+              </a>
+            </Tooltip>
             ".
           </li>
           <li>
@@ -224,27 +277,38 @@ export default function WorkPage() {
           <li>
             Core team member for the Eastern India's largest hackathon community
             "
-            <a
-              className="underline"
-              target="_blank"
-              href="https://www.hack4bengal.tech/"
-            >
-              Hack4Bengal
-            </a>
+            <Tooltip text="Hack4Bengal is a community-driven hackathon community which hosted in-person hackathon with 400+ hackers in West Bengal.">
+              <a
+                className="underline"
+                target="_blank"
+                href="https://www.hack4bengal.tech/"
+              >
+                Hack4Bengal
+              </a>
+            </Tooltip>
             ", where I played a key role in organizing and managing the event.
           </li>
           <li>
-            Writing articles for{" "}
+            Wrote a sponsored article for Arcjet:{" "}
             <a
-              className="underline"
+              href="/blog/create-a-spotify-playlist-generator-with-arcjet" // Replace with the actual article URL when available
               target="_blank"
-              href="https://leaddevrel.com"
+              className="underline"
             >
-              LeadDevRel
+              "Create a Spotify Playlist Generator with Arcjet Protection"
             </a>
+          </li>
+          <li>
+            Writing articles for{" "}
+            <Tooltip text="LeadDevRel is a community for Developer Relations professionals to share insights and knowledge on developer relations and community building.">
+              <a className="underline" href="https://leaddevrel.com">
+                LeadDevRel
+              </a>
+            </Tooltip>
             , sharing insights and knowledge on developer relations and
             community building.
           </li>
+
           <li>
             Hosting bi-weekly growth meetings with DevRels in the LeadDevRel
             community.

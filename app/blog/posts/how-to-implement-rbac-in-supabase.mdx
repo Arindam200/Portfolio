@@ -347,8 +347,10 @@ This is how your directory structure should look like :
 Now, let’s add logic in our edge functions :
 
 - `/check-permission/:id/:operation`
+
   - This function checks the user's permissions.
   - Clear the index.ts file in the check-permission directory and paste the following code:
+
   ```javascript
   import { Permit } from "npm:permitio";
 
@@ -409,9 +411,12 @@ Now, let’s add logic in our edge functions :
     }
   });
   ```
+
 - `/createUser`
+
   - This is for creating a user with an employee role in our permit directory.
   - Clear the index.ts file in the createUser directory and paste the following code:
+
   ```javascript
   import { Permit } from "npm:permitio";
 
