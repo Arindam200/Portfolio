@@ -29,7 +29,7 @@ function Searchbar() {
     <div className="flex gap-2 mb-4">
       <input
         type="text"
-        className="border md:w-11/12 rounded border-neutral-200 bg-neutral-50 px-3 py-1.5 dark:border-neutral-700 dark:bg-neutral-800"
+        className="border md:w-11/12 w-full rounded border-neutral-200 bg-neutral-50 px-3 py-1.5 dark:border-neutral-700 dark:bg-neutral-800"
         placeholder="Search My Blogs"
         defaultValue={searchParams.get("query")?.toString()}
         onChange={(e) => {
