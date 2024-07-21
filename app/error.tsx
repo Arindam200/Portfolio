@@ -14,12 +14,14 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <p>Something went wrong...Try to refresh and see if it stays or not?</p>
+    <div className="flex h-full flex-col items-center justify-center">
+      <p className="mb-2">Something went wrong...Try to refresh and see if it stays or not?</p>
       <button
-        className="justify-center py-2 border cursor-pointer border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100"
+        className="justify-center py-2 px-4 border cursor-pointer border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100"
         onClick={() => reset()}
-      />
+      >
+        Refresh
+      </button>
     </div>
   );
 }
