@@ -85,6 +85,15 @@ export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
 }
 
+export function searchBlogPosts(query: string) {
+  const blogPosts = getBlogPosts();
+  const filteredPosts = blogPosts.filter((post) => {
+    return post.metadata.title.toLowerCase().includes(query.toLowerCase());
+  });
+
+  return filteredPosts;
+}
+
 export function formatDate(date: string, includeRelative = true) {
   let currentDate = new Date();
   if (!date.includes("T")) {

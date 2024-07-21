@@ -1,6 +1,7 @@
 import { BlogPosts } from "app/components/posts";
 import type { Metadata } from "next";
 import { baseUrl } from "../sitemap";
+import Searchbar from "app/components/searchbar";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -20,11 +21,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page() {
+export default function ({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+  };
+}) {
+  const query = searchParams?.query || "";
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My Blog</h1>
-      <BlogPosts />
+      <Searchbar />
+      <BlogPosts query={query} />
     </section>
   );
 }

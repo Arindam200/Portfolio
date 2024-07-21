@@ -1,12 +1,14 @@
 import { Link } from "next-view-transitions";
-import { formatDate, getBlogPosts } from "app/blog/utils";
+import { formatDate, getBlogPosts, searchBlogPosts } from "app/blog/utils";
 
-export function BlogPosts() {
+export function BlogPosts({ query }: { query: string }) {
   let allBlogs = getBlogPosts();
+
+  let filteredBlogs = query ? searchBlogPosts(query) : allBlogs;
 
   return (
     <div>
-      {allBlogs
+      {filteredBlogs
         .sort((a, b) => {
           if (
             new Date(a.metadata.datePublished) >
