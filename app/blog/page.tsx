@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ({
+export default function BlogPage({
   searchParams,
 }: {
   searchParams?: {
