@@ -18,7 +18,7 @@ export async function GET() {
         `<item>
           <title>${post.metadata.title}</title>
           <link>${baseUrl}/blog/${post.slug}</link>
-          <description>${post.metadata.summary || ""}</description>
+          <description>${post.metadata.seoDescription || ""}</description>
           <pubDate>${new Date(
             post.metadata.datePublished,
           ).toUTCString()}</pubDate>
