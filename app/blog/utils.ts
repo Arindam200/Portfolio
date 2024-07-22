@@ -4,9 +4,10 @@ import path from "path";
 type Metadata = {
   title: string;
   datePublished: string;
-  summary: string;
+  seoDescription: string;
   image?: string;
   cover?: string;
+  tags?: string;
 };
 
 function parseFrontmatter(fileContent: string) {
@@ -26,6 +27,7 @@ function parseFrontmatter(fileContent: string) {
 
   content = removeAlignProperty(content);
   content = formatCallout(content);
+  content = embedYouTubeLink(content);
   return { metadata: metadata as Metadata, content };
 }
 
@@ -55,6 +57,19 @@ function formatCallout(markdown) {
     }
 
     return match;
+  });
+}
+
+function embedYouTubeLink(content: string) {
+  const youtubeRegex = /%?\[?https?:\/\/(?:www\.)?youtu\.?be\/([\w-]{11})\]?/g;
+
+  return content.replace(youtubeRegex, (match) => {
+    const videoIdMatch = match.match(/(?:youtu\.?be\/)([\w-]{11})/);
+    if (videoIdMatch) {
+      const videoId = videoIdMatch[1];
+      return `<YouTubeEmbed videoid="${videoId}" params="controls=0" />`;
+    }
+    return match; 
   });
 }
 

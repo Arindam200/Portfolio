@@ -4,6 +4,7 @@ import { CustomMDX } from "app/components/mdx";
 import { formatDate, getBlogPosts } from "app/blog/utils";
 import { baseUrl } from "app/sitemap";
 import React, { Suspense } from "react";
+import { YouTubeEmbed } from '@next/third-parties/google'
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -24,8 +25,9 @@ export async function generateMetadata({
   let {
     title,
     datePublished: publishedTime,
-    summary: description,
+    seoDescription: description,
     cover,
+    tags,
   } = post.metadata;
   let ogImage = cover ? `${cover}` : `/og?title=${encodeURIComponent(title)}`;
   return {
@@ -65,6 +67,8 @@ export default function Blog({ params }: { params: { slug: string } }) {
     ? `${post.metadata.cover}`
     : "/default-image-path.jpg";
 
+  const tags = post.metadata.tags?.split(",").map((tag) => tag.trim());
+
   return (
     <section>
       <script
@@ -77,7 +81,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
             headline: post.metadata.title,
             datePublished: post.metadata.datePublished,
             dateModified: post.metadata.datePublished,
-            description: post.metadata.summary,
+            description: post.metadata.seoDescription,
             image: imageSrc,
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
@@ -100,12 +104,23 @@ export default function Blog({ params }: { params: { slug: string } }) {
       <h1 className="title font-semibold text-2xl tracking-tighter">
         {post.metadata.title}
       </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+      
+      <div className="flex justify-between items-center mt-2 mb-2 text-sm">
         <Suspense fallback={<p className="h-5" />}>
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
             {formatDate(post.metadata.datePublished)}
           </p>
         </Suspense>
+      </div>
+      <div className="flex flex-wrap gap-2 mb-2">
+        {tags?.map((tag) => (
+          <span
+            key={tag}
+            className="text-xs border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100 px-2 py-1 rounded"
+          >
+            {tag}
+          </span>
+        ))}
       </div>
       <article className="prose">
         <CustomMDX source={post.content} />
