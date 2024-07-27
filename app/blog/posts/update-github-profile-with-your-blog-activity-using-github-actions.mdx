@@ -1,0 +1,92 @@
+---
+title: "Update GitHub Profile with your Blog activity using GitHub Actions"
+datePublished: Thu Oct 27 2022 07:51:18 GMT+0000 (Coordinated Universal Time)
+cuid: cl9qro1c1000609la31834xgt
+slug: update-github-profile-with-your-blog-activity-using-github-actions
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1694632403650/67214834-8cc8-41cc-a822-e0f7c9123b1f.png
+tags: github, github-actions, github-actions-1, wemakedevs, cocde
+
+---
+
+## Introduction
+
+GitHub Actions can do so much, We usually see it running automated tests, but it can update your GitHub Profile with your activity from other platforms like YouTube, Blog posts, and more! This blog post will teach you how to update your GitHub profile using GitHub actions.
+
+> We'll be using [blog-articles.yml](https://github.com/FrancescoXX/FrancescoXX/blob/main/.github/workflows/blog-articles.yml) GitHub Action by [Francesco Ciulla](https://github.com/FrancescoXX)
+
+## Getting started
+
+* Go to your Profile ReadMe.
+    
+* Add a heading (e.g. Recent articles on Hashnode).
+    
+    ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1666784715058/eAMNRup-J.png align="left")
+    
+* Add the following code to your `README.md`
+    
+
+```plaintext
+<!-- BLOG-POST-LIST:START -->
+<!-- BLOG-POST-LIST:END -->
+```
+
+* The workflow will replace the comment above with the list of published blog posts.
+    
+* Save the changes by clicking on the Commit changes button.
+    
+* Then go to your Readme file and click on "`Add Files`" & select Create New file
+    
+* In the name field, enter `.github/workflows/blog-post-workflow.yml`
+    
+* Add the following code to the `Edit new file tab` .
+    
+
+```YAML
+name: Latest blog articles
+on:
+  schedule: # Run workflow automatically
+    - cron: '0 * * * *' # Runs every hour, on the hour
+  workflow_dispatch: # Run workflow manually (without waiting for the cron to be called), through the Github Actions Workflow page directly
+jobs:
+  update-readme-with-hashnode-blog:
+    name: Update this repo's README with the latest hashnode blog posts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gautamkrishnar/blog-post-workflow@master
+        with:
+          feed_list: "https://blog.francescociulla.com/rss.xml"
+```
+
+This will successfully create the workflow. It will fetch new blog posts from your Hashnode profile and add them to your README file every hour.
+
+> To learn more about GitHub workflow syntax, check out this Workflow Syntax [documentation](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions).
+
+* Next! Go to the `actions` tab in your Repository
+    
+    ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1694626797486/7cbe35ce-c910-419f-9e39-aa5d0125a610.png align="center")
+    
+* Under All Workflows, click on `Latest blog articles` workflow.
+    
+    ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1694626815320/8f040b8c-3bf4-43fd-8da1-ef29e925016c.png align="center")
+    
+* In the Run workflow dropdown, click on the `Run workflow` button. The workflow will start executing.
+    
+    ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1694626850166/a0152d06-edac-4ca6-88f9-a86b1de3d650.png align="center")
+    
+* Go to your GitHub profile page, and under the Recent Blog on Hashnode section, you’ll see a list of all the blog posts from the blogging platforms defined in the blog-post-workflow.yml file.
+    
+    e.g.
+    
+    ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1694626913203/ba4ab80e-3f6c-4459-a852-d2d0cf0324df.png align="center")
+    
+* For video tutorial \[Click Here\](https://www.youtube.com/watch?v=oVS3M9IPZUM&t=3s)
+    
+
+## Conclusion
+
+Thank you for reading this Blog. Hope you learned something today!
+
+If you found this guide helpful, please like, share, and follow us for more blog posts like this in the future & do tweet about it, and tag me!
+
+My Twitter: [https://twitter.com/intent/follow?screen\_name=Arindam\_1729](https://twitter.com/intent/follow?screen_name=Arindam_1729)

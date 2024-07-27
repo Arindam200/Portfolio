@@ -1,0 +1,143 @@
+---
+title: "How to use GitHub Effectively at Hackathons"
+seoTitle: "GitHub Hackathon Cheat Sheet: Use GitHub to its Full Potential and win"
+datePublished: Tue Dec 20 2022 16:00:59 GMT+0000 (Coordinated Universal Time)
+cuid: clbwexrlm000008jv6fswe3m7
+slug: how-to-use-github-effectively-at-hackathons
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1694624181247/ad9b94b7-902f-4bd2-9b26-2389d96670c7.png
+tags: hackathon, github, beginners, wemakedevs, cocodeblogs
+
+---
+
+# Introduction
+
+In this blog post, we'll go over some best practices for using GitHub at hackathons. Every time we take part in a hackathon, we upload our project to Github and include the GitHub URL in our project submission.GitHub plays a significant part in how judges evaluate your project!
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1671463034140/RN5PWpI2j.jpg align="center")
+
+By the end of this blog, you'll understand how to use GitHub to your advantage at hackathons and be well on your way to creating a successful project. So let's get started!
+
+## Usually Forgotten features:
+
+### 1\. GitHub Commit History:
+
+This is usually mentioned in the Hackathon Rules. There could be mentioned that they will be checking the commit history of the project to ensure that you have made that project during the hackathon period not before.
+
+> Tip: Don't Push your full code in one commit ! Instead , try to build your project from the beiginning on the Github.
+
+![How to remove sensitive files from GitHub commit history? | by Tadas Petra  | ITNEXT](https://miro.medium.com/max/1400/0*A7t1590y6mDVbDMR align="left")
+
+It's also recommended to create a repo as soon as the Hacking period starts and start building there! Then push the small changes & features you added to the Repo.
+
+You can find that there are some Minimum Commit Criteria. In that case, you will get an edge!
+
+> "Try to maintain good commit history while you are trying to work on a project!"
+
+### 2\. GitHub Issues
+
+When we try to work on short-term projects like hackathon projects, we often feel that the Github Issues feature is not Important. But Adding issues while working on a project is a good practice. Many judges like to see that on your project. You can use that as your To-Do list or Group Discussion about a new feature.
+
+![What's new with GitHub Issues | GitHub Changelog](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSin-XHQTdZ7S2OCDP-B79HtGMtFyfZXhwwTA&usqp=CAU align="center")
+
+**<mark>📌Note</mark>**: You don't have to put Technical or hard definitions on an issue, It can be very simple.
+
+Creating this type of issue shows your thinking process and brainstorming process all over to the judges which can eventually give you an edge in the Hackathon.
+
+### 3\. Project Boards
+
+Like GitHub Issues, most people think that Github Project Boards are not useful. But In Reality, It shows a bit of your Project management skills.
+
+Suppose, Your project is very good but you can show the judges How you managed the project and put priorities on the issues. It creates a good impression that you are taking the project seriously and want to get it done systematically.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1671264152767/kv__S0-CX.png align="center")
+
+![GitHub Issues · Project planning for developers · GitHub](https://github.githubassets.com/images/modules/site/issues/illo/issues-board.png align="left")
+
+### 4\. GitHub Community Standards
+
+If you are trying to build a project It is very essential. It's very good to have Community standards not only for hackathon projects but also for other projects.
+
+If you go to insights you can see community standards there
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1671264540189/hVjqvd964.png align="center")
+
+In Insights if you go to Community standards you can see a checklist. Even if you forget anything to add to your Repo! you can check that here. Just try to complete this checklist.
+
+Example: Here Security policy has not been added yet!
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1671264733785/lQjOiUbnw.png align="center")
+
+> * 🎯 <mark>Why Community Standards are Important?</mark>
+>     
+> 
+> <mark>Just putting your code on GitHub doesn't make your project open source, adding a license, Readme, Code of Conduct, and documentation to it makes it an Open Source project altogether</mark>**<mark>.</mark>**
+
+**🔮Tip:**
+
+For the Hackathon project, you don't have to enable Github Discussion.
+
+### 5\. GitHub Project Tag
+
+You might be thinking why it is important?
+
+![Does It Matter Is It Important GIF - Does It Matter Is It Important Matters  - Discover & Share GIFs](https://media.tenor.com/LGH0hwM7gkUAAAAC/does-it-matter-is-it-important.gif align="center")
+
+The simplest answer is Yes! it is important! it makes your project more discoverable and more presentable!
+
+![Top 30 Yes GIFs | Find the best GIF on Gfycat](https://thumbs.gfycat.com/DistortedBelatedGraywolf-size_restricted.gif align="center")
+
+### 6\. GitHub ReadMe
+
+A good README file is an important part of any GitHub project. It provides information about the project, including its purpose, how to set it up, and how to use it.
+
+Having a well-written README can help users understand your project and decide whether they want to use it. It can also help contributors understand how to contribute to the project and what kind of help is needed.
+
+![Make a README](https://www.makeareadme.com/images/open-graph-logo.png?v=20181203 align="left")
+
+💎 Here are some benefits of having a good README for your GitHub project:
+
+* It helps users understand what the project does and how it can be useful to them.
+    
+* It provides clear instructions on how to install and set up the project.
+    
+* It explains how to use the project and what features are available.
+    
+* It lists any dependencies that are required to run the project.
+    
+* It gives credit to contributors and maintainers.
+    
+* It provides a place for users to report issues and request features.
+    
+
+In summary, a good README can make your project more user-friendly and help it gain more users and contributors.
+
+Example:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1671544175318/yeKdPh_TE.png align="center")
+
+🔮 **<mark>Bonus Tip:</mark>**
+
+There are also some features that you can disable! if your project doesn't have any Releases & packages you can disable them otherwise it doesn't look nice.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1671545306317/wFKMNBz2x.png align="center")
+
+You should try to show those things that you are using & relevant to your project. Otherwise, feel free to hide them! It's good practice!
+
+## ✅Key Takeaways:
+
+* Good Readmes definitely catch an eye.
+    
+* Maintaining Commit History is Super important.
+    
+* Extra efforts do stand out.
+    
+* Making it easy for the judge plays directly into your favour.
+    
+* Hackathons are for fun and learning and exploring the tool at its full potential is always a great experience.
+    
+
+## Conclusion
+
+Thank you for reading this Blog. Hope you learned something new today! If you found this blog helpful, please like, share, and follow me for more blog posts like this in the future.
+
+![](https://t3.ftcdn.net/jpg/03/04/16/56/360_F_304165657_LYpZdhDBGPdP1LNVBhF2bS5XyssZ52WG.jpg align="left")

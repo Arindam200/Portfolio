@@ -1,0 +1,145 @@
+---
+title: "A Beginners Guide to Open Source"
+datePublished: Sat Jan 14 2023 20:33:27 GMT+0000 (Coordinated Universal Time)
+cuid: clcweoggc000008lm0qenem5d
+slug: a-beginners-guide-to-open-source
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1694624780135/ee47f5d2-5c7e-4ef2-853c-db45baade56a.png
+tags: github, opensource, opensource-inactive, wemakedevs, cocodeblogs
+
+---
+
+# Introduction
+
+Open-source software has been around for decades, but it's only in recent years that it has gained mainstream acceptance. With the rise of open-source projects like Linux, Apache, and WordPress, more and more people are becoming interested in the world of open-source. If you're new to open source, it can be overwhelming to know where to start. That's why we've put together this beginner's guide to open source to help you understand the basics and get started on your open-source journey.
+
+# What is Open Source?
+
+![Blog – What is Open Source?](https://www.remmsoft.com/assets/images/blog/what-is-open-source/open-source.png align="left")
+
+**Open Source Software (OSS) is code that can be easily accessed by the public**, making it able for them to see, modify or distribute said code. Open source is often decentralized based on community collaboration.
+
+# **Why contribute to open-source?**
+
+There are many reasons why people choose to contribute to open-source projects. Some common motivations include:
+
+* It builds your resume by demonstrating that you can collaborate with others on code.
+    
+* Open-source projects are built and maintained by a global community of volunteers, which can be a great way to meet and collaborate with like-minded people from around the world.
+    
+* It gives you practice with Git and GitHub, which is a valuable data science skill.
+    
+* It helps you to build relationships in the open-source community
+    
+
+![](https://miro.medium.com/max/875/1*8ls5eIhXF3qklT2hn1nr9g.png align="left")
+
+# **What to Know to Get Started with Open Source**
+
+* **Know Git Basics**
+    
+* **Become Familiar with GitHub**
+    
+* **Learn to Fork a Repository**
+    
+* **Learn to Resolve Merge Conflicts**
+    
+* **Learn Markdown Syntax**
+    
+
+## **Benefits of Open Source Contributions**
+
+Open Source contributions come with several benefits to the developers. Some key benefits are:
+
+* Get a chance to upskill yourself.
+    
+* Make the software/application better with code and documentation.
+    
+* Meet like-minded people, and build networks and communities.
+    
+* Understand the application development and maintenance cycles.
+    
+* Learn from Pull Request feedback.
+    
+* Learn how to manage your code as open source.
+    
+
+# Do I have to know how to code?
+
+![✓ | DROWNING, lysander scamander - DISCLAIMER - Wattpad](https://img.wattpad.com/66ecd7e7488f0b7b8ce7b0f599321e2065184812/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f5f567841733243425038464131673d3d2d313230363538343630362e313664656565633266656435613464323230373832353034373639352e676966 align="center")
+
+We often think that only 'Code' Contributions matter but that's not the case. Non-code contributions are equally important as Code Contributions.
+
+There are many ways to make impactful contributions to open source that does not involve contributing code.
+
+* Documentation.
+    
+* Reporting Bugs.
+    
+* Organising Events.
+    
+* Mentoring new contributors.
+    
+
+# What are the best ways to get started with contributing to Open Source Projects?
+
+There are several ways to get started with contributing to open-source projects. Here are a few options to consider:
+
+1. **Look for beginner-friendly projects:**
+    
+    Many open-source projects have a "good first issue" label or a "starter task" label that is specifically designed for new contributors. These issues are typically smaller and simpler tasks that are a good way to get started.
+    
+2. **Join a community:**
+    
+    There are many open-source communities on platforms like GitHub, GitLab, and SourceForge. Joining one of these communities is a great way to find projects to contribute to and connect with other contributors.
+    
+3. **Find a project you're interested in:**
+    
+    If you have a specific area of interest, such as machine learning or web development, you can search for open-source projects related to that topic and see if they need contributors.
+    
+4. **Check out the Open Source Initiative website:**
+    
+    The OSI website lists many open-source projects, including those that are actively seeking new contributors.
+    
+5. **Attend online events and hackathons:**
+    
+    Many online events and hackathons are organized to get more people involved in open-source projects. This is a good way to find projects and get connected with other contributors.
+    
+6. **Start your own open-source project:**
+    
+    If you can't find a project you're interested in contributing to, you can always start your own open-source project. This is a great way to learn new skills and build a community around your project.
+    
+
+# Where to find **a project to contribute to?**
+
+![How to pick an open-source project to contribute to? - DEV Community  👩‍💻👨‍💻](https://res.cloudinary.com/practicaldev/image/fetch/s--s5e7cE0e--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/c6tm7tmsa2fhbh4z0u2h.png align="left")
+
+If you’re looking for existing issues you can fix, every open-source project has a `/contribute` page that highlights beginner-friendly issues you can start out with. Navigate to the main page of the repository on GitHub, and add `/contribute` at the end of the URL (for example [`https://github.com/facebook/react/contribute`](https://github.com/facebook/react/contribute)).
+
+You can also use one of the following resources to help you discover and contribute to new projects:
+
+* [GitHub Explore](https://github.com/explore/)
+    
+* [Open Source Friday](https://opensourcefriday.com/)
+    
+* [First Timers Only](https://www.firsttimersonly.com/)
+    
+* [CodeTriage](https://www.codetriage.com/)
+    
+* [24 Pull Requests](https://24pullrequests.com/)
+    
+* [Up For Grabs](https://up-for-grabs.net/)
+    
+* [Contributor-ninja](https://contributor.ninja/)
+    
+* [First Contributions](https://firstcontributions.github.io/)
+    
+* [SourceSort](https://web.archive.org/web/20201111233803/https://www.sourcesort.com/)
+    
+
+# Conclusion
+
+If you've never contributed to open-source projects or you are hesitant about it, you should start now. It's very important and will help you a lot by giving back to the community.
+
+Thank you for reading this Blog. Hope you learned something today! If you found this guide helpful, please like, share, and follow us for more blog posts like this in the future.
+
+![Thank You Page | IDP Cambodia](https://www.idp.com/medias/Thank-you-01.jpg?context=bWFzdGVyfGltYWdlc3wzMTkzMjZ8aW1hZ2UvanBlZ3xpbWFnZXMvaDNlL2hjNS85OTU1Nzk4MDI0MjIyLmpwZ3w0ZDQ5OTU0MjkyMjdkYTI2YTVkMmY1NmJiMzUyOWE3OTYzYTU0OTExYzM5NWU2MzE5ZWU0ZTc4ZTJkOTQwNTY0 align="left")

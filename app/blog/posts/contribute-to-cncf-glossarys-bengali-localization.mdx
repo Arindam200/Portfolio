@@ -1,0 +1,65 @@
+---
+title: "Contribute to CNCF Glossary's Bengali Localization"
+datePublished: Tue Nov 15 2022 14:23:14 GMT+0000 (Coordinated Universal Time)
+cuid: claib18xk000d08mlaueicxrr
+slug: contribute-to-cncf-glossarys-bengali-localization
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1694622828843/5282f652-03dc-4baa-8ff0-ed36acb6202f.png
+tags: github, opensource, beginners, cncf, blogswithcc
+
+---
+
+# Introduction
+
+You can start your Open Source Contribution or enrich your profile by contributing to CNCF (Cloud Native Computing Foundation) Glossary, as Non-Code Contribution does not require any technology-related prior knowledge.
+
+# What is CNCF Glossary?
+
+The Cloud Native Glossary is a project led by the CNCF Business Value Subcommittee. Its goal is to explain cloud-native concepts in clear and simple language without requiring any previous technical knowledge. The CNCF Cloud Native Glossary Project aims to define cloud-native concepts in clear and simple language, making them accessible to anyone — whether they have a technical background or not.
+
+# Steps to Contribute
+
+1. Go to the CNCF/glossary Github Page & Fork the Repository.
+    
+2. Then go to this Bengali Localization Issue link and select the desired \`\`\` .md \`\`\` file from the Tracking Issue and comment “I would like to contribute on \`\`\` content/bn/.md \`\`\`”
+    
+3. After some time you will be assigned that File. You will get the notification via mail. Then start working on that file.
+    
+4. **Pro Tip**: Don't start working on a File before getting assigned as there may be someone else working on that file.
+    
+5. Go to your GitHub forked repository and select the “dev-bn” branch.
+    
+6. \*\*Note: \*\* We do not have any work in Main Branch. All Contributions should be made on the \`\`\` dev-bn
+    
+7. There you go to the “content” folder. Open the \`\`\` Chosen\_file.md \`\`\` you want to work with in another tab in the “en” Folder there. Then go back to “content” and then go to the “bn” folder. Create a new file by clicking on \`\`\` Create New Files \`\`\` and name it \`\`\` Chosen\_file.md \`\`\` opened from en folder a while ago.
+    
+8. Now you have to Translate the text of \`\`\`Chosen\_file.md\`\`\` .However, it should not be translated directly by Google Translate, it should be written simply in \*relevant\*,\* plain \*language.
+    
+9. **Note:** We must have to follow the style guide provided by CNCF.
+    
+10. After Translating Correctly, You have to Create a Pull Request in "\`\`\` dev-bn \`\`\`" branch of \`\`\` cncf/glossary \`\`\`
+    
+11. This matter cannot be mistaken in any way, the pull request of content localization in Bengali in the main branch will never be merged.
+    
+    ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1668520151641/efiRG31sk.png align="left")
+    
+12. The title of the Pull Request must contain "\[bn\] Localize Chosen\_file.md" and the body must be written in the following format. Otherwise, Pull Request will not be merged
+    
+13. Format is:
+    
+    > Signed-off-by: Your Name \[Your email Used In Github\]  
+    > Localizes “content/bn/Chosen\_file.md" to Bengali This is an initial PR as may need some improvements!  
+    > Tracking issue: #410
+    
+    ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1668520986952/S-eT168uB.png align="left")
+    
+14. Then submit the Pull Request and wait, Code Maintainer or Reviewer will see the code and then Merge, if there is any suggestion they will give it, to get the update, you have to keep an eye on the email or GitHub Notification!
+    
+15. Congratulations! You have successfully made an open-source contribution to the CNCF (Cloud Native Computing Foundation) Glossary.
+    
+    ![](https://static.vecteezy.com/system/resources/previews/003/164/888/original/congratulation-graduate-calligraphy-free-vector.jpg align="left")
+    
+    # Conclusion
+    
+    Thank you for reading this Blog. Hope you learned something new today! If you found this blog helpful, please like, share, and follow me for more blog posts like this in the future.
+    
+    ![](https://t3.ftcdn.net/jpg/03/04/16/56/360_F_304165657_LYpZdhDBGPdP1LNVBhF2bS5XyssZ52WG.jpg align="left")

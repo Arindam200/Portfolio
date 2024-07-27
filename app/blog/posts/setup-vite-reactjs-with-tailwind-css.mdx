@@ -1,0 +1,211 @@
+---
+title: "Setup Vite+ ReactJs with Tailwind CSS"
+datePublished: Wed Sep 13 2023 16:07:07 GMT+0000 (Coordinated Universal Time)
+cuid: clmhxq3wt000c0ajicyykbx7u
+slug: setup-vite-reactjs-with-tailwind-css
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1694618900817/4b8938bf-89fb-4b3b-ac52-8c85ed4cf2a2.png
+tags: web-development, developer, reactjs, tailwind-css, wemakedevs
+
+---
+
+## Introduction:
+
+We, Developers, always try to Optimize things! That's where this Combo (Vite+React+Tailwind) is gaining popularity among developers because of its fast development experience and performance.
+
+In this article, we'll learn how to set up a Vite+React project with Tailwind.
+
+Excited! Right?
+
+Me too!!!
+
+So without delaying further, let's Start!!
+
+![Lets Do It Brad Mondo Sticker - Lets Do It Brad Mondo Lets Do This Stickers](https://imgs.search.brave.com/0lLW3nlxu4PqM89xaAsBjbT15LhBeM-G2YMoB5-tClU/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS50ZW5vci5jb20v/aWo5VVdQQ1YtdVFB/QUFBai9sZXRzLWRv/LWl0LWJyYWQtbW9u/ZG8uZ2lm.gif align="center")
+
+## Steps:
+
+### Step-1:
+
+First, open the Terminal and choose the directory where you want to create the project folder. In this case, We'll select the desktop directory.
+
+For that run the `cd Desktop` in the Terminal.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1694620556588/d0d6c43e-7299-4d8f-a5d1-85ac645be621.png align="center")
+
+### Step-2:
+
+Now, Create the Project folder on the Desktop by running the following command on the Terminal:
+
+```bash
+npm create vite@latest project-name -- --template react
+```
+
+<div data-node-type="callout">
+<div data-node-type="callout-emoji">💡</div>
+<div data-node-type="callout-text">Change <code>project-name</code> with your project name.</div>
+</div>
+
+Here We'll take the project name as Demo project.
+
+So our command will be:
+
+```bash
+npm create vite@latest demo-project -- --template react
+```
+
+This command will create our Project folder.
+
+<div data-node-type="callout">
+<div data-node-type="callout-emoji">💡</div>
+<div data-node-type="callout-text">Note: Here <code>--template react</code> specifies that we are creating a React App with Vite.</div>
+</div>
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1691074357013/36feac6f-2fdb-4ab7-9a37-2b22d34cdd44.png align="center")
+
+### Step-3:
+
+After Creating our project folder, Let's navigate it.
+
+For that run
+
+```bash
+cd demo-project
+```
+
+After running this command, you'll get this:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1691074621189/fe2ab3e1-5567-43cb-a48e-cfee0f523090.png align="center")
+
+<div data-node-type="callout">
+<div data-node-type="callout-emoji">💡</div>
+<div data-node-type="callout-text">Note: Change the <code>demo-project</code> to the name of your project.</div>
+</div>
+
+### Step-4:
+
+Now, We'll download TailwindCss and other required dependencies.
+
+Run the following command:
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+```
+
+This command installs Tailwind CSS framework, post-Css, and a post-Css framework autoprefixer.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1691076580948/e7fbdcaf-bf1e-482d-a175-e612939d53e7.png align="center")
+
+To confirm that these dependencies have successfully been installed in your project check `package.json` , It should look like this:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1691076428693/42cbe279-bdd3-42e3-ba45-d130633f8861.png align="center")
+
+### Step-5:
+
+Now, We'll generate tailwind Configuration files.
+
+Run the following command:
+
+```bash
+npx tailwindcss init -p
+```
+
+This command generates `tailwind.config.js` and`postcss.config.js` configuration files.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1691076599499/7d95c851-d4ea-44b8-a336-9cde111d0a08.png align="center")
+
+### Step-6:
+
+Next, We'll add the paths to all of your template files in your `tailwind.config.js` file. Template files include HTML templates, JavaScript components, and other source files that contain Tailwind class names.
+
+With this, the Tailwind classes will be applied throughout the project.
+
+To do that, we'll add the following code to the content section of `tailwind.config.js` file.
+
+```bash
+"./index.html",
+"./src/**/*.{js,ts,jsx,tsx}",
+```
+
+Now the file will look like this:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1691077675568/0369d318-56f6-4a44-b947-c055afed8dbc.png align="center")
+
+### Step-7:
+
+Now that we have set up Tailwind in the project, We will add the Tailwind directive to our project.
+
+To know more about Tailwind directives, check out [This](https://tailwindcss.com/docs/functions-and-directives) .
+
+We'll add the tailwind directives in `index.css`
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+<div data-node-type="callout">
+<div data-node-type="callout-emoji">💡</div>
+<div data-node-type="callout-text">There will be some default styles added to the folders. Do delete them and add your styles. Otherwise, I might create confusion.</div>
+</div>
+
+### Step-8:
+
+We are Almost Done!!
+
+Now We will start our Vite server by running the following code:
+
+```bash
+npm run dev
+```
+
+It will open one link to Localhost.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1691078339017/801f5873-be80-47a1-bf9c-77749d4f75af.png align="center")
+
+Now, After going to the link, you will find something like this:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1691078454190/2b15afab-2f87-4d77-bb19-f3fe0fafc1ae.png align="center")
+
+We got this because we haven't Deleted the default CSS styles yet.
+
+### Final Step:
+
+In this step, we will validate that Vite and Tailwind CSS work fine together. Let's Go to our `App.jsx` file and write this code:
+
+```javascript
+
+import { useState } from 'react'
+const App = () => {
+	return (
+		<div className="App">
+			<h1 className="text-3xl text-center font-bold underline">
+				Hello world!
+			</h1>
+		</div>
+		)
+}
+export default App
+```
+
+And we got this output:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1691079276773/300d1765-55c3-46cd-ae46-1f0f538fe0fc.png align="center")
+
+Now!!
+
+We are Ready to go!
+
+Now Start building your Dream Project!!
+
+## Conclusion:
+
+If you found this blog post helpful, please consider sharing it with others who might benefit. You can also follow me for more content on Javascript, React, and other web Development topics.
+
+For Paid collaboration mail me at : [arindammajumder2020@gmail.com](mailto:arindammajumder2020@gmail.com)
+
+Connect with me on [Twitter](https://twitter.com/intent/follow?screen_name=Arindam_1729), [LinkedIn](https://www.linkedin.com/in/arindam2004/), [Youtube](https://www.youtube.com/channel/@Arindam_1729) and [GitHub](https://github.com/Arindam200).
+
+Thank you for Reading :)
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1694620649841/231ebb04-02cf-40f9-a7ef-a22b7c64415a.png align="center")
