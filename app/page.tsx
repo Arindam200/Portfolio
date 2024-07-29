@@ -54,7 +54,7 @@ export default function Page() {
         <Link className="underline" href="/work">
           work
         </Link>
-        {` as developer advoate at `}
+        {` as developer advocate at `}
         <span className="not-prose">
           <Badge href="https://pieces.app">
             <Image
