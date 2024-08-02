@@ -5,7 +5,6 @@ cuid: cllhkypxl000m08jle40e17pr
 slug: 5-tips-tricks-to-enhance-your-tailwind-css-code
 cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1692386763515/e32525a8-334f-4f2e-bea7-b49d792d4e25.png
 tags: web-development, tips, tailwind-css, tailwind-css-tutorial, wemakedevs
-
 ---
 
 # Introduction:
@@ -33,7 +32,7 @@ For example:
 ```xml
 <div class="group">
   <span class="group-hover:text-yellow-500 text-black">Hello</span>
-  <span class="group-hover:text-red-500 text-black">Hello</span> 
+  <span class="group-hover:text-red-500 text-black">Hello</span>
 </div>
 ```
 
@@ -61,7 +60,7 @@ For example:
 ```xml
   <div class="space-y-4">
     <div class="flow-root">
-      <div class="my-4">  
+      <div class="my-4">
         Content here will have its own block formatting context.
       </div>
     </div>
@@ -101,19 +100,20 @@ For example, say you have a list of avatars:
 To apply the same Tailwind classes to all the `<img>` elements, you can use the `[&>*]:` arbitrary selector on the parent `<div>` element:
 
 ```html
-<div class="[&>*]:rounded-full [&>*]:w-14 [&>*]:h-14 [&>*]:ring-4 [&>*]:ring-white" class="flex">
-  <img src="...">  
-  <img src="...">  
-  <img src="...">  
+<div
+  class="[&>*]:rounded-full [&>*]:w-14 [&>*]:h-14 [&>*]:ring-4 [&>*]:ring-white"
+  class="flex"
+>
+  <img src="..." />
+  <img src="..." />
+  <img src="..." />
 </div>
 ```
 
 Here:
 
-* `[&>*]:rounded-full` applies the `rounded-full` class to all direct children (`*`) of the element
-    
-* `[&>*]:w-14` applies the `w-14` class to all direct children
-    
+- `[&>*]:rounded-full` applies the `rounded-full` class to all direct children (`*`) of the element
+- `[&>*]:w-14` applies the `w-14` class to all direct children
 
 This makes the HTML more readable by concentrating the style rules in the parent element.
 
@@ -123,7 +123,7 @@ For example:
 
 ```css
 variants: {
-  children: ['responsive', 'hover', 'focus'] 
+  children: ['responsive', 'hover', 'focus']
 },
 ```
 

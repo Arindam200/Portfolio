@@ -3,7 +3,7 @@ import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
 import React from "react";
-import { YouTubeEmbed } from '@next/third-parties/google'
+import { YouTubeEmbed } from "@next/third-parties/google";
 import { ArrowIcon } from "./icons";
 
 function Table({ data }) {
@@ -157,18 +157,15 @@ function ConsCard({ title, cons }) {
   );
 }
 
-
-function CreditMention({name,link}){
+function CreditMention({ name, link }) {
   return (
     <Link href={link}>
       <div className="border flex justify-between items-center border-emerald-200 dark:border-emerald-900 bg-neutral-50 dark:bg-neutral-900 rounded p-6 my-4 w-full">
-        <div className="">
-        This Article was originally published on {name}
-        </div>
+        <div className="">This Article was originally published on {name}</div>
         <ArrowIcon />
       </div>
     </Link>
-  )
+  );
 }
 
 let components = {

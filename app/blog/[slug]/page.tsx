@@ -4,7 +4,7 @@ import { CustomMDX } from "app/components/mdx";
 import { formatDate, getBlogPosts } from "app/blog/utils";
 import { baseUrl } from "app/sitemap";
 import React, { Suspense } from "react";
-import { YouTubeEmbed } from '@next/third-parties/google'
+import { YouTubeEmbed } from "@next/third-parties/google";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -104,7 +104,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
       <h1 className="title font-semibold text-2xl tracking-tighter">
         {post.metadata.title}
       </h1>
-      
+
       <div className="flex justify-between items-center mt-2 mb-2 text-sm">
         <Suspense fallback={<p className="h-5" />}>
           <p className="text-sm text-neutral-600 dark:text-neutral-400">

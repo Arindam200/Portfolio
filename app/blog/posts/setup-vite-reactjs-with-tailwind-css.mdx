@@ -5,7 +5,6 @@ cuid: clmhxq3wt000c0ajicyykbx7u
 slug: setup-vite-reactjs-with-tailwind-css
 cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1694618900817/4b8938bf-89fb-4b3b-ac52-8c85ed4cf2a2.png
 tags: web-development, developer, reactjs, tailwind-css, wemakedevs
-
 ---
 
 ## Introduction:
@@ -41,8 +40,10 @@ npm create vite@latest project-name -- --template react
 ```
 
 <div data-node-type="callout">
-<div data-node-type="callout-emoji">💡</div>
-<div data-node-type="callout-text">Change <code>project-name</code> with your project name.</div>
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    Change <code>project-name</code> with your project name.
+  </div>
 </div>
 
 Here We'll take the project name as Demo project.
@@ -56,8 +57,11 @@ npm create vite@latest demo-project -- --template react
 This command will create our Project folder.
 
 <div data-node-type="callout">
-<div data-node-type="callout-emoji">💡</div>
-<div data-node-type="callout-text">Note: Here <code>--template react</code> specifies that we are creating a React App with Vite.</div>
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    Note: Here <code>--template react</code> specifies that we are creating a
+    React App with Vite.
+  </div>
 </div>
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1691074357013/36feac6f-2fdb-4ab7-9a37-2b22d34cdd44.png align="center")
@@ -77,8 +81,10 @@ After running this command, you'll get this:
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1691074621189/fe2ab3e1-5567-43cb-a48e-cfee0f523090.png align="center")
 
 <div data-node-type="callout">
-<div data-node-type="callout-emoji">💡</div>
-<div data-node-type="callout-text">Note: Change the <code>demo-project</code> to the name of your project.</div>
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    Note: Change the <code>demo-project</code> to the name of your project.
+  </div>
 </div>
 
 ### Step-4:
@@ -145,8 +151,11 @@ We'll add the tailwind directives in `index.css`
 ```
 
 <div data-node-type="callout">
-<div data-node-type="callout-emoji">💡</div>
-<div data-node-type="callout-text">There will be some default styles added to the folders. Do delete them and add your styles. Otherwise, I might create confusion.</div>
+  <div data-node-type="callout-emoji">💡</div>
+  <div data-node-type="callout-text">
+    There will be some default styles added to the folders. Do delete them and
+    add your styles. Otherwise, I might create confusion.
+  </div>
 </div>
 
 ### Step-8:
@@ -174,18 +183,15 @@ We got this because we haven't Deleted the default CSS styles yet.
 In this step, we will validate that Vite and Tailwind CSS work fine together. Let's Go to our `App.jsx` file and write this code:
 
 ```javascript
-
-import { useState } from 'react'
+import { useState } from "react";
 const App = () => {
-	return (
-		<div className="App">
-			<h1 className="text-3xl text-center font-bold underline">
-				Hello world!
-			</h1>
-		</div>
-		)
-}
-export default App
+  return (
+    <div className="App">
+      <h1 className="text-3xl text-center font-bold underline">Hello world!</h1>
+    </div>
+  );
+};
+export default App;
 ```
 
 And we got this output:

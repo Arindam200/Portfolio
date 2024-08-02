@@ -69,7 +69,7 @@ function embedYouTubeLink(content: string) {
       const videoId = videoIdMatch[1];
       return `<YouTubeEmbed videoid="${videoId}" params="controls=0" />`;
     }
-    return match; 
+    return match;
   });
 }
 

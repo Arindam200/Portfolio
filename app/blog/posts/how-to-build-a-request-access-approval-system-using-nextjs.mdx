@@ -4,7 +4,7 @@ seoDescription: "Learn how to build an efficient Request Access Approval System 
 datePublished: "2024-07-24"
 slug: how-to-build-a-request-access-approval-system-using-nextjs
 cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1721460172019/b9e33379-5b1b-439d-9320-f3b5f27fc1bf.png
-tags: Next.js , web development , authorization , permit.io 
+tags: Next.js , web development , authorization , permit.io
 ---
 
 ## Introduction
@@ -69,8 +69,8 @@ Next, we’ll create a .env file in the root of our project to store our environ
 
 ```jsx
 //.env
-JWT=your_jwt_token
-ENV=your_environment_key
+JWT = your_jwt_token;
+ENV = your_environment_key;
 ```
 
 > Make sure to replace `your_jwt_token` and `your_environment_key` with actual values
@@ -82,126 +82,117 @@ With that, our basic Next.js Project setup is done.
 To create an access request element, it’s essential to create a **user management element first.** Let’s create it.
 
 1. Go to Elements section
-    
 2. Under User Management, click on “Create Element”
-    
 
 ![Screenshot of a user interface showing a sidebar menu on the left with items such as "Home," "Policy," "Directory," and "Elements," among others. The "Elements" menu item is highlighted. To the right, under "User Management," there is an option to "Create Element." Two red arrows point to "Elements" and "Create Element."](https://cdn.hashnode.com/res/hashnode/image/upload/v1721452308203/20a8b231-dabf-40bb-8b91-0d2376491044.png align="center")
 
 1. Create a User Management Element by assigning roles as follows:
-    
-    a. Add a name, i.e. “**User Management**”
-        
-    b. Select the **RBAC** role
-        
-    c. Drag the **admin** role from the ”Hidden Roles” section to the “**Level 1 - Workspace Owner**”
-        
-    d. Create the element.
-        
 
-%[https://youtu.be/7yTrUzzoOVs] 
+   a. Add a name, i.e. “**User Management**”
+
+   b. Select the **RBAC** role
+
+   c. Drag the **admin** role from the ”Hidden Roles” section to the “**Level 1 - Workspace Owner**”
+
+   d. Create the element.
+
+%[https://youtu.be/7yTrUzzoOVs]
 
 ### Create an Access Request Element
 
 1. Click on the Elements option
-    
 2. Under the Access request, click on “Create Element”
-    
-    ![Permit Dashboard](https://cdn.hashnode.com/res/hashnode/image/upload/v1721452416875/c542f839-0889-4f92-9174-e6c3e9cf5cf5.png align="left")
-    
-3. Select the user management element to which you want to connect.
-    
-4. Customize the element according to your choice.
-    
 
-%[https://youtu.be/iYBNFLc7jl0] 
+   ![Permit Dashboard](https://cdn.hashnode.com/res/hashnode/image/upload/v1721452416875/c542f839-0889-4f92-9174-e6c3e9cf5cf5.png align="left")
+
+3. Select the user management element to which you want to connect.
+4. Customize the element according to your choice.
+
+%[https://youtu.be/iYBNFLc7jl0]
 
 ### Implement the Access Request and User Management Element
 
 Now we'll integrate [Permit.io](http://permit.io/)'s Access Request element and User Management element into the Next.js application.
 
 1. First,Under the components folder, create a component `AccessRequest.tsx` for the Access Request element:
-    
 
 ```javascript
-import React from 'react'
+import React from "react";
 
 function AccessRequest() {
   return (
     <iframe
-            title="Permit Element AR"
-            src="https://embed.permit.io/ar?envId=e0ffba3632274e8085d92c793d34f0c1&darkMode=false&tenantKey=default"
-            width="100%"
-            height="100%"
-            style={{ border: 'none' }}
+      title="Permit Element AR"
+      src="https://embed.permit.io/ar?envId=e0ffba3632274e8085d92c793d34f0c1&darkMode=false&tenantKey=default"
+      width="100%"
+      height="100%"
+      style={{ border: "none" }}
     />
-  )
+  );
 }
 
 export default AccessRequest;
 ```
 
 2. Next, create a component for the User Management element to manage user permissions. Add the following code in `UserManagement.tsx`:
-    
 
 ```javascript
-import React from 'react'
+import React from "react";
 
 function UserManagement() {
   return (
     <iframe
-        title="Permit Element user-management"
-        src="https://embed.permit.io/user-management?envId=0ce2a34be877476f958a43b354e06756&darkMode=false"
-        width="100%"
-        height="100%"
-        style="border: none;"
+      title="Permit Element user-management"
+      src="https://embed.permit.io/user-management?envId=0ce2a34be877476f958a43b354e06756&darkMode=false"
+      width="100%"
+      height="100%"
+      style="border: none;"
     />
-  )
+  );
 }
 
 export default UserManagement;
 ```
 
 3. Now, Create a `Dashboard.tsx` component. This component will handle the login process using [Permit.io](http://Permit.io) and embed the Access Request and User Management elements.
-    
 
 ```jsx
-'use client';
-import permit, { LoginMethod } from '@permitio/permit-js';
-import AccessRequest from './AccessRequest';
-import UserManagement from './UserManagement';
-import 'dotenv/config';
-import { useEffect } from 'react';
+"use client";
+import permit, { LoginMethod } from "@permitio/permit-js";
+import AccessRequest from "./AccessRequest";
+import UserManagement from "./UserManagement";
+import "dotenv/config";
+import { useEffect } from "react";
 
 const Dashboard = () => {
-    useEffect(() => {
-        const login = async () => {
-            try {
-                await permit.elements.login({
-                    loginMethod: LoginMethod.frontendOnly,
-                    userJwt: process.env.JWT,
-                    tenant: 'default',
-                    envId: process.env.ENV,
-                });
-                console.log('Login successful');
-            } catch (err) {
-                console.error('Login error:', err);
-            }
-        };
+  useEffect(() => {
+    const login = async () => {
+      try {
+        await permit.elements.login({
+          loginMethod: LoginMethod.frontendOnly,
+          userJwt: process.env.JWT,
+          tenant: "default",
+          envId: process.env.ENV,
+        });
+        console.log("Login successful");
+      } catch (err) {
+        console.error("Login error:", err);
+      }
+    };
 
-        if (process.env.JWT && process.env.ENV) {
-            login();
-        } else {
-            console.error('JWT token or ENV variable is not defined.');
-        }
-    }, []);
+    if (process.env.JWT && process.env.ENV) {
+      login();
+    } else {
+      console.error("JWT token or ENV variable is not defined.");
+    }
+  }, []);
 
-    return (
-        <div>
-            <AccessRequest />
-            <UserManagement />
-        </div>
-    );
+  return (
+    <div>
+      <AccessRequest />
+      <UserManagement />
+    </div>
+  );
 };
 
 export default Dashboard;
@@ -211,17 +202,13 @@ The component uses the `useEffect` hook to run a login function when the compone
 
 The login function uses `permit.elements.login()` to authenticate the user:
 
-* It uses `LoginMethod.frontendOnly` for client-side authentication.
-    
-* It retrieves the JWT token and environment ID from environment variables.
-    
-* If login is successful, it logs a success message; otherwise, it logs an error.
-    
+- It uses `LoginMethod.frontendOnly` for client-side authentication.
+- It retrieves the JWT token and environment ID from environment variables.
+- If login is successful, it logs a success message; otherwise, it logs an error.
 
 The component renders two `iframes` that embed the [Permit.io](http://Permit.io) Access Request and User Management elements.
 
 4. To use the `Dashboard` component, we’ll have to add the component where we want to display the access request element and user management element. For this example, add this to page.tsx :
-    
 
 ```jsx
 import Dashboard from "@/components/Dashboard";
@@ -229,7 +216,7 @@ import Dashboard from "@/components/Dashboard";
 export default function Home() {
   return (
     <main>
-      <div >
+      <div>
         <Dashboard />
       </div>
     </main>
