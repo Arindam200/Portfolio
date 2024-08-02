@@ -1,9 +1,10 @@
 import React from "react";
-import Alexandr from "./Alexandr.png";
 import Image from "next/image";
-import Dani from "./Dani.png";
-import Suhas from "./Suhas.png";
-import Debajyati from "./debajyati.png";
+import Alexandr from "./assets/Alexandr.png";
+import Dani from "./assets/Dani.png";
+import Suhas from "./assets/Suhas.png";
+import Debajyati from "./assets/debajyati.png";
+import Sophia from "./assets/sophiya.png";
 import { ArrowIcon } from "../components/icons";
 import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
@@ -13,17 +14,17 @@ export const metadata: Metadata = {
   description: "See what people thinks about me.",
 };
 
-function CustomTweet({
+function TestimonialCard({
   image,
   name,
   link,
-  tweeterId,
+  AuthorDescription,
   content,
 }: {
   image: any;
   name: string;
   link: string;
-  tweeterId: string;
+  AuthorDescription: string;
   content: string;
 }): React.JSX.Element {
   return (
@@ -33,7 +34,7 @@ function CustomTweet({
           <Link href={link} className="flex items-center gap-2">
             <div className="h-14 w-14 overflow-hidden rounded-full border border-control">
               <Image
-                alt="@Arindam twitter image"
+                alt="Author Image"
                 loading="lazy"
                 width="64"
                 height="64"
@@ -46,18 +47,7 @@ function CustomTweet({
               <p className="font-medium text-neutral-900 dark:text-neutral-100">
                 {name}
               </p>
-              <div className="text-xs"> {tweeterId}</div>
-            </div>
-
-            <div className="absolute -left-1 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-black">
-              <svg
-                className="h-[12px] w-[12px]"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-              </svg>
+              <div className="text-xs"> {AuthorDescription}</div>
             </div>
             <div className="transform absolute right-0 top-2 text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 dark:text-neutral-300">
               <ArrowIcon />
@@ -77,40 +67,48 @@ export default function page() {
         My Testimonials
       </h1>
       <p className="">Here's what people are saying about me:</p>
-      <CustomTweet
+      <TestimonialCard
         image={Alexandr}
         name="Alexandr"
-        link="https://x.com/Arindam_1729/status/1762092650780578240"
-        tweeterId="marketing@oneentry.cloud"
+        link="https://www.linkedin.com/in/aleksandr-gradov-032383252/"
+        AuthorDescription="Lead at OneEntry Portal Co"
         content="I had the pleasure of working with Arindam on a article for our company. From our initial conversation to the final submission, Arindam's professionalism and expertise, for their craft were evident. Communication was seamless and enjoyable. He fully understood the nuances of the project. The entire collaboration process not only productive but genuinely pleasant. The article was not only informative and engaging but also aligned with our vision."
       />
-      <CustomTweet
+      <TestimonialCard
         image={Debajyati}
         link="https://x.com/ddebajyati/status/1762896523963326884"
         name="Debajyati Dey"
-        tweeterId="@ddebajyati"
+        AuthorDescription="@ddebajyati"
         content="You're a gift to the community. You were the one who inspired me to write blogs. Your blogs are awesome 🚀. 
         You deserve appreciation. 😊🤓"
       />
-      <CustomTweet
+      <TestimonialCard
         link="https://x.com/Arindam_1729/status/1762092650780578240"
         image={Dani}
         name="Dani Passos"
-        tweeterId="@danizeres"
+        AuthorDescription="DevRel at Shopify"
         content="@Arindam_1729 That is amazing, I love reading your articles 🔥"
       />
-      <CustomTweet
+      <TestimonialCard
         image={Suhas}
         link="https://x.com/Arindam_1729/status/1762092650780578240"
         name="Suhas Sumukh"
-        tweeterId="@suhasasumukh"
+        AuthorDescription="@suhasasumukh"
         content="@Arindam_1729 writes awesome blogs on Hashnode"
       />
-      <CustomTweet
+      <TestimonialCard
+        image={Sophia}
+        link="https://x.com/sophiairoegbu_"
+        name="Sophia Iroegbu"
+        AuthorDescription="Dev Advocate at LeadDevRel"
+        content="Arindam is an amazing friend and colleague, we worked on some campaigns while at Pieces and Lead DevRel. 
+        Also, he helped me improve my writing skills as he gave me feedback on some articles I wrote.."
+      />
+      <TestimonialCard
         image={Debajyati}
         link="https://x.com/Arindam_1729/status/1762092650780578240"
         name="Debajyati Dey"
-        tweeterId="@ddebajyati"
+        AuthorDescription="@ddebajyati"
         content="You're a great blogger brother. 🙌🏻
         What I admire most is that you're highly consistent!"
       />

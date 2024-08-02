@@ -1,7 +1,7 @@
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 import Pieces from "../assets/pieces.svg";
-import ab from "./testimonials/ab.png";
+import ab from "./testimonials/assets/Arindam.png";
 import {
   TwitterIcon,
   GitHubIcon,
