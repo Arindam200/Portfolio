@@ -119,7 +119,8 @@ export function HashnodeIconGrey() {
       width="337"
       height="337"
       viewBox="0 0 337 337"
-      fill="none"
+      stroke="currentColor"
+      fill="currentColor"
     >
       <rect x="113" y="113" width="111" height="111" rx="55.5" fill="none" />
       <path
