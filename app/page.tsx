@@ -94,7 +94,7 @@ export default function Page() {
             <span>
               <ViewsIcon />
             </span>
-            100k+ blog views all time
+            150k+ blog views all time
           </p>
         </div>
       </div>
