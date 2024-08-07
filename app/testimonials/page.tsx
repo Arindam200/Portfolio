@@ -5,6 +5,7 @@ import Dani from "./assets/Dani.png";
 import Suhas from "./assets/Suhas.png";
 import Debajyati from "./assets/debajyati.png";
 import Sophia from "./assets/sophiya.png";
+import Gabriel from "./assets/Gabriel.png";
 import { ArrowIcon } from "../components/icons";
 import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
@@ -68,9 +69,16 @@ export default function page() {
       </h1>
       <p className="">Here's what people are saying about me:</p>
       <TestimonialCard
+        image={Gabriel}
+        name="Gabriel L. Manor"
+        link="https://testimonial.to/arindam-s-blog/all"
+        AuthorDescription="Director of DevRel, Permit.io"
+        content="We've been working with Arindam on multiple content pieces for the last couple of months, and his work is astonishing. One of his strengths is his ability and willingness to learn and improve. He never gave up on this and made sure the content was always accurate and exact to the required point. We also love his network of writers, where he can scale the workload when needed. So far, 10/10 experience!"
+        />
+      <TestimonialCard
         image={Alexandr}
         name="Alexandr"
-        link="https://www.linkedin.com/in/aleksandr-gradov-032383252/"
+        link="https://testimonial.to/arindam-s-blog/all"
         AuthorDescription="Lead at OneEntry Portal Co"
         content="I had the pleasure of working with Arindam on a article for our company. From our initial conversation to the final submission, Arindam's professionalism and expertise, for their craft were evident. Communication was seamless and enjoyable. He fully understood the nuances of the project. The entire collaboration process not only productive but genuinely pleasant. The article was not only informative and engaging but also aligned with our vision."
       />
