@@ -6,6 +6,7 @@ import Suhas from "./assets/Suhas.png";
 import Debajyati from "./assets/debajyati.png";
 import Sophia from "./assets/sophiya.png";
 import Gabriel from "./assets/Gabriel.png";
+import Julia from "./assets/Julia.png";
 import { ArrowIcon } from "../components/icons";
 import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
@@ -74,13 +75,28 @@ export default function page() {
         link="https://testimonial.to/arindam-s-blog/all"
         AuthorDescription="Director of DevRel, Permit.io"
         content="We've been working with Arindam on multiple content pieces for the last couple of months, and his work is astonishing. One of his strengths is his ability and willingness to learn and improve. He never gave up on this and made sure the content was always accurate and exact to the required point. We also love his network of writers, where he can scale the workload when needed. So far, 10/10 experience!"
-        />
+      />
+      <TestimonialCard
+        image={Julia}
+        name="Julia Machado"
+        link="https://testimonial.to/arindam-s-blog/all"
+        AuthorDescription="Founder & CEO, Webcrumbs"
+        content="Arindam gave us a masterclass on how to launch on Product Hunt and I dare to say if it wasn't that we wouldn't have achieved 3rd in our first launch ever and with almost zero preparation. He's also a super nice guy, and really smart. Write great technical texts that reach an impressive audience. We'll definitely work with him again!"
+      />
       <TestimonialCard
         image={Alexandr}
         name="Alexandr"
         link="https://testimonial.to/arindam-s-blog/all"
         AuthorDescription="Lead at OneEntry Portal Co"
         content="I had the pleasure of working with Arindam on a article for our company. From our initial conversation to the final submission, Arindam's professionalism and expertise, for their craft were evident. Communication was seamless and enjoyable. He fully understood the nuances of the project. The entire collaboration process not only productive but genuinely pleasant. The article was not only informative and engaging but also aligned with our vision."
+      />
+      <TestimonialCard
+        image={Sophia}
+        link="https://x.com/sophiairoegbu_"
+        name="Sophia Iroegbu"
+        AuthorDescription="Dev Advocate at LeadDevRel"
+        content="Arindam is an amazing friend and colleague, we worked on some campaigns while at Pieces and Lead DevRel. 
+        Also, he helped me improve my writing skills as he gave me feedback on some articles I wrote.."
       />
       <TestimonialCard
         image={Debajyati}
@@ -103,14 +119,6 @@ export default function page() {
         name="Suhas Sumukh"
         AuthorDescription="@suhasasumukh"
         content="@Arindam_1729 writes awesome blogs on Hashnode"
-      />
-      <TestimonialCard
-        image={Sophia}
-        link="https://x.com/sophiairoegbu_"
-        name="Sophia Iroegbu"
-        AuthorDescription="Dev Advocate at LeadDevRel"
-        content="Arindam is an amazing friend and colleague, we worked on some campaigns while at Pieces and Lead DevRel. 
-        Also, he helped me improve my writing skills as he gave me feedback on some articles I wrote.."
       />
       <TestimonialCard
         image={Debajyati}
