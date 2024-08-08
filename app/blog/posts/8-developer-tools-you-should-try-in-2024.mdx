@@ -6,7 +6,6 @@ cuid: clzhxa10s000509l39fkqcw0k
 slug: 8-developer-tools-you-should-try-in-2024
 cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1722887527519/2a70f18c-349f-4801-8827-56c20ba0119b.png
 tags: productivity, development, developer, beginners
-
 ---
 
 We, Developers, always try to use tools that can streamline our workflow and boost our productivity.
@@ -61,12 +60,9 @@ One of the most powerful aspects of [Frontend AI](https://www.producthunt.com/po
 
 For example, after generating a basic button component, you could add prompts like:
 
-* "Replace the background with a nice gradient"
-    
-* "Add icons"
-    
-* Or, my favorite, "Let’s make it weirder"
-    
+- "Replace the background with a nice gradient"
+- "Add icons"
+- Or, my favorite, "Let’s make it weirder"
 
 The AI will then update the component based on these additional instructions, allowing you to quickly create precisely the component you need.
 
@@ -136,7 +132,7 @@ You can read the Warp documentation at [docs.warp.dev](http://docs.warp.dev) to 
 
 You can also see the below demo to understand [how it works](https://www.warp.dev/blog/how-warp-works) :
 
-%[https://youtu.be/34INSNevPOk] 
+%[https://youtu.be/34INSNevPOk]
 
 [Warp](https://www.warp.dev/) has gained significant popularity among developers, with a growing user base and positive reviews.
 
@@ -249,22 +245,15 @@ This open-source project is widely popular, but many developers still don't know
 The toolkit consists of two main components:
 
 1. Replexica CLI: An open-source command-line tool for managing translations.
-    
 2. Replexica API: A cloud-based i18n API that leverages Large Language Models (LLMs) for content processing.A cloud-based AI localization engine powered by OpenAI, Anthropic, and Mistral.
-    
 
 [Replexica](https://replexica.com/) can help with five key aspects of your product:
 
 1. Landing pages: Localize your static content with ease
-    
 2. Blog content: Support for Markdown and frontmatter out of the box
-    
 3. User interfaces: Seamless integration with popular i18n frameworks
-    
 4. Product emails: Keep your communications multilingual
-    
 5. Real-time API: Perfect for multilingual chats, next-gen email clients, and comment systems
-    
 
 You can get started quickly with Replexica using npm:
 
@@ -278,23 +267,20 @@ pnpm replexica auth --login
 
 [Replexica](https://github.com/replexica/replexica) supports various i18n formats, including:
 
-* JSON-free Replexica compiler format
-    
-* .md files for Markdown content
-    
-* Legacy JSON and YAML-based formats
-    
+- JSON-free Replexica compiler format
+- .md files for Markdown content
+- Legacy JSON and YAML-based formats
 
 Here's a quick example of using the [Replexica](https://github.com/replexica/replexica) SDK for real-time localization:
 
 ```javascript
-import { ReplexicaEngine } from '@replexica/sdk';
+import { ReplexicaEngine } from "@replexica/sdk";
 
-const replexica = new ReplexicaEngine({ apiKey: 'your-api-key' });
+const replexica = new ReplexicaEngine({ apiKey: "your-api-key" });
 
 const localizedContent = await replexica.localize(
-  { greeting: 'Hello, world!' },
-  { sourceLocale: 'en', targetLocale: 'fr' }
+  { greeting: "Hello, world!" },
+  { sourceLocale: "en", targetLocale: "fr" },
 );
 
 console.log(localizedContent); // { greeting: 'Bonjour, le monde!' }
