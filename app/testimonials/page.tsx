@@ -7,6 +7,7 @@ import Debajyati from "./assets/debajyati.png";
 import Sophia from "./assets/sophiya.png";
 import Gabriel from "./assets/Gabriel.png";
 import Julia from "./assets/Julia.png";
+import Eddie from "./assets/Eddie.png";
 import { ArrowIcon } from "../components/icons";
 import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
@@ -89,6 +90,13 @@ export default function page() {
         link="https://testimonial.to/arindam-s-blog/all"
         AuthorDescription="Lead at OneEntry Portal Co"
         content="I had the pleasure of working with Arindam on a article for our company. From our initial conversation to the final submission, Arindam's professionalism and expertise, for their craft were evident. Communication was seamless and enjoyable. He fully understood the nuances of the project. The entire collaboration process not only productive but genuinely pleasant. The article was not only informative and engaging but also aligned with our vision."
+      />
+      <TestimonialCard
+        image={Eddie}
+        name="Eddie Jaoude"
+        link="https://x.com/eddiejaoude"
+        AuthorDescription="GitHub Star & DevRel"
+        content="Arindam is a great DevRel and is always super supportive to everyone in the community, his content is insightful and I always enjoy reading his blogs"
       />
       <TestimonialCard
         image={Sophia}
