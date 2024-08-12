@@ -48,16 +48,16 @@ export async function GET() {
 function escapeXml(unsafe) {
   return unsafe.replace(/[<>&'"]/g, (c) => {
     switch (c) {
-      case '<':
-        return '&lt;';
-      case '>':
-        return '&gt;';
-      case '&':
-        return '&amp;';
+      case "<":
+        return "&lt;";
+      case ">":
+        return "&gt;";
+      case "&":
+        return "&amp;";
       case '"':
-        return '&quot;';
+        return "&quot;";
       case "'":
-        return '&apos;';
+        return "&apos;";
       default:
         return c;
     }

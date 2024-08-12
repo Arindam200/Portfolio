@@ -8,6 +8,7 @@ import Sophia from "./assets/sophiya.png";
 import Gabriel from "./assets/Gabriel.png";
 import Julia from "./assets/Julia.png";
 import Eddie from "./assets/Eddie.png";
+import David from "./assets/David.png";
 import { ArrowIcon } from "../components/icons";
 import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
@@ -90,6 +91,13 @@ export default function page() {
         link="https://testimonial.to/arindam-s-blog/all"
         AuthorDescription="Lead at OneEntry Portal Co"
         content="I had the pleasure of working with Arindam on a article for our company. From our initial conversation to the final submission, Arindam's professionalism and expertise, for their craft were evident. Communication was seamless and enjoyable. He fully understood the nuances of the project. The entire collaboration process not only productive but genuinely pleasant. The article was not only informative and engaging but also aligned with our vision."
+      />
+      <TestimonialCard
+        image={David}
+        name="David Mytton"
+        link="https://davidmytton.blog/"
+        AuthorDescription="CEO of Arcjet"
+        content="We worked with Arindam on a writeup of the Arcjet beta release. The goal was to introduce the SDK to developers and show off how you can use Arcjet to protect an interesting application. Arindam was responsive to feedback and helped us achieve those goals"
       />
       <TestimonialCard
         image={Eddie}
