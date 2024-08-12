@@ -1,4 +1,8 @@
+'use client'
+ 
+import { usePathname } from 'next/navigation'
 import { Link } from "next-view-transitions";
+import clsx from 'clsx';
 
 const navItems = {
   "/": {
@@ -20,6 +24,7 @@ const navItems = {
 };
 
 export function Navbar() {
+  const pathname = usePathname()
   return (
     <aside className="-ml-[8px] mb-14 md:mb-16 tracking-tight">
       <div className="lg:sticky lg:top-20">
@@ -33,7 +38,9 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-0.75 sm:px-1 md:px-2 m-1"
+                  className={clsx("transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-0.75 sm:px-1 md:px-2 m-1",{
+                    "underline underline-offset-4 transition-all transform-stroke": pathname === path,
+                  })}
                 >
                   {name}
                 </Link>
