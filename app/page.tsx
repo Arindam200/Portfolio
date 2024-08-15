@@ -82,19 +82,19 @@ export default function Page() {
             <span>
               <TwitterIcon />
             </span>
-            16k+ tweets all time
+            18k+ tweets all time
           </p>
           <p className="flex items-center gap-2">
             <span>
               <HashnodeIconGrey />
             </span>
-            50+ blog posts all time
+            60+ blog posts all time
           </p>
           <p className="flex items-center">
             <span>
               <ViewsIcon />
             </span>
-            150k+ blog views all time
+            200k+ blog views all time
           </p>
         </div>
       </div>
