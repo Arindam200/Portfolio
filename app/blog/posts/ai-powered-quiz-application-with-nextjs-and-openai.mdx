@@ -1,0 +1,437 @@
+---
+title: "Building an AI-powered quiz application with Next.js and OpenAI🧙✨"
+seoDescription: "Learn to create an AI-powered quiz app with Next.js and OpenAI, generating dynamic questions and instant scores"
+datePublished: "2024-08-21"
+slug: ai-powered-quiz-application-with-nextjs-and-openai
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1724500699575/8cb35ab7-c91b-444a-b17e-8b790ce85639.jpeg
+tags: ai,webdev,nextjs,javascript
+---
+
+<CreditMention
+  name="Latitude.so"
+  link="https://dev.to/latitude/building-an-ai-powered-quiz-application-with-nextjs-and-openai-2673"
+/>
+
+In this tutorial, you'll learn how to build an AI-powered quiz application that enables users to select a topic, answer questions related to that topic, and receive their score instantly upon completing the quiz.
+
+The questions for this quiz will be dynamically generated using the OpenAI API by providing specific prompts that return the questions in a desired JSON format. While building this application, you'll also learn how to integrate OpenAI with your software applications.
+
+![GIF](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjQwMTI0ZDN0ZTVnZzhwZ2swbGc2eHY4NHc3YTJia3g0M3dvdG85YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hvd92D03IenPrCpzWR/giphy.gif align="left")
+
+## What is Latitude?
+
+Latitude AI is an open-source prompt engineering platform that allows you to easily build, test, and deploy features powered by large language models (LLMs). This platform empowers teams to create highly functional and intelligent AI applications.
+
+You can learn more about Latitude AI by joining our [waiting list](https://ai.latitude.so/). Feel free to connect with the team and discover how we solve various challenges using AI.
+
+![https://github.com/latitude-dev/latitude](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/m74zui6s3g2u602s128y.png align="left")
+
+---
+
+## Building the quiz application with Next.js
+
+In this section, you'll learn how to build the interface for the quiz application. The application is divided into three pages: `Home Page`, `Test Page`, and `Score Page`.
+
+The Homepage displays all the available topics. The Test Page renders a question and provides a list of options for users to select the correct answer. Lastly, the Score Page displays the user's score.
+
+Create a new Next.js Typescript project by running the code snippet below:
+
+```bash
+npx create-next-app ai-quiz-app
+```
+
+Add a `types.d.ts` file to the root of the project to define the data structure for the application's quiz questions.
+
+```tsx
+interface Question {
+  question: string;
+  options: string[];
+  answer: string;
+  id: number;
+}
+```
+
+Next, create a `lib` folder containing a `util.ts` file within the Next.js `app` folder:
+
+```tsx
+//👇🏻 topics list
+export const firstTopics = [
+  { id: "AI", name: "AI Questions" },
+  { id: "Python", name: "Python Questions" },
+  { id: "JavaScript", name: "JavaScript Questions" },
+];
+
+//👇🏻 topics list
+export const secondTopics = [
+  { id: "CSS", name: "CSS Questions" },
+  { id: "HTML", name: "HTML Questions" },
+  { id: "UI Design", name: "UI Design Questions" },
+];
+//👇🏻 capitalize the first letter of each word
+export const capitalize = (str: string): string => {
+  str = str.replace(/%20/g, " ");
+  if (str.length === 0) {
+    return str;
+  }
+  return str.charAt(0).toUpperCase() + str.slice(1) + " Questions";
+};
+```
+
+The `firstTopics` and the `secondTopics` array contains the list of topics available within the application and the `capitalize` function accepts a string as its parameter and capitalize the first letter of the sentence.
+
+### The Home Page
+
+Copy the code snippet below into the `app/page.tsx` file:
+
+```tsx
+"use client";
+import { firstTopics, secondTopics } from "./lib/util";
+import { useRouter } from "next/navigation";
+
+export default function Home() {
+  const router = useRouter();
+
+  const handleConfirmClick = (id: string) => {
+    const result = confirm(`Are you sure you want to take the ${id} test?`);
+    if (result) {
+      router.push(`/test/${id}`);
+    } else {
+      alert(`You have cancelled the ${id} test`);
+    }
+  };
+
+  return (
+    <main className="w-full min-h-screen flex flex-col items-center justify-center">
+      <h2 className="text-4xl font-bold text-blue-600">Take Tests</h2>
+      <p className="text-lg text-gray-500 mb-5">
+        Select a topic, take tests and get your results instantly
+      </p>
+      <div className="px-4">
+        <section className="w-full flex items-center space-x-5 mb-4">
+          {firstTopics.map((topic) => (
+            <button
+              key={topic.id}
+              className={`bg-blue-500 text-white px-5 py-3 text-xl rounded-md`}
+              onClick={() => handleConfirmClick(topic.id)}
+            >
+              {topic.name}
+            </button>
+          ))}
+        </section>
+
+        <section className="w-full flex items-center space-x-5">
+          {secondTopics.map((topic) => (
+            <button
+              key={topic.id}
+              className={`bg-blue-500 text-white px-5 py-3 text-xl rounded-md`}
+              onClick={() => handleConfirmClick(topic.id)}
+            >
+              {topic.name}
+            </button>
+          ))}
+        </section>
+      </div>
+    </main>
+  );
+}
+```
+
+The Home page displays all available topics and directs the user to the test page when they click on a topic link.
+
+![Screen Recording](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vytm19pk41h1v7jb1cys.gif align="left")
+
+### The Test Page
+
+Create the test page by adding a `page.tsx` file within a `test/[id]` directory. Copy the code snippet below into the `test/[id]/page.tsx` file:
+
+```tsx
+"use client";
+import { useParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { capitalize } from "@/app/lib/util";
+
+export default function Test() {
+  //👇🏻 array of questions
+  const [questions, setQuestions] = useState<Question[]>([]);
+  //👇🏻 loading state
+  const [loading, setLoading] = useState<boolean>(true);
+  //👇🏻 total user's score
+  const [userScore, setUserScore] = useState<number>(0);
+  //👇🏻 tracks each question in the array
+  const [count, setCount] = useState<number>(0);
+  //👇🏻 holds the quiz topic
+  const { id } = useParams<{ id: string }>();
+  const router = useRouter();
+
+  const handleSelectAnswer = (selectedAnswer: string) => {
+    //👇🏻 Update the score
+    setUserScore((prev) =>
+      selectedAnswer === questions[count].answer ? prev + 1 : prev,
+    );
+
+    //👇🏻 Check if it's the last question
+    if (count < questions.length - 1) {
+      //👇🏻 Move to the next question
+      setCount((prev) => prev + 1);
+    } else {
+      //👇🏻  If it's the last question, navigate to the score page after the score has updated
+      setTimeout(() => {
+        router.push(
+          "/score?score=" +
+            (selectedAnswer === questions[count].answer
+              ? userScore + 1
+              : userScore),
+        );
+      }, 0); // 👈🏼 Ensure the score is updated before navigating
+    }
+  };
+
+  if (loading) {
+    return <h3 className="font-semibold text-2xl mb-3">Loading...</h3>;
+  }
+
+  return (
+    <main className="w-full min-h-screen p-6 flex flex-col items-center justify-center">
+      <h2 className="font-bold text-3xl mb-4 text-blue-500">
+        {capitalize(id)}
+      </h2>
+      <h3 className="font-semibold text-2xl mb-3">
+        Question: {count + 1} of {questions.length}
+      </h3>
+
+      <h3 className="text-xl mb-4">{questions[count]?.question}</h3>
+
+      <div className="flex flex-col lg:w-1/3 mb-6">
+        {questions[count]?.options.map((option, index) => (
+          <button
+            className="p-4 bg-[#EEEEEE]  
+                rounded-xl mb-6 min-w-[200px] hover:bg-[#EF5A6F] hover:text-white text-lg"
+            key={index}
+            onClick={() => handleSelectAnswer(option)}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+    </main>
+  );
+}
+```
+
+From the code snippet above:
+
+- The `questions` state holds all the questions for the selected topic, while the `count` state is used to navigate through the array of questions, allowing users to answer each one.
+- The `userScore` state stores the user's total score after completing the test.
+- The user's total score is then passed as a parameter to the score page.
+
+![Screen Recording](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f7e80ufmzpklwvwho91i.gif align="left")
+
+### The Score Page
+
+Create a `score` folder containing a `page.tsx` file within the Next.js app folder and copy the code snippet into the file:
+
+```tsx
+"use client";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+
+export default function Score() {
+  const searchParams = useSearchParams();
+  const score = searchParams.get("score");
+
+  if (!score) {
+    return (
+      <main className="p-4 min-h-screen w-full flex flex-col items-center justify-center">
+        <h2 className="text-2xl font-semibold">Score</h2>
+        <Link href="/" className="bg-blue-500 p-4 text-blue-50 rounded ">
+          Go Home
+        </Link>
+      </main>
+    );
+  }
+
+  return (
+    <main className="p-4 min-h-screen w-full flex flex-col items-center justify-center">
+      <h2 className="text-2xl font-semibold">Score</h2>
+
+      <p className="text-lg text-center mb-4">
+        You got {score} out of 10 questions correct.
+      </p>
+
+      <h1 className="font-extrabold text-5xl text-blue-500 mb-3">
+        {Number(score) * 10}%
+      </h1>
+
+      <Link href="/" className="bg-blue-500 p-4 text-blue-50 rounded ">
+        Go Home
+      </Link>
+    </main>
+  );
+}
+```
+
+From the code snippet above, the Score page accepts the user's total score and displays the result in percentage.
+
+![Results](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/278o7lnvdgn90hwqb429.png align="left")
+
+---
+
+## How to integrate OpenAI in your Next.js application
+
+[OpenAI](https://platform.openai.com/docs/overview) allows us to integrate various large language models (LLMs), such as GPT-3 and GPT-4, into our applications to build intelligent features. These models can perform a wide range of natural language processing tasks, including text generation, translation, summarization, and more. In this section, you'll learn how to generate quiz questions in your desired format using OpenAI.
+
+Before we proceed, visit the [OpenAI Developers' Platform](https://platform.openai.com/api-keys) and create a new secret key.
+
+![OpenAi Platform](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mepbrhqyedvhg04y0zi9.png align="left")
+
+Create a `.env.local` file and copy the your newly created secret key into the file.
+
+```javascript
+OPENAI_API_KEY=<your_API_key>
+```
+
+Install the [OpenAI JavaScript SDK](https://platform.openai.com/docs/quickstart/make-your-first-api-request) by running the following command in your terminal:
+
+```bash
+npm install openai
+```
+
+Next, let's create an API endpoint to retrieve AI-generated questions from OpenAI based on the topic selected by the user.
+
+Add an `api` folder with a `route.ts` file inside the Next.js app directory.
+
+```bash
+cd app
+mkdir api && cd api
+touch route.ts
+```
+
+Copy the code snippet below into the `api/route.ts` file. It accepts a POST request that contains the selected topic from the client.
+
+```tsx
+import { NextRequest, NextResponse } from "next/server";
+
+export async function POST(req: NextRequest) {
+	const { topic } = await req.json();
+
+	console.log({ topic }); 👉🏻 // topic is JavaScript, UI Design, etc
+
+	return NextResponse.json({ message: "Fetch complete" }, { status: 200 });
+}
+```
+
+Within the test page, add a `useEffect` hook that sends a POST request to the API endpoint and returns the questions array:
+
+```tsx
+const fetchQuestions = useCallback(async () => {
+  const request = await fetch(`/api`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ topic: id }),
+  });
+  const data = await request.json();
+  setQuestions(data.questions);
+  setLoading(false);
+}, [id]);
+
+useEffect(() => {
+  fetchQuestions();
+}, [fetchQuestions]);
+```
+
+Add `sample.json` file within a `libs` folder and copy the following code snippet into it:
+
+```json
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the capital of France?",
+      "options": ["Paris", "London", "Berlin", "Madrid"],
+      "answer": "Paris"
+    },
+    {
+      "id": 2,
+      "question": "What is the capital of Germany?",
+      "options": ["Paris", "London", "Berlin", "Madrid"],
+      "answer": "Berlin"
+    }
+  ]
+}
+```
+
+The `sample.json` file defines the structure of the questions expected from OpenAI.
+
+Finally, update the API endpoint to generate and return a list of questions in JSON format using an OpenAI LLM.
+
+```tsx
+import { NextRequest, NextResponse } from "next/server";
+import sampleQuestions from "@/app/lib/sample.json";
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+export async function POST(req: NextRequest) {
+  //👇🏻 User's selected topic
+  const { topic } = await req.json();
+
+  //👇🏻 AI prompt
+  const prompt = `Generate 10 distinct questions on ${topic} and ensure they are in JSON format containing an id, topic which is ${topic}, a question attribute containing the question, an options array of 3 options, and an answer property. Please ensure that the options array is shuffled to ensure that the answer does not retain a single position.
+    - Please don't make the answers too obvious and lengthy.
+    - Ensure the questions are unique and not repetitive.
+    - The questions should not be too simple but intermediate level.
+	- Return only the JSON object containing the questions.
+	You can use this as a sample: ${JSON.stringify(sampleQuestions)}
+	`;
+
+  //👇🏻 Generates the questions
+  const completion = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "user",
+        content: prompt,
+      },
+    ],
+  });
+
+  //👇🏻 Questions result
+  const aiQuestions = completion.choices[0].message.content;
+  const questions = JSON.parse(aiQuestions!);
+
+  if (questions.questions.length < 10) {
+    return NextResponse.json(
+      { message: "Error generating questions", questions },
+      { status: 400 },
+    );
+  }
+  //👇🏻 Returns the list of questions
+  return NextResponse.json(
+    { message: "Fetch complete", questions: questions.questions },
+    { status: 200 },
+  );
+}
+```
+
+The code snippet above creates a precisely formatted prompt that generates the required questions using OpenAI's GPT-3 model. The generated questions are subsequently returned.
+
+![Questions](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pbha4n7gk5kgxo833bu1.gif align="left")
+
+Congratulations! You’ve completed the project for this tutorial.
+
+---
+
+## Next Steps
+
+So far, you've learnt how to build an AI-generated quiz application. You can improve the application by authenticating users and saving their scores in a database.
+
+With effective prompts, you can leverage AI to create intelligent software applications. Latitude is refining this process to unlock the full potential of AI through prompt engineering.
+
+Want to be among the first to experience the next evolution of AI-powered applications? Join our [waiting list](https://ai.latitude.so/) to be part of the journey.
+
+Thank you for reading!
