@@ -8,6 +8,12 @@ module.exports = {
         port: "",
         //   pathname: '/account123/**',
       },
+      {
+        protocol: "https",
+        hostname: "dev-to-uploads.s3.amazonaws.com",
+        port: "",
+        //   pathname: '/**',
+      },
     ],
   },
 };

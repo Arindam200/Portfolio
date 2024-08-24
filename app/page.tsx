@@ -109,7 +109,7 @@ export default function Page() {
           >
             Next.js 15 RC release blog
           </a>{" "}
-          for my Contribtion. I create educational content around web
+          for my Contribution. I create educational content around web
           development, JavaScript, TypeScript, React, and Next.js.
         </p>
         <p>
