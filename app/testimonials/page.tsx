@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Alexandr from "./assets/Alexandr.png";
 import Dani from "./assets/Dani.png";
-import Suhas from "./assets/Suhas.png";
+import Ferran from "./assets/Ferran.png";
 import Debajyati from "./assets/debajyati.png";
 import Sophia from "./assets/sophiya.png";
 import Gabriel from "./assets/Gabriel.png";
@@ -12,6 +12,7 @@ import David from "./assets/David.png";
 import { ArrowIcon } from "../components/icons";
 import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
+
 import { highlight } from "sugar-high";
 
 export const metadata: Metadata = {
@@ -134,6 +135,28 @@ export default function page() {
           "super nice guy",
           "Write great technical texts",
           "We'll definitely work with him again!",
+        ]}
+      />
+      <TestimonialCard
+        image={Ferran}
+        name="Ferran Rodríguez"
+        link="https://testimonial.to/arindam-s-blog/all"
+        AuthorDescription="Growth Manager at Latitude"
+        content={`Working with Arindam has been one of the best experiences that I had collaborating with a technical writer.
+          
+          The briefing process was super efficient and Arindam gave us great topic ideas and ways to approach the content piece.
+          
+          Execution and delivery was almost perfect, we just needed one small round of adjustments before publishing.
+          
+          If you work with technical content, you know how good is this!
+          
+          I can’t recommend enough to work with Arindam and I’m looking forward to our next collaboration!`}
+        highlights={[
+          "super efficient",
+          "one of the best experiences",
+          "perfect",
+          "how good is this",
+          "I can’t recommend enough to work with Arindam",
         ]}
       />
       <TestimonialCard
