@@ -76,6 +76,7 @@ export default function Page() {
           width={120}
           height={120}
           className="rounded-full max-sm:w-24 max-sm:h-24"
+          priority={true}
         />
         <div className="mt-2 sm:mt-6 md:mt-0 ml-0 md:ml-6 space-y-1 text-neutral-500 dark:text-neutral-400">
           <p className="flex items-center gap-2">

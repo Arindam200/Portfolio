@@ -5,6 +5,7 @@ import { formatDate, getBlogPosts } from "app/blog/utils";
 import { baseUrl } from "app/sitemap";
 import React, { Suspense } from "react";
 import { YouTubeEmbed } from "@next/third-parties/google";
+import { getPlaiceholder } from "plaiceholder";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -56,7 +57,7 @@ export async function generateMetadata({
 
 const ImageWithSuspense = React.lazy(() => import("next/image"));
 
-export default function Blog({ params }: { params: { slug: string } }) {
+export default async function Blog({ params }: { params: { slug: string } }) {
   const post = getBlogPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
@@ -66,6 +67,12 @@ export default function Blog({ params }: { params: { slug: string } }) {
   const imageSrc = post.metadata.cover
     ? `${post.metadata.cover}`
     : "/default-image-path.jpg";
+
+  const blurredImg = await fetch(imageSrc).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
+
+  const { base64 } = await getPlaiceholder(blurredImg);
 
   const tags = post.metadata.tags?.split(",").map((tag) => tag.trim());
 
@@ -79,7 +86,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             headline: post.metadata.title,
-            datePublished: post.metadata.datePublished,
+            datePublished: post.metadata.datePublished,   
             dateModified: post.metadata.datePublished,
             description: post.metadata.seoDescription,
             image: imageSrc,
@@ -93,15 +100,17 @@ export default function Blog({ params }: { params: { slug: string } }) {
       />
       <Suspense fallback={<div>Loading image...</div>}>
         <ImageWithSuspense
-          className="pb-10"
+          
           src={imageSrc}
           alt={post.metadata.title}
           layout="responsive"
           width={700}
           height={365}
+          placeholder="blur"
+          blurDataURL={base64}
         />
       </Suspense>
-      <h1 className="title font-semibold text-2xl tracking-tighter">
+      <h1 className="title pt-10 font-semibold text-2xl tracking-tighter">
         {post.metadata.title}
       </h1>
 
