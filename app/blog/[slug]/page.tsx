@@ -69,7 +69,7 @@ export default async function Blog({ params }: { params: { slug: string } }) {
     : "/default-image-path.jpg";
 
   const blurredImg = await fetch(imageSrc).then(async (res) =>
-    Buffer.from(await res.arrayBuffer())
+    Buffer.from(await res.arrayBuffer()),
   );
 
   const { base64 } = await getPlaiceholder(blurredImg);
@@ -86,7 +86,7 @@ export default async function Blog({ params }: { params: { slug: string } }) {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             headline: post.metadata.title,
-            datePublished: post.metadata.datePublished,   
+            datePublished: post.metadata.datePublished,
             dateModified: post.metadata.datePublished,
             description: post.metadata.seoDescription,
             image: imageSrc,
@@ -100,7 +100,6 @@ export default async function Blog({ params }: { params: { slug: string } }) {
       />
       <Suspense fallback={<div>Loading image...</div>}>
         <ImageWithSuspense
-          
           src={imageSrc}
           alt={post.metadata.title}
           layout="responsive"
