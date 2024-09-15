@@ -1,11 +1,5 @@
-// @ts-check
-import withPlaiceholder from "@plaiceholder/next";
-
-/**
- * @type {import('next').NextConfig}
- */
-
-const config = {
+// next.config.js
+module.exports = {
   images: {
     remotePatterns: [
       {
@@ -23,5 +17,3 @@ const config = {
     ],
   },
 };
-
-export default withPlaiceholder(config);

@@ -49,7 +49,6 @@ function TestimonialCard({
                 decoding="async"
                 data-nimg="1"
                 src={image}
-                placeholder="blur"
               />
             </div>
             <div className="flex flex-col">
