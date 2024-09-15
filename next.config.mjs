@@ -9,12 +9,12 @@ const config = {
   images: {
     remotePatterns: [
       {
-        protocol: "https" as const,
+        protocol: "https",
         hostname: "cdn.hashnode.com",
         port: "",
       },
       {
-        protocol: "https" as const,
+        protocol: "https",
         hostname: "dev-to-uploads.s3.amazonaws.com",
         port: "",
       },
