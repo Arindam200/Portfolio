@@ -92,7 +92,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
         }}
       />
       <Suspense fallback={<div>Loading image...</div>}>
-        <ImageWithSuspense          
+        <ImageWithSuspense
           src={imageSrc}
           alt={post.metadata.title}
           layout="responsive"
