@@ -6,6 +6,7 @@ import Ferran from "./assets/Ferran.png";
 import Debajyati from "./assets/debajyati.png";
 import Sophia from "./assets/sophiya.png";
 import Gabriel from "./assets/Gabriel.png";
+import Jim from "./assets/Jim.png";
 import Julia from "./assets/Julia.png";
 import Eddie from "./assets/Eddie.png";
 import David from "./assets/David.png";
@@ -183,6 +184,29 @@ export default function page() {
         content={`We worked with Arindam on a writeup of the Arcjet beta release. The goal was to introduce the SDK to developers and show off how you can use Arcjet to protect an interesting application. 
           Arindam was responsive to feedback and helped us achieve those goals`}
         highlights={["Arindam was responsive", "helped us achieve those goals"]}
+      />
+      <TestimonialCard
+        link=""
+        image={Jim}
+        name="Jim Bennet"
+        AuthorDescription="Developer Advocacy lead at Pieces for Developers"
+        content={`Having worked with Arindam as a developer advocate at Pieces, I would highly recommend him for any role as a junior developer advocate or technical writer.
+
+          He has a strong commitment to developer communities - from getting involved in events and twitter spaces, to working with developers on various platforms around the world, with a particular focus on upskilling his fellow students to prepare them for the challenges of working in tech with the new trends in AI. He has run some very successful events empowering students with the skills they need.
+
+          As a technical writer, he has a breadth of experience writing for many platforms across a range of topics. He writes clearly and concisely, delivering high quality blog posts, tutorials and other content.
+
+          As a developer advocate, he is keen on learning how to grow his skills, and leverages the experience of others as he builds out his knowledge. He regularly applies these learnings, around areas like metrics, tracking, and evaluating the most impactful activities in his day to day work.
+
+          Arindam was a valuable contributor the developer advocacy team at Pieces, and I someone I hope to work with again.`}
+        highlights={[
+          "highly recommend",
+          "junior developer advocate or technical writer",
+          "strong commitment",
+          "high quality blog posts",
+          "very successful events",
+          "valuable contributor",
+        ]}
       />
       <TestimonialCard
         link="https://x.com/Arindam_1729/status/1762092650780578240"
