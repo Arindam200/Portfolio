@@ -47,7 +47,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-Feel free to reach out to me via email at [arindammajumder2020@gmail.com](mailto:arindammajumder2020@gmail.com) or connect with me on [Twitter](https://x.com/Arindam_1729) and [LinkedIn](https://www.linkedin.com/in/arindam2004/).
+Feel free to reach out to me via email at [arindammajumder2020@gmail.com](mailto:arindammajumder2020@gmail.com) or connect with me on [Twitter](https://dub.sh/arindam-x) and [LinkedIn](https://dub.sh/arindam-linkedin).
 
 ## Acknowledgements
 

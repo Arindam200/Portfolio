@@ -143,7 +143,7 @@ export default function Page() {
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
           <a
             target="_blank"
-            href="https://Github.com/Arindam200"
+            href="https://git.new/Arindam"
             aria-label="GitHub Profile"
           >
             <GitHubIcon />
@@ -152,7 +152,7 @@ export default function Page() {
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
           <a
             target="_blank"
-            href="https://x.com/Arindam_1729"
+            href="https://dub.sh/arindam-x"
             aria-label="Twitter Profile"
           >
             <TwitterIcon />
@@ -161,7 +161,7 @@ export default function Page() {
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-4 py-1 dark:border-neutral-700 dark:bg-neutral-800">
           <a
             target="_blank"
-            href="https://dev.to/arindam_1729"
+            href="https://dub.sh/arindam-devto"
             aria-label="DevTo Blog"
           >
             <DevToIcon />
@@ -170,7 +170,7 @@ export default function Page() {
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
           <a
             target="_blank"
-            href="https://arindam1729.hashnode.dev/"
+            href="https://dub.sh/arindam-hashnode"
             aria-label="Hashnode Blog"
           >
             <HashnodeIcon />
@@ -179,7 +179,7 @@ export default function Page() {
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
           <a
             target="_blank"
-            href="https://www.linkedin.com/in/arindam2004/"
+            href="https://dub.sh/arindam-linkedin"
             aria-label="LinkedIn Profile"
           >
             <LinkedInIcon />
@@ -188,7 +188,7 @@ export default function Page() {
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
           <a
             target="_blank"
-            href="https://www.youtube.com/@Arindam_1729"
+            href="https://ggl.link/arindam-youtube"
             aria-label="YouTube Channel"
           >
             <YoutubeIcon />
