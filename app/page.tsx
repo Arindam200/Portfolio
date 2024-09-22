@@ -6,6 +6,7 @@ import {
   TwitterIcon,
   GitHubIcon,
   ViewsIcon,
+  DevToIcon,
   ArrowIcon,
   HashnodeIcon,
   YoutubeIcon,
@@ -155,6 +156,15 @@ export default function Page() {
             aria-label="Twitter Profile"
           >
             <TwitterIcon />
+          </a>
+        </div>
+        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-4 py-1 dark:border-neutral-700 dark:bg-neutral-800">
+          <a
+            target="_blank"
+            href="https://dev.to/arindam_1729"
+            aria-label="DevTo Blog"
+          >
+            <DevToIcon />
           </a>
         </div>
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
