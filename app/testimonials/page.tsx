@@ -4,7 +4,7 @@ import Alexandr from "./assets/Alexandr.png";
 import Dani from "./assets/Dani.png";
 import Ferran from "./assets/Ferran.png";
 import Debajyati from "./assets/debajyati.png";
-import Sophia from "./assets/Sophiya.png";
+import Sophia from "./assets/Sophia.png";
 import Gabriel from "./assets/Gabriel.png";
 import Rosie from "./assets/Rosie.png";
 import Cole from "./assets/Cole.png";
