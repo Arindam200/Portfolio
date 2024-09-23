@@ -9,6 +9,7 @@ Welcome to my portfolio repository! This repository contains the source code for
 - Hosting: [Vercel](https://vercel.com/)
 - Analytics: [Vercel Analytics](https://vercel.com/docs/analytics)
 - Mail: [Resend](https://resend.com/)
+- Links: [Dub](https://dub.sh/)
 
 ## Installation
 
