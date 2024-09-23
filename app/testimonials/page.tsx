@@ -191,7 +191,7 @@ export default function page() {
         image={Cole}
         name="Cole Stark"
         link="https://www.linkedin.com/in/arindam2004/details/recommendations/"
-        AuthorDescription="Chief Marketing Cofficer at Pieces for Developers"
+        AuthorDescription="Chief Marketing Officer at Pieces for Developers"
         content={`Arindam has been an excellent addition to our DevRel team. He brought a creative mindset and a hard work ethic to our team which helped us to scale our Discord presence and overall community growth efforts.`}
         highlights={[
           "excellent addition",
@@ -203,7 +203,7 @@ export default function page() {
         image={Rosie}
         name="Rosie Levy"
         link="https://www.linkedin.com/in/arindam2004/details/recommendations/"
-        AuthorDescription="Chief Marketing Cofficer at Pieces for Developers"
+        AuthorDescription="Chief Product Officer at Pieces for Developers"
         content={`I had the pleasure of working with Arindam closely in his role as a developer advocate for Pieces for Developers. 
           
           He was very hard-working and was always available to participate in various devrel activities, and was particularly on top of interacting with our digital community. 
