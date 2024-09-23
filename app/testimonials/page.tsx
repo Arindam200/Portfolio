@@ -4,8 +4,10 @@ import Alexandr from "./assets/Alexandr.png";
 import Dani from "./assets/Dani.png";
 import Ferran from "./assets/Ferran.png";
 import Debajyati from "./assets/debajyati.png";
-import Sophia from "./assets/sophiya.png";
+import Sophia from "./assets/Sophiya.png";
 import Gabriel from "./assets/Gabriel.png";
+import Rosie from "./assets/Rosie.png";
+import Cole from "./assets/Cole.png";
 import Jim from "./assets/Jim.png";
 import Julia from "./assets/Julia.png";
 import Eddie from "./assets/Eddie.png";
@@ -186,9 +188,43 @@ export default function page() {
         highlights={["Arindam was responsive", "helped us achieve those goals"]}
       />
       <TestimonialCard
-        link=""
+        image={Cole}
+        name="Cole Stark"
+        link="https://www.linkedin.com/in/arindam2004/details/recommendations/"
+        AuthorDescription="Chief Marketing Cofficer at Pieces for Developers"
+        content={`Arindam has been an excellent addition to our DevRel team. He brought a creative mindset and a hard work ethic to our team which helped us to scale our Discord presence and overall community growth efforts.`}
+        highlights={[
+          "excellent addition",
+          "creative mindset",
+          "hard work ethic",
+        ]}
+      />
+      <TestimonialCard
+        image={Rosie}
+        name="Rosie Levy"
+        link="https://www.linkedin.com/in/arindam2004/details/recommendations/"
+        AuthorDescription="Chief Marketing Cofficer at Pieces for Developers"
+        content={`I had the pleasure of working with Arindam closely in his role as a developer advocate for Pieces for Developers. 
+          
+          He was very hard-working and was always available to participate in various devrel activities, and was particularly on top of interacting with our digital community. 
+          
+          He always looked for various new communities, forums, and channels to promote our product on, and brought all the feedback he encountered back to our team so that we could act on it.
+          
+          He had many great ideas on different ways to engage with our users and promote the product including hosting livestreams with various community leaders, leading student ambassador programs, and highlighting various groups that we should collaborate with to help grow our reach. 
+          
+          He is excellent at writing blogs on both technical and non-technical topics, and is always enthusiastic about helping other developers succeed.`}
+        highlights={[
+          "always available",
+          "very hard-working",
+          "leading student ambassador programs",
+          "excellent at writing blogs",
+          "enthusiastic about helping other developers succeed",
+        ]}
+      />
+      <TestimonialCard
         image={Jim}
         name="Jim Bennet"
+        link="https://www.linkedin.com/in/jimbobbennett/"
         AuthorDescription="Developer Advocacy lead at Pieces for Developers"
         content={`Having worked with Arindam as a developer advocate at Pieces, I would highly recommend him for any role as a junior developer advocate or technical writer.
 
