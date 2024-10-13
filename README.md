@@ -1,4 +1,7 @@
-# Arindam's Portoflio
+# Arindam's Portfolio
+
+![image](https://github.com/user-attachments/assets/024532fa-b17c-451b-b23a-4be3c6a3a59f)
+
 
 Welcome to my portfolio repository! This repository contains the source code for my personal portfolio website. The website showcases my projects, skills, and experiences
 
