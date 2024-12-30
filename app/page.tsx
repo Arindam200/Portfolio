@@ -1,6 +1,6 @@
 import { Link } from "next-view-transitions";
 import Image from "next/image";
-import Pieces from "../assets/pieces.svg";
+import Studio1Logo from "../assets/studio1.png";
 import ab from "./testimonials/assets/Arindam.png";
 import {
   TwitterIcon,
@@ -55,22 +55,22 @@ export default function Page() {
         <Link className="underline" href="/work">
           work
         </Link>
-        {` as developer advocate at `}
+        {` as the co-founder of `}
         <span className="not-prose">
-          <Badge href="https://pieces.app">
+          <Badge href="https://studio1hq.com">
             <Image
-              src={Pieces}
-              alt="Pieces Logo"
+              src={Studio1Logo.src}
+              alt="Studio1 Logo"
               width={14}
               height={14}
-              className="!mr-1"
+              className="!mr-1 rounded-md"
             />
-            Pieces for Developers
+            Studio1
           </Badge>
         </span>
-        , where I create content, host events, and help the community to grow.
+        , where we help SaaS, devtools, and AI/ML startups with technical content and developer advocacy consultancy.
       </p>
-      <div className="flex items-start md:items-center my-8 gap-2 flex-row md:flex-row ">
+      <div className="flex items-start md:items-center my-8 gap-2 flex-row md:flex-row">
         <Image
           src={ab}
           alt="Arindam's image"
@@ -83,19 +83,19 @@ export default function Page() {
             <span>
               <TwitterIcon />
             </span>
-            20k+ tweets all time
+            25k+ tweets all time
           </p>
           <p className="flex items-center gap-2">
             <span>
               <HashnodeIconGrey />
             </span>
-            65+ blog posts all time
+            80+ blog posts all time
           </p>
           <p className="flex items-center">
             <span>
               <ViewsIcon />
             </span>
-            250k+ blog views all time
+            500k+ blog views all time
           </p>
         </div>
       </div>
@@ -135,7 +135,7 @@ export default function Page() {
           />
         </div>
         <p>
-          I also write about my journey as a developer and share my thoughts on
+          I also share thoughts on developer advocacy and community building on
           Twitter. You can connect with me:
         </p>
       </div>

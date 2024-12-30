@@ -8,12 +8,17 @@ export default async function sitemap() {
     lastModified: post.metadata.datePublished,
   }));
 
-  let routes = ["", "/work", "/blog", "/testimonials", "/contact-me","agency"].map(
-    (route) => ({
-      url: `${baseUrl}${route}`,
-      lastModified: new Date().toISOString().split("T")[0],
-    }),
-  );
+  let routes = [
+    "",
+    "/work",
+    "/blog",
+    "/testimonials",
+    "/contact-me",
+    "/agency",
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date().toISOString().split("T")[0],
+  }));
 
   return [...routes, ...blogs];
 }

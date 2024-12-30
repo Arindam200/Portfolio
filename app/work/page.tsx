@@ -21,11 +21,52 @@ export default function WorkPage() {
 
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
 
+        <h2 className="font-medium text-xl tracking-tighter">Studio1</h2>
+        <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-2">
+          Cofounder, 2024-Present
+        </p>
+        <p className="mb-2">
+          At{" "}
+          <Tooltip text="Studio1 is a technical content and developer advocacy agency helping startups, SaaS, and devtool companies scale with impactful developer-focused strategies.">
+            <a
+              href="https://studio1hq.com/"
+              target="_blank"
+              className="underline"
+            >
+              Studio1
+            </a>
+          </Tooltip>
+          , I’ve led the growth of a specialized agency serving
+          developer-centric companies. Here’s what we’ve accomplished:
+        </p>
+        <ul className="mb-2">
+          <li>
+            Partnered with YC-backed startups and NASDAQ-listed companies.
+          </li>
+          <li>Scaled to $10K+ revenue within four months.</li>
+          <li>Built a team of 18 experts in technical writing and advocacy.</li>
+          <li>Helped multiple clients rank in the Top 3 on Product Hunt.</li>
+          <li>Designed SEO strategies for developer-focused search intent.</li>
+          <li>Improved developer onboarding with tailored documentation.</li>
+          <li>
+            Supported open-source projects with better documentation and
+            content.
+          </li>
+        </ul>
+        <p>
+          Studio1 has grown from a small freelancing venture into a trusted
+          partner for some of the biggest names in the devtools and SaaS space.
+          Our focus on quality and developer engagement continues to drive
+          meaningful results.
+        </p>
+
+        <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
+
         <h2 className="font-medium text-xl tracking-tighter">
           Pieces for Developers
         </h2>
         <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-2">
-          Developer Advocate, 2024-Present
+          Developer Advocate, 2024
         </p>
         <p className="mb-2">
           At{" "}
