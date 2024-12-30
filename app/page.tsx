@@ -1,6 +1,6 @@
 import { Link } from "next-view-transitions";
 import Image from "next/image";
-import Studio1Logo from "../assets/studio1.png";
+import Studio1Logo from "../assets/Studio1.png";
 import ab from "./testimonials/assets/Arindam.png";
 import {
   TwitterIcon,
