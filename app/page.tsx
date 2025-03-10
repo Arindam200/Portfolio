@@ -18,7 +18,7 @@ function BlogLink({ slug, name, desc }) {
   return (
     <div className="group">
       <a
-        href={`/blog/${slug}`}
+        href={`${slug}`}
         className="flex w-full items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-3 py-1 dark:border-neutral-700 dark:bg-neutral-800"
       >
         <div className="flex flex-col py-1">
@@ -114,24 +114,29 @@ export default function Page() {
           development, JavaScript, TypeScript, React, and Next.js.
         </p>
         <p>
-          I love to write Technical articles and share about my learnings, Here
+          I love to write Technical articles, Record videos and share about my learnings, Here
           are some of them:{" "}
         </p>
         <div className="my-4 flex w-full flex-col space-y-4">
           <BlogLink
-            name="How to Use Google Gemini with Node.js App"
-            slug="how-to-use-google-gemini-with-nodejs-app"
-            desc="Learn how to integrate Google Gemini API into a Node.js application, including setup, environment configuration, and testing"
+            name="Building a Kanban Board with Next.js,Vercel AI and Tolgee"
+            slug="https://dev.to/tolgee_i18n/building-a-kanban-board-with-nextjsvercel-ai-and-tolgee-493g"
+            desc="Learn how to build a real-time Kanban board in Next.js using WebSockets, with database support, AI support through the Vercel AI SDK and localization via Tolgee."
           />
           <BlogLink
-            name="Create a Discord bot with NodeJS"
-            slug="create-a-discord-bot-with-nodejs"
-            desc="Learn how to create a Discord bot with NodeJS, add functionalities, and automate tasks for your server"
+            name="Build an AI Travel Planner with CopilotKit, LangGraph & Google Maps API "
+            slug="https://dev.to/copilotkit/build-an-ai-travel-planner-with-copilotkit-langgraph-google-maps-api-32fm"
+            desc="Learn how to build a simple travel planner application and enhance it with AI using CopilotKit."
           />
           <BlogLink
-            name="Create a CRUD App with Prisma ORM & Node Js"
-            slug="create-a-crud-app-with-prisma-orm-node-js"
-            desc="Learn to build a CRUD app using Prisma ORM, Node.js, and PostgreSQL with this comprehensive guide"
+            name="What is Function Calling in LLMs? Learn How to Use It in Your Project"
+            slug="https://www.youtube.com/watch?v=LrcwchBEELM"
+            desc="Learn what function calling is, how it works, and how you can add it to your project, all explained with diagrams and a live demo!"
+          />
+          <BlogLink
+            name="Build a RAG Chatbot to Chat with Your Code with Llamaindex, DeepSeek v3 & Nebius"
+            slug="https://www.youtube.com/watch?v=IJKLAc4e14I"
+            desc="Learn how to create a Retrieval-Augmented Generation (RAG) chatbot using LlamaIndex and Nebius AI to index and query your codebase like never before!"
           />
         </div>
         <p>
