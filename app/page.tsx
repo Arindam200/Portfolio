@@ -124,7 +124,7 @@ export default function Page() {
             desc="Learn how to build a real-time Kanban board in Next.js using WebSockets, with database support, AI support through the Vercel AI SDK and localization via Tolgee."
           />
           <BlogLink
-            name="Build an AI Travel Planner with CopilotKit, LangGraph & Google Maps API "
+            name="Build an AI Travel Planner with LangGraph & Google Maps API "
             slug="https://dev.to/copilotkit/build-an-ai-travel-planner-with-copilotkit-langgraph-google-maps-api-32fm"
             desc="Learn how to build a simple travel planner application and enhance it with AI using CopilotKit."
           />
@@ -134,9 +134,9 @@ export default function Page() {
             desc="Learn what function calling is, how it works, and how you can add it to your project, all explained with diagrams and a live demo!"
           />
           <BlogLink
-            name="Build a RAG Chatbot to Chat with Your Code with Llamaindex, DeepSeek v3 & Nebius"
+            name="Build a RAG Chatbot with Llamaindex, DeepSeek v3 & Nebius"
             slug="https://www.youtube.com/watch?v=IJKLAc4e14I"
-            desc="Learn how to create a Retrieval-Augmented Generation (RAG) chatbot using LlamaIndex and Nebius AI to index and query your codebase like never before!"
+            desc="Learn how to create a Retrieval-Augmented Generation (RAG) chatbot using LlamaIndex and Nebius AI!"
           />
         </div>
         <p>
