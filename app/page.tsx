@@ -68,7 +68,8 @@ export default function Page() {
             Studio1
           </Badge>
         </span>
-        , where we help SaaS, devtools, and AI/ML startups with technical content and developer advocacy consultancy.
+        , where we help SaaS, devtools, and AI/ML startups with technical
+        content and developer advocacy consultancy.
       </p>
       <div className="flex items-start md:items-center my-8 gap-2 flex-row md:flex-row">
         <Image
@@ -114,8 +115,8 @@ export default function Page() {
           development, JavaScript, TypeScript, React, and Next.js.
         </p>
         <p>
-          I love to write Technical articles, Record videos and share about my learnings, Here
-          are some of them:{" "}
+          I love to write Technical articles, Record videos and share about my
+          learnings, Here are some of them:{" "}
         </p>
         <div className="my-4 flex w-full flex-col space-y-4">
           <BlogLink

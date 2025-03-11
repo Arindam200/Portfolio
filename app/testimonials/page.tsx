@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import Alexandr from "./assets/Alexandr.png";
 import Dani from "./assets/Dani.png";
 import Ferran from "./assets/Ferran.png";
@@ -10,7 +10,7 @@ import Rosie from "./assets/Rosie.png";
 import Cole from "./assets/Cole.png";
 import Jim from "./assets/Jim.png";
 import Julia from "./assets/Julia.png";
-import Pratham from "./assets/Pratham.png"
+import Pratham from "./assets/Pratham.png";
 import Eddie from "./assets/Eddie.png";
 import David from "./assets/David.png";
 import { ArrowIcon } from "../components/icons";
@@ -45,7 +45,7 @@ function TestimonialCard({
         <div className="relative">
           <Link href={link} className="flex items-center gap-2">
             <div className="h-14 w-14 overflow-hidden rounded-full border border-control">
-              <Image
+              {/* <Image
                 alt="Author Image"
                 loading="lazy"
                 width="64"
@@ -53,6 +53,13 @@ function TestimonialCard({
                 decoding="async"
                 data-nimg="1"
                 src={image}
+              /> */}
+              <img
+                src={image}
+                alt="Author Image"
+                width="64"
+                data-nimg="1"
+                height="64"
               />
             </div>
             <div className="flex flex-col">
