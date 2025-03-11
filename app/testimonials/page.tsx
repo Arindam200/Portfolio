@@ -10,6 +10,7 @@ import Rosie from "./assets/Rosie.png";
 import Cole from "./assets/Cole.png";
 import Jim from "./assets/Jim.png";
 import Julia from "./assets/Julia.png";
+import Pratham from "./assets/Pratham.png"
 import Eddie from "./assets/Eddie.png";
 import David from "./assets/David.png";
 import { ArrowIcon } from "../components/icons";
@@ -265,6 +266,18 @@ export default function page() {
           "often exceeds expectations",
           "Managing Ari at Lead DevRel has been inspiring",
           "dedication, combined with his meticulous nature and willingness to go the extra mile",
+        ]}
+      />
+      <TestimonialCard
+        image={Pratham}
+        name="Pratham Kumar"
+        link="https://x.com/Prathkum"
+        AuthorDescription="DevRel at ApiLayer"
+        content={`Arindam really understands the developer's perspective. He knows how to make a content piece that shows product depth and keeps the developers engaged.`}
+        highlights={[
+          "developer's perspective",
+          "product depth",
+          "developers engaged",
         ]}
       />
       <TestimonialCard
