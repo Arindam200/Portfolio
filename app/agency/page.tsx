@@ -52,7 +52,7 @@ export default function page() {
           delivering results that matter.
         </li>
         <li>
-          Scaled to $10K+ MRR in just 4 months, building trust with our clients
+          Scaled to $50K+ ARR in just 6 months, building trust with our clients
           through consistent quality.
         </li>
         <li>

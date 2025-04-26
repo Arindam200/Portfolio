@@ -13,6 +13,7 @@ import Julia from "./assets/Julia.png";
 import Pratham from "./assets/Pratham.png";
 import Eddie from "./assets/Eddie.png";
 import David from "./assets/David.png";
+import Marketa from "./assets/Marketa.png";
 import { ArrowIcon } from "../components/icons";
 import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
@@ -55,7 +56,7 @@ function TestimonialCard({
                 src={image}
               /> */}
               <img
-                src={image}
+                src={image.src}
                 alt="Author Image"
                 width="64"
                 data-nimg="1"
@@ -168,6 +169,20 @@ export default function page() {
           "perfect",
           "how good is this",
           "I can’t recommend enough to work with Arindam",
+        ]}
+      />
+      <TestimonialCard
+        link="https://testimonial.to/arindam-s-blog/all"
+        image={Marketa}
+        name="Marketa Cizmar"
+        AuthorDescription="Co-founder of Tolgee"
+        content={`Arindam wrote a technical article for us, and it was a pleasure working with him. He was friendly, responsive, and always quick to reply to any questions or feedback. 
+          
+          The whole process was smooth!`}
+        highlights={[
+          "pleasure working with him",
+          "friendly, responsive",
+          "smooth",
         ]}
       />
       <TestimonialCard
