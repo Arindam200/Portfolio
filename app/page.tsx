@@ -146,7 +146,7 @@ export default function Page() {
         </p>
       </div>
       <div className="my-8 flex h-12 w-full flex-row space-x-2 overflow-x-auto">
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
+        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
           <a
             target="_blank"
             href="https://git.new/Arindam"
@@ -155,7 +155,7 @@ export default function Page() {
             <GitHubIcon />
           </a>
         </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
+        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
           <a
             target="_blank"
             href="https://dub.sh/arindam-x"
@@ -164,7 +164,7 @@ export default function Page() {
             <TwitterIcon />
           </a>
         </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-4 py-1 dark:border-neutral-700 dark:bg-neutral-800">
+        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-4 py-1 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
           <a
             target="_blank"
             href="https://dub.sh/arindam-devto"
@@ -173,7 +173,7 @@ export default function Page() {
             <DevToIcon />
           </a>
         </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
+        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
           <a
             target="_blank"
             href="https://dub.sh/arindam-hashnode"
@@ -182,7 +182,7 @@ export default function Page() {
             <HashnodeIcon />
           </a>
         </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
+        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
           <a
             target="_blank"
             href="https://dub.sh/arindam-linkedin"
@@ -191,7 +191,7 @@ export default function Page() {
             <LinkedInIcon />
           </a>
         </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-800">
+        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
           <a
             target="_blank"
             href="https://ggl.link/arindam-youtube"

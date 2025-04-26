@@ -6,6 +6,7 @@ import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
+import ScrollToTop from "./components/scroll-to-top";
 import { ViewTransitions } from "next-view-transitions";
 import { baseUrl } from "./sitemap";
 
@@ -55,7 +56,7 @@ export default function RootLayout({
         lang="en"
         className={cx(
           "text-black bg-white dark:text-white dark:bg-black",
-          GeistSans.variable,
+          GeistSans.className,
           GeistMono.variable,
         )}
       >
@@ -64,6 +65,7 @@ export default function RootLayout({
             <Navbar />
             {children}
             <Footer />
+            <ScrollToTop />
             <Analytics />
             <SpeedInsights />
           </main>

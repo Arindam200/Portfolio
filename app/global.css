@@ -129,15 +129,15 @@ html {
   margin-bottom: 1.25em !important;
 }
 
-pre::-webkit-scrollbar {
+/* Hide scrollbar but keep scrolling functionality */
+::-webkit-scrollbar {
   display: none;
 }
 
-pre {
+/* For IE, Edge and Firefox */
+html {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 /* Remove Safari input shadow on mobile */
@@ -157,4 +157,9 @@ table {
 
 .title {
   text-wrap: balance;
+}
+
+pre {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
