@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       from: "Contact Form <onboarding@resend.dev>",
       to: "arindammajumder2020@gmail.com",
       subject: body.subject || "New Contact Form Submission",
-      reply_to: body.email || "",
+      replyTo: body.email || "",
       headers: {
         "X-Entity-Ref-ID": uuid(),
       },
