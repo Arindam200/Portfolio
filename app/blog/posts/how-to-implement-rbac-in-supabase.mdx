@@ -282,7 +282,6 @@ To start with, we’ll create a role. Roles are an easy way to group permissions
 
 1. Go to the Policy page and click Create &gt; Role
 2. Add the following roles, with actions as depicted below:
-
    - Admin
    - Employee
 
@@ -350,7 +349,6 @@ This is how your directory structure should look like :
 Now, let’s add logic in our edge functions :
 
 - `/check-permission/:id/:operation`
-
   - This function checks the user's permissions.
   - Clear the index.ts file in the check-permission directory and paste the following code:
 
@@ -416,7 +414,6 @@ Now, let’s add logic in our edge functions :
   ```
 
 - `/createUser`
-
   - This is for creating a user with an employee role in our permit directory.
   - Clear the index.ts file in the createUser directory and paste the following code:
 

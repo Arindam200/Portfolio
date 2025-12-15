@@ -14,25 +14,19 @@ interface VideoSection {
 const videoSections: VideoSection[] = [
   {
     title: "Technical tutorials",
-    videos: [
-      "gqCZ_sFha7E",
-      "pdsk6yldZGI", 
-    ],
+    videos: ["gqCZ_sFha7E", "pdsk6yldZGI"],
   },
   {
     title: "Ai Insights",
-    videos: [
-      "LzLcvlwM64g",
-      "UiYc8Nd38tI", 
-    ],
+    videos: ["LzLcvlwM64g", "UiYc8Nd38tI"],
   },
-//   {
-//     title: "Talks",
-//     videos: [
-//       "VIDEO_ID_5", 
-//       "VIDEO_ID_6", 
-//     ],
-//   },
+  //   {
+  //     title: "Talks",
+  //     videos: [
+  //       "VIDEO_ID_5",
+  //       "VIDEO_ID_6",
+  //     ],
+  //   },
 ];
 
 export default function VideosPage() {
@@ -41,8 +35,8 @@ export default function VideosPage() {
       <h1 className="font-medium text-2xl mb-8 tracking-tighter">My Videos</h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          Here's a collection of my video content, tutorials, and talks. Feel free
-          to explore and learn!
+          Here's a collection of my video content, tutorials, and talks. Feel
+          free to explore and learn!
         </p>
 
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
@@ -75,4 +69,3 @@ export default function VideosPage() {
     </section>
   );
 }
-

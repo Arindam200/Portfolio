@@ -24,7 +24,8 @@ const events: Event[] = [
     banner: "/mongo-db-memori.jpg",
     title: "Vectors, Vibes & Victory: The MongoDB AI Revolution",
     talkTitle: "Understanding Agentic Memory with MongoDb Atlas and Memori",
-    talkDescription: "In this talk, I talked about agentic memory, how it works, and how to use it in your agentic workflows using memori and mongodb atlas.",
+    talkDescription:
+      "In this talk, I talked about agentic memory, how it works, and how to use it in your agentic workflows using memori and mongodb atlas.",
     place: "Kolkata, India",
     date: "14th December, 2025",
     link: "https://www.meetup.com/kolkata-mongodb-user-group/events/312124427/",
@@ -33,8 +34,10 @@ const events: Event[] = [
     id: "event-2",
     banner: "/git-together-hyd.jpg",
     title: "Git Together Hyderabad: Git & GitHub Mastery Workshop",
-    talkTitle: "Choosing the Right LLM for Your AI Agents (That Don't Break in Prod)",
-    talkDescription: "In this talk, I talked about choosing the right LLM for your AI applications and how to choose the best model for your use case.",
+    talkTitle:
+      "Choosing the Right LLM for Your AI Agents (That Don't Break in Prod)",
+    talkDescription:
+      "In this talk, I talked about choosing the right LLM for your AI applications and how to choose the best model for your use case.",
     place: "Hyderabad, India",
     date: "8th August, 2025",
     link: "https://www.meetup.com/gittogether-hyderabad/events/308802946",
@@ -44,21 +47,22 @@ const events: Event[] = [
     banner: "/react-kol.jpg",
     title: "React Kolkata Meetup",
     talkTitle: "Cracking the Code to Make AI Easy for Everyone",
-    talkDescription: "In this talk, I talked about how to make AI easy for everyone using React and Next.js.",
+    talkDescription:
+      "In this talk, I talked about how to make AI easy for everyone using React and Next.js.",
     place: "Kolkata, India",
     date: "30th August, 2025",
     link: "https://luma.com/ze3qavyg",
   },
-//   {
-//     id: "event-4",
-//     banner: "/event-banner-4.jpg",
-//     title: "Event Title 4",
-//     talkTitle: "My Talk Title 4",
-//     talkDescription: "Description of your talk at this event.",
-//     place: "Location, City",
-//     date: "16th December, 2025",
-//     link: "https://example.com/event-3",
-//   },
+  //   {
+  //     id: "event-4",
+  //     banner: "/event-banner-4.jpg",
+  //     title: "Event Title 4",
+  //     talkTitle: "My Talk Title 4",
+  //     talkDescription: "Description of your talk at this event.",
+  //     place: "Location, City",
+  //     date: "16th December, 2025",
+  //     link: "https://example.com/event-3",
+  //   },
 ];
 
 export default function EventsPage() {
@@ -67,7 +71,8 @@ export default function EventsPage() {
       <h1 className="font-medium text-2xl mb-8 tracking-tighter">Events</h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          Here are some of the events I've spoken at. Check them out to learn more!
+          Here are some of the events I've spoken at. Check them out to learn
+          more!
         </p>
 
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
@@ -113,4 +118,3 @@ export default function EventsPage() {
     </section>
   );
 }
-

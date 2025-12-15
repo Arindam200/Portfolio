@@ -99,9 +99,12 @@ export default function Page() {
       <div className="prose prose-neutral dark:prose-invert">
         <p>
           My work focuses on making fast moving AI systems easier to understand
-          and easier to build with. I create hands on YouTube tutorials around
-          AI agents and modern web tooling. I contribute to open source and was
-          featured in the{" "}
+          and easier to build with. I create hands on{" "}
+          <Link href="https://ggl.link/arindam-youtube" className="underline">
+            YouTube tutorials
+          </Link>{" "}
+          around AI agents and modern web tooling. I contribute to open source
+          and was featured in the{" "}
           <a
             target="_blank"
             href="https://nextjs.org/blog/next-15-rc"
@@ -116,8 +119,19 @@ export default function Page() {
           <a href="/agency" className="underline">
             Reach out
           </a>{" "}
-          if that sounds useful. You can read my writing, explore my demos, or
-          follow me online.
+          if that sounds useful. You can read my{" "}
+          <Link href="https://dub.sh/arindam-devto" className="underline">
+            writing
+          </Link>
+          , explore my{" "}
+          <Link href="/videos" className="underline">
+            demos
+          </Link>
+          , check out my{" "}
+          <Link href="/events" className="underline">
+            talks
+          </Link>
+          , or follow me online.
         </p>
       </div>
       <div className="my-8 flex h-12 w-full flex-row space-x-2 overflow-x-auto">

@@ -57,7 +57,6 @@ To keep our application simple, we’re using dummy JWTs of two users that demon
 The dummy user details are as follows :
 
 1. Create two users with the following credentials:
-
    - **User 1** (Admin):
      - **Key**: 1
      - **Email**: [admin@gmail.com](mailto:admin@gmail.com)
@@ -133,7 +132,6 @@ Next, we’ll create a role. Roles are an easy way to group permissions and assi
 
 1. Go to the Policy page and click Create &gt; Role
 2. Add the following roles, with actions as depicted below:
-
    - Admin
    - User
 
@@ -170,7 +168,6 @@ To get started:
 ![Add User](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/881ufcakonwtp83m5s0a.png align="left")
 
 1. Fill in the user details as shown below and save them :
-
    - Regular User
 
 ![Regular User](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4w8eqearljesueo8mggz.png align="left")
@@ -266,16 +263,13 @@ In the above code, we are extracting query parameters, checking permission with 
 Here's a step-by-step breakdown:
 
 1. **Extract Query Parameters**:
-
    - The `GET` function is triggered by an HTTP GET request to this API route.
    - It retrieves the `id` and `operation` parameters from the request's URL.
 
 2. **Check Permission with** [**Permit.io**](http://Permit.io):
-
    - The `permit.check()` method is called to verify if the user identified by `id` is authorized to perform the specified operation (e.g., create, update, delete) on the `TodoTasks` resource within the `todo-tenant`.
 
 3. **Return the Result**:
-
    - **Success (200)**: If the user has the necessary permissions, a success response with a status code of 200 is returned.
    - **Not Authorized (403)**: If the user does not have the required permissions, a failure response with a status code of 403 is returned.
 
