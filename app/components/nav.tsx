@@ -14,8 +14,11 @@ const navItems = {
   "/agency": {
     name: "Agency",
   },
-  "/blog": {
-    name: "Blog",
+  // "/blog": {
+  //   name: "Blog",
+  // },
+  "/videos": {
+    name: "Videos",
   },
   "/testimonials": {
     name: "Testimonials",

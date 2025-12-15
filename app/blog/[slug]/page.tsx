@@ -16,8 +16,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
+}: {
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata | undefined> {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+  const { slug } = await params;
+  let post = getBlogPosts().find((post) => post.slug === slug);
   if (!post) {
     return;
   }
@@ -38,7 +41,7 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime,
-      url: `${baseUrl}/blog/${post.slug}`,
+      url: `${baseUrl}/blog/${slug}`,
       images: [
         {
           url: ogImage,
@@ -56,8 +59,13 @@ export async function generateMetadata({
 
 const ImageWithSuspense = React.lazy(() => import("next/image"));
 
-export default function Blog({ params }: { params: { slug: string } }) {
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+export default async function Blog({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = getBlogPosts().find((post) => post.slug === slug);
 
   if (!post) {
     notFound();
@@ -83,7 +91,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
             dateModified: post.metadata.datePublished,
             description: post.metadata.seoDescription,
             image: imageSrc,
-            url: `${baseUrl}/blog/${post.slug}`,
+            url: `${baseUrl}/blog/${slug}`,
             author: {
               "@type": "Person",
               name: "Arindam Majumder",

@@ -21,14 +21,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage({
+export default async function BlogPage({
   searchParams,
 }: {
-  searchParams?: {
+  searchParams?: Promise<{
     query?: string;
-  };
+  }>;
 }) {
-  const query = searchParams?.query || "";
+  const resolvedSearchParams = await searchParams;
+  const query = resolvedSearchParams?.query || "";
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My Blog</h1>

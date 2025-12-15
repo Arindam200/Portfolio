@@ -8,7 +8,6 @@ import {
   ViewsIcon,
   DevToIcon,
   ArrowIcon,
-  HashnodeIcon,
   YoutubeIcon,
   LinkedInIcon,
   HashnodeIconGrey,
@@ -51,11 +50,7 @@ export default function Page() {
         Hey, I'm Arindam 👋
       </h1>
       <p className="prose prose-neutral dark:prose-invert">
-        {`I'm a MERN stack developer, freelance technical writer, and community builder. I currently `}
-        <Link className="underline" href="/work">
-          work
-        </Link>
-        {` as the co-founder of `}
+        {`I’m a developer advocate, AI engineer, and technical writer. I’m the co-founder of `}
         <span className="not-prose">
           <Badge href="https://studio1hq.com">
             <Image
@@ -68,8 +63,8 @@ export default function Page() {
             Studio1
           </Badge>
         </span>
-        , where we help SaaS, devtools, and AI/ML startups with technical
-        content and developer advocacy consultancy.
+        , where we help SaaS, DevTools, AI startups, and Enterprises with
+        technical content, AI demos, and developer advocacy.
       </p>
       <div className="flex items-start md:items-center my-8 gap-2 flex-row md:flex-row">
         <Image
@@ -82,28 +77,31 @@ export default function Page() {
         <div className="mt-2 sm:mt-6 md:mt-0 ml-0 md:ml-6 space-y-1 text-neutral-500 dark:text-neutral-400">
           <p className="flex items-center gap-2">
             <span>
-              <TwitterIcon />
+              <GitHubIcon />
             </span>
-            25k+ tweets all time
+            75+ Agentic Examples built
           </p>
           <p className="flex items-center gap-2">
             <span>
               <HashnodeIconGrey />
             </span>
-            80+ blog posts all time
+            100+ blog posts all time
           </p>
           <p className="flex items-center">
             <span>
               <ViewsIcon />
             </span>
-            500k+ blog views all time
+            1M+ blog views across platforms
           </p>
         </div>
       </div>
 
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          I'm a Open Source Contributer and recently got featured in{" "}
+          My work focuses on making fast moving AI systems easier to understand
+          and easier to build with. I create hands on YouTube tutorials around
+          AI agents and modern web tooling. I contribute to open source and was
+          featured in the{" "}
           <a
             target="_blank"
             href="https://nextjs.org/blog/next-15-rc"
@@ -111,38 +109,15 @@ export default function Page() {
           >
             Next.js 15 RC release blog
           </a>{" "}
-          for my Contribution. I create educational content around web
-          development, JavaScript, TypeScript, React, and Next.js.
         </p>
         <p>
-          I love to write Technical articles, Record videos and share about my
-          learnings, Here are some of them:{" "}
-        </p>
-        <div className="my-4 flex w-full flex-col space-y-4">
-          <BlogLink
-            name="Building a Kanban Board with Next.js,Vercel AI and Tolgee"
-            slug="https://dev.to/tolgee_i18n/building-a-kanban-board-with-nextjsvercel-ai-and-tolgee-493g"
-            desc="Learn how to build a real-time Kanban board in Next.js using WebSockets, with database support, AI support through the Vercel AI SDK and localization via Tolgee."
-          />
-          <BlogLink
-            name="Build an AI Travel Planner with LangGraph & Google Maps API "
-            slug="https://dev.to/copilotkit/build-an-ai-travel-planner-with-copilotkit-langgraph-google-maps-api-32fm"
-            desc="Learn how to build a simple travel planner application and enhance it with AI using CopilotKit."
-          />
-          <BlogLink
-            name="What is Function Calling in LLMs? Learn How to Use It in Your Project"
-            slug="https://www.youtube.com/watch?v=LrcwchBEELM"
-            desc="Learn what function calling is, how it works, and how you can add it to your project, all explained with diagrams and a live demo!"
-          />
-          <BlogLink
-            name="Build a RAG Chatbot with Llamaindex, DeepSeek v3 & Nebius"
-            slug="https://www.youtube.com/watch?v=IJKLAc4e14I"
-            desc="Learn how to create a Retrieval-Augmented Generation (RAG) chatbot using LlamaIndex and Nebius AI!"
-          />
-        </div>
-        <p>
-          I also share thoughts on developer advocacy and community building on
-          Twitter. You can connect with me:
+          I also help teams with developer education, content systems, and
+          advocacy strategy.{" "}
+          <a href="/agency" className="underline">
+            Reach out
+          </a>{" "}
+          if that sounds useful. You can read my writing, explore my demos, or
+          follow me online.
         </p>
       </div>
       <div className="my-8 flex h-12 w-full flex-row space-x-2 overflow-x-auto">
@@ -171,15 +146,6 @@ export default function Page() {
             aria-label="DevTo Blog"
           >
             <DevToIcon />
-          </a>
-        </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
-          <a
-            target="_blank"
-            href="https://dub.sh/arindam-hashnode"
-            aria-label="Hashnode Blog"
-          >
-            <HashnodeIcon />
           </a>
         </div>
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">

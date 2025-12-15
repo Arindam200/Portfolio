@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
-const Tooltip = dynamic(() => import("../components/tooltip"), {
-  ssr: false,
-});
+import Tooltip from "../components/tooltip-wrapper";
 
 export const metadata: Metadata = {
   title: "Work",
