@@ -1,4 +1,3 @@
-import React from "react";
 import Meeting from "app/components/cal";
 import Email from "app/components/email";
 import type { Metadata } from "next";

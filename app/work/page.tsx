@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Tooltip from "../components/tooltip-wrapper";
-import { Link } from "next-view-transitions";
 
 export const metadata: Metadata = {
   title: "Work",

@@ -18,8 +18,6 @@ import { ArrowIcon } from "../components/icons";
 import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
 
-import { highlight } from "sugar-high";
-
 export const metadata: Metadata = {
   title: "Testimonials",
   description: "See what people thinks about me.",
@@ -79,7 +77,7 @@ function TestimonialCard({
             <p key={index} className="mb-2">
               {highlights.reduce(
                 (acc, highlight) =>
-                  acc.flatMap((part, i) =>
+                  acc.flatMap((part) =>
                     typeof part === "string" && part.includes(highlight)
                       ? part.split(highlight).flatMap((subPart, j) =>
                           j < part.split(highlight).length - 1

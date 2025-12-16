@@ -4,7 +4,6 @@ import { CustomMDX } from "app/components/mdx";
 import { formatDate, getBlogPosts } from "app/blog/utils";
 import { baseUrl } from "app/sitemap";
 import React, { Suspense } from "react";
-import { YouTubeEmbed } from "@next/third-parties/google";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -25,12 +24,11 @@ export async function generateMetadata({
     return;
   }
 
-  let {
+  const {
     title,
     datePublished: publishedTime,
     seoDescription: description,
     cover,
-    tags,
   } = post.metadata;
   let ogImage = cover ? `${cover}` : `/og?title=${encodeURIComponent(title)}`;
   return {
@@ -123,7 +121,7 @@ export default async function Blog({
         {tags?.map((tag) => (
           <span
             key={tag}
-            className="text-xs border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100 px-2 py-1 rounded"
+            className="text-xs border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100 px-2 py-1"
           >
             {tag}
           </span>

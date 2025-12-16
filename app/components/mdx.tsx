@@ -217,7 +217,7 @@ function CreditMention({ name, link }: CreditMentionProps) {
   );
 }
 
-let components = {
+const components: Record<string, React.ComponentType<any>> = {
   h1: createHeading(1),
   h2: createHeading(2),
   h3: createHeading(3),
