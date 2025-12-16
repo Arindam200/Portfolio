@@ -22,7 +22,6 @@ function Searchbar() {
     replace(`${pathname}?${params.toString()}`);
 
     setSearch(term);
-    console.log(search);
   }, 300);
 
   return (

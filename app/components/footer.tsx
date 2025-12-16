@@ -1,3 +1,5 @@
+import { Link } from "next-view-transitions";
+
 function ArrowIcon() {
   return (
     <svg
@@ -20,7 +22,7 @@ export default function Footer() {
     <footer className="mb-16">
       <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
         <li>
-          <a
+          <Link
             className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
             rel="noopener noreferrer"
             target="_blank"
@@ -28,7 +30,7 @@ export default function Footer() {
           >
             <ArrowIcon />
             <p className="ml-2 h-7">rss</p>
-          </a>
+          </Link>
         </li>
         <li>
           <a

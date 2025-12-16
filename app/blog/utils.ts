@@ -39,7 +39,7 @@ function removeAlignProperty(markdown: string): string {
   });
 }
 
-function formatCallout(markdown) {
+function formatCallout(markdown: string): string {
   const calloutRegex =
     /<div data-node-type="callout">\s*<div data-node-type="callout-emoji">(.*?)<\/div>\s*<div data-node-type="callout-text">([\s\S]*?)<\/div>\s*<\/div>/g;
 
@@ -73,20 +73,26 @@ function embedYouTubeLink(content: string) {
   });
 }
 
-function getMDXFiles(dir) {
+function getMDXFiles(dir: string): string[] {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
-function readMDXFile(filePath) {
-  let rawContent = fs.readFileSync(filePath, "utf-8");
+function readMDXFile(filePath: string): { metadata: Metadata; content: string } {
+  const rawContent = fs.readFileSync(filePath, "utf-8");
   return parseFrontmatter(rawContent);
 }
 
-function getMDXData(dir) {
-  let mdxFiles = getMDXFiles(dir);
+interface BlogPost {
+  metadata: Metadata;
+  slug: string;
+  content: string;
+}
+
+function getMDXData(dir: string): BlogPost[] {
+  const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file));
-    let slug = path.basename(file, path.extname(file));
+    const { metadata, content } = readMDXFile(path.join(dir, file));
+    const slug = path.basename(file, path.extname(file));
 
     return {
       metadata,
@@ -96,11 +102,11 @@ function getMDXData(dir) {
   });
 }
 
-export function getBlogPosts() {
+export function getBlogPosts(): BlogPost[] {
   return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
 }
 
-export function searchBlogPosts(query: string) {
+export function searchBlogPosts(query: string): BlogPost[] {
   const blogPosts = getBlogPosts();
   const filteredPosts = blogPosts.filter((post) => {
     return post.metadata.title.toLowerCase().includes(query.toLowerCase());
@@ -109,7 +115,7 @@ export function searchBlogPosts(query: string) {
   return filteredPosts;
 }
 
-export function formatDate(date: string, includeRelative = true) {
+export function formatDate(date: string, includeRelative = true): string {
   let currentDate = new Date();
   if (!date.includes("T")) {
     date = `${date}T00:00:00`;

@@ -1,4 +1,3 @@
-import React from "react";
 import type { Metadata } from "next";
 import Meeting from "app/components/cal";
 
@@ -14,7 +13,12 @@ export default function page() {
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Studio1</h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p className="mb-4">
-          <a href="https://studio1hq.com" className="underline">
+          <a
+            href="https://studio1hq.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
             Studio1
           </a>{" "}
           is a technical content and developer relations agency helping AI,

@@ -6,11 +6,18 @@ import React from "react";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { ArrowIcon } from "./icons";
 
-function Table({ data }) {
-  let headers = data.headers.map((header, index) => (
+interface TableProps {
+  data: {
+    headers: string[];
+    rows: string[][];
+  };
+}
+
+function Table({ data }: TableProps) {
+  const headers = data.headers.map((header, index) => (
     <th key={index}>{header}</th>
   ));
-  let rows = data.rows.map((row, index) => (
+  const rows = data.rows.map((row, index) => (
     <tr key={index}>
       {row.map((cell, cellIndex) => (
         <td key={cellIndex}>{cell}</td>
@@ -28,39 +35,65 @@ function Table({ data }) {
   );
 }
 
-function CustomLink(props) {
-  let href = props.href;
+interface CustomLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  href: string;
+  children: React.ReactNode;
+}
 
+function CustomLink({ href, children, ...props }: CustomLinkProps) {
   if (href.startsWith("/")) {
     return (
       <Link href={href} {...props}>
-        {props.children}
+        {children}
       </Link>
     );
   }
 
   if (href.startsWith("#")) {
-    return <a {...props} />;
+    return <a href={href} {...props}>{children}</a>;
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return (
+    <a target="_blank" rel="noopener noreferrer" href={href} {...props}>
+      {children}
+    </a>
+  );
 }
 
-function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+interface RoundedImageProps extends React.ComponentProps<typeof Image> {
+  alt: string;
 }
 
-function Callout(props) {
+function RoundedImage({ alt, className, ...props }: RoundedImageProps) {
+  return (
+    <Image
+      alt={alt}
+      className={className ? `rounded-lg ${className}` : "rounded-lg"}
+      {...props}
+    />
+  );
+}
+
+interface CalloutProps {
+  emoji: string;
+  children: React.ReactNode;
+}
+
+function Callout({ emoji, children }: CalloutProps) {
   return (
     <div className="px-4 py-3 border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm flex items-center text-neutral-900 dark:text-neutral-100 mb-8">
-      <div className="flex items-center w-4 mr-4">{props.emoji}</div>
-      <div className="w-full callout">{props.children}</div>
+      <div className="flex items-center w-4 mr-4">{emoji}</div>
+      <div className="w-full callout">{children}</div>
     </div>
   );
 }
 
-function Code({ children, ...props }) {
-  let codeHTML = highlight(children);
+interface CodeProps extends React.HTMLAttributes<HTMLElement> {
+  children: string;
+}
+
+function Code({ children, ...props }: CodeProps) {
+  const codeHTML = highlight(children);
   return (
     <code
       className="padding-y"
@@ -70,8 +103,9 @@ function Code({ children, ...props }) {
   );
 }
 
-function slugify(str) {
-  return str
+function slugify(str: string | React.ReactNode): string {
+  const text = typeof str === "string" ? str : String(str);
+  return text
     .toString()
     .toLowerCase()
     .trim() // Remove whitespace from both ends of a string
@@ -81,9 +115,9 @@ function slugify(str) {
     .replace(/\-\-+/g, "-"); // Replace multiple - with single -
 }
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
-    let slug = slugify(children);
+function createHeading(level: number) {
+  const Heading = ({ children }: { children: React.ReactNode }) => {
+    const slug = slugify(children);
     return React.createElement(
       `h${level}`,
       { id: slug },
@@ -103,7 +137,12 @@ function createHeading(level) {
   return Heading;
 }
 
-function ProsCard({ title, pros }) {
+interface ProsCardProps {
+  title: string;
+  pros: string[];
+}
+
+function ProsCard({ title, pros }: ProsCardProps) {
   return (
     <div className="border border-emerald-200 dark:border-emerald-900 bg-neutral-50 dark:bg-neutral-900 rounded-xl p-6 my-4 w-full">
       <span>{`You might use ${title} if...`}</span>
@@ -132,7 +171,12 @@ function ProsCard({ title, pros }) {
   );
 }
 
-function ConsCard({ title, cons }) {
+interface ConsCardProps {
+  title: string;
+  cons: string[];
+}
+
+function ConsCard({ title, cons }: ConsCardProps) {
   return (
     <div className="border border-red-200 dark:border-red-900 bg-neutral-50 dark:bg-neutral-900 rounded-xl p-6 my-6 w-full">
       <span>{`You might not use ${title} if...`}</span>
@@ -157,7 +201,12 @@ function ConsCard({ title, cons }) {
   );
 }
 
-function CreditMention({ name, link }) {
+interface CreditMentionProps {
+  name: string;
+  link: string;
+}
+
+function CreditMention({ name, link }: CreditMentionProps) {
   return (
     <Link href={link}>
       <div className="border flex justify-between items-center border-emerald-200 dark:border-emerald-900 bg-neutral-50 dark:bg-neutral-900 rounded p-6 my-4 w-full">
@@ -186,11 +235,16 @@ let components = {
   YouTubeEmbed,
 };
 
-export function CustomMDX(props) {
+interface CustomMDXProps {
+  source: string;
+  components?: Record<string, React.ComponentType<any>>;
+}
+
+export function CustomMDX({ source, components: customComponents }: CustomMDXProps) {
   return (
     <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
+      source={source}
+      components={{ ...components, ...(customComponents || {}) }}
     />
   );
 }

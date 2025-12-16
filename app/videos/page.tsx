@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { YouTubeEmbed } from "@next/third-parties/google";
+import { Link } from "next-view-transitions";
 
 export const metadata: Metadata = {
   title: "Videos",
@@ -14,11 +15,11 @@ interface VideoSection {
 const videoSections: VideoSection[] = [
   {
     title: "Technical tutorials",
-    videos: ["gqCZ_sFha7E", "pdsk6yldZGI"],
+    videos: ["gqCZ_sFha7E", "pdsk6yldZGI", "9ryQ4Nb32zk", "zNTWmw72BDs"],
   },
   {
     title: "Ai Insights",
-    videos: ["LzLcvlwM64g", "UiYc8Nd38tI"],
+    videos: ["LzLcvlwM64g", "UiYc8Nd38tI", "nItVDeJZCRo", "6pcBBLXxOEc"],
   },
   //   {
   //     title: "Talks",
@@ -65,6 +66,35 @@ export default function VideosPage() {
             )}
           </div>
         ))}
+
+        <hr className="my-8 border-neutral-100 dark:border-neutral-800" />
+
+        <p className="mb-4">
+          I create hands-on tutorials and demos focused on AI agents, modern web
+          tooling, and developer workflows. These videos are designed to be
+          practical and actionable, so you can follow along and build something
+          real.
+        </p>
+        <p className="mb-4">
+          For more content, check out my{" "}
+          <a
+            href="https://ggl.link/arindam-youtube"
+            target="_blank"
+            className="underline"
+          >
+            YouTube channel
+          </a>{" "}
+          where I regularly publish new tutorials and insights. You can also
+          explore my{" "}
+          <a
+            href="https://dub.sh/arindam-devto"
+            target="_blank"
+            className="underline"
+          >
+            blog posts
+          </a>{" "}
+          for written deep-dives on similar topics.
+        </p>
       </div>
     </section>
   );

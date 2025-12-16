@@ -114,6 +114,23 @@ export default function EventsPage() {
             </div>
           ))}
         </div>
+
+        <hr className="my-8 border-neutral-100 dark:border-neutral-800" />
+
+        <p className="mb-4">
+          I regularly speak at developer meetups, conferences, and workshops on
+          topics around AI agents, modern web development, and developer
+          workflows. My talks focus on practical, hands-on approaches that
+          developers can apply immediately.
+        </p>
+        <p className="mb-4">
+          If you're organizing events around AI, developer tools, or modern web
+          technologies,{" "}
+          <Link href="/contact-me" className="underline">
+            hit me up
+          </Link>
+          . I'm happy to speak and share insights with your community.
+        </p>
       </div>
     </section>
   );

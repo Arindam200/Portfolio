@@ -7,43 +7,33 @@ import {
   GitHubIcon,
   ViewsIcon,
   DevToIcon,
-  ArrowIcon,
   YoutubeIcon,
   LinkedInIcon,
   HashnodeIconGrey,
 } from "./components/icons";
 
-function BlogLink({ slug, name, desc }) {
+interface SocialLinkProps {
+  href: string;
+  ariaLabel: string;
+  children: React.ReactNode;
+}
+
+function SocialLink({ href, ariaLabel, children }: SocialLinkProps) {
   return (
-    <div className="group">
+    <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
       <a
-        href={`${slug}`}
-        className="flex w-full items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-3 py-1 dark:border-neutral-700 dark:bg-neutral-800"
+        target="_blank"
+        rel="noopener noreferrer"
+        href={href}
+        aria-label={ariaLabel}
       >
-        <div className="flex flex-col py-1">
-          <p className="font-medium text-neutral-900 dark:text-neutral-100">
-            {name}
-          </p>
-          <p>{desc}</p>
-        </div>
-        <div className="transform text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 dark:text-neutral-300">
-          <ArrowIcon />
-        </div>
+        {children}
       </a>
     </div>
   );
 }
 
 export default function Page() {
-  function Badge(props) {
-    return (
-      <a
-        {...props}
-        // target="_blank"
-        className="inline-flex items-center rounded border border-neutral-200 bg-neutral-50 p-1 text-sm leading-4 text-neutral-900 underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
-      />
-    );
-  }
   return (
     <section>
       <h1 className="mb-8 text-2xl font-medium tracking-tighter">
@@ -52,7 +42,10 @@ export default function Page() {
       <p className="prose prose-neutral dark:prose-invert">
         {`I’m a developer advocate, AI engineer, and technical writer. I’m the co-founder of `}
         <span className="not-prose">
-          <Badge href="/agency">
+          <Link
+            href="/agency"
+            className="inline-flex items-center rounded border border-neutral-200 bg-neutral-50 p-1 text-sm leading-4 text-neutral-900 underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
+          >
             <Image
               src={Studio1Logo.src}
               alt="Studio1 Logo"
@@ -61,7 +54,7 @@ export default function Page() {
               className="!mr-1 rounded-md"
             />
             Studio1
-          </Badge>
+          </Link>
         </span>
         , where we help SaaS, DevTools, AI startups, and Enterprises with
         technical content, AI demos, and developer advocacy.
@@ -100,13 +93,19 @@ export default function Page() {
         <p>
           My work focuses on making fast moving AI systems easier to understand
           and easier to build with. I create hands on{" "}
-          <Link href="https://ggl.link/arindam-youtube" className="underline">
+          <a
+            href="https://ggl.link/arindam-youtube"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
             YouTube tutorials
-          </Link>{" "}
+          </a>{" "}
           around AI agents and modern web tooling. I contribute to open source
           and was featured in the{" "}
           <a
             target="_blank"
+            rel="noopener noreferrer"
             href="https://nextjs.org/blog/next-15-rc"
             className="underline"
           >
@@ -116,13 +115,18 @@ export default function Page() {
         <p>
           I also help teams with developer education, content systems, and
           advocacy strategy.{" "}
-          <a href="/agency" className="underline">
+          <Link href="/agency" className="underline">
             Reach out
-          </a>{" "}
+          </Link>{" "}
           if that sounds useful. You can read my{" "}
-          <Link href="https://dub.sh/arindam-devto" className="underline">
+          <a
+            href="https://dub.sh/arindam-devto"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
             writing
-          </Link>
+          </a>
           , explore my{" "}
           <Link href="/videos" className="underline">
             demos
@@ -135,51 +139,34 @@ export default function Page() {
         </p>
       </div>
       <div className="my-8 flex h-12 w-full flex-row space-x-2 overflow-x-auto">
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
-          <a
-            target="_blank"
-            href="https://git.new/Arindam"
-            aria-label="GitHub Profile"
-          >
-            <GitHubIcon />
-          </a>
-        </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
-          <a
-            target="_blank"
-            href="https://dub.sh/arindam-x"
-            aria-label="Twitter Profile"
-          >
-            <TwitterIcon />
-          </a>
-        </div>
+        <SocialLink href="https://git.new/Arindam" ariaLabel="GitHub Profile">
+          <GitHubIcon />
+        </SocialLink>
+        <SocialLink href="https://dub.sh/arindam-x" ariaLabel="Twitter Profile">
+          <TwitterIcon />
+        </SocialLink>
         <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-4 py-1 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
           <a
             target="_blank"
+            rel="noopener noreferrer"
             href="https://dub.sh/arindam-devto"
             aria-label="DevTo Blog"
           >
             <DevToIcon />
           </a>
         </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
-          <a
-            target="_blank"
-            href="https://dub.sh/arindam-linkedin"
-            aria-label="LinkedIn Profile"
-          >
-            <LinkedInIcon />
-          </a>
-        </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
-          <a
-            target="_blank"
-            href="https://ggl.link/arindam-youtube"
-            aria-label="YouTube Channel"
-          >
-            <YoutubeIcon />
-          </a>
-        </div>
+        <SocialLink
+          href="https://dub.sh/arindam-linkedin"
+          ariaLabel="LinkedIn Profile"
+        >
+          <LinkedInIcon />
+        </SocialLink>
+        <SocialLink
+          href="https://ggl.link/arindam-youtube"
+          ariaLabel="YouTube Channel"
+        >
+          <YoutubeIcon />
+        </SocialLink>
       </div>
     </section>
   );
