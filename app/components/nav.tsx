@@ -11,14 +11,17 @@ const navItems = {
   "/work": {
     name: "Work",
   },
-  "/agency": {
-    name: "Agency",
-  },
+  // "/agency": {
+  //   name: "Agency",
+  // },
   // "/blog": {
   //   name: "Blog",
   // },
   "/videos": {
     name: "Videos",
+  },
+  "/events": {
+    name: "Talks",
   },
   "/testimonials": {
     name: "Testimonials",

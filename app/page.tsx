@@ -39,7 +39,7 @@ export default function Page() {
     return (
       <a
         {...props}
-        target="_blank"
+        // target="_blank"
         className="inline-flex items-center rounded border border-neutral-200 bg-neutral-50 p-1 text-sm leading-4 text-neutral-900 underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
       />
     );
@@ -52,7 +52,7 @@ export default function Page() {
       <p className="prose prose-neutral dark:prose-invert">
         {`I’m a developer advocate, AI engineer, and technical writer. I’m the co-founder of `}
         <span className="not-prose">
-          <Badge href="https://studio1hq.com">
+          <Badge href="/agency">
             <Image
               src={Studio1Logo.src}
               alt="Studio1 Logo"

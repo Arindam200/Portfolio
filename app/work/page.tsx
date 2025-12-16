@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Tooltip from "../components/tooltip-wrapper";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -12,8 +13,9 @@ export default function WorkPage() {
       <h1 className="font-medium text-2xl mb-8 tracking-tighter">My Work</h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          I've worked for multiple companies as a DevRel Engineer, Developer
-          Advocate, and Technical Writer. Here's a summary of my work so far.
+          I’ve worked across developer advocacy, AI engineering, and technical
+          writing with startups, devtool companies, and enterprise teams. Here's
+          a summary of my work so far.
         </p>
 
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
@@ -38,17 +40,18 @@ export default function WorkPage() {
         </p>
         <ul className="mb-2">
           <li>
-            Partnered with YC-backed startups and NASDAQ-listed companies.
+            Partnered with 30+ startups, including YC-backed and NASDAQ-listed
+            companies.
           </li>
-          <li>Scaled to $10K+ revenue within four months.</li>
-          <li>Built a team of 18 experts in technical writing and advocacy.</li>
-          <li>Helped multiple clients rank in the Top 3 on Product Hunt.</li>
-          <li>Designed SEO strategies for developer-focused search intent.</li>
-          <li>Improved developer onboarding with tailored documentation.</li>
+          <li>Scaled to $100K+ revenue in the first year.</li>
+          <li>Built and led a distributed team of engineers and writers.</li>
+          <li>Delivered developer content with 65%+ client retention.</li>
+          <li>Helped multiple products rank Top 3 on Product Hunt.</li>
           <li>
-            Supported open-source projects with better documentation and
-            content.
+            Improved DX through better docs, tutorials, onboarding flows, and
+            SEO for developer intent.
           </li>
+          <li>Supported open-source projects and community initiatives.</li>
         </ul>
         <p>
           Studio1 has grown from a small freelancing venture into a trusted
@@ -209,54 +212,6 @@ export default function WorkPage() {
 
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
 
-        <h2 className="font-medium text-xl mb-1 tracking-tighter">Permit.io</h2>
-        <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-2">
-          Freelance Technical Writer, 2024-Present
-        </p>
-        <p className="mb-2">
-          As a freelance writer for Permit.io, I have focused on creating
-          technical articles centered around authorization. My articles are:
-        </p>
-        <ul className="mb-2">
-          <li>
-            <a
-              href="https://www.permit.io/blog/how-to-implement-rbac-in-supabase"
-              target="_blank"
-              className="underline"
-            >
-              How to Implement RBAC in Supabase with Permit.io
-            </a>{" "}
-            .
-          </li>
-          <li>
-            <a
-              href="https://www.permit.io/blog/how-to-implement-rbac-role-based-access-control-in-astro-framework"
-              target="_blank"
-              className="underline"
-            >
-              How to Implement RBAC in Astro with Permit.io
-            </a>
-            .
-          </li>
-          <li>
-            <a
-              href="https://permit.io/blog/implementing-graphql-authorization"
-              target="_blank"
-              className="underline"
-            >
-              Implementing GraphQL Authorization: A Practical Guide
-            </a>
-          </li>
-        </ul>
-        <p>
-          My work with Permit.io has allowed me to deepen my expertise in
-          authorization and share valuable insights with the developer
-          community. And I'm continuing to write articles on a freelance
-          contract basis.
-        </p>
-
-        <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
-
         <h2 className="font-medium text-xl mb-1 tracking-tighter">Showwcase</h2>
         <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-2">
           Chief Creative Officer, 2022-2023
@@ -305,56 +260,102 @@ export default function WorkPage() {
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
 
         <h2 className="font-medium text-xl mb-1 tracking-tighter">
-          Other Experiences
+          Other Works (Part of Studio1)
         </h2>
-        <p className="mb-2">
-          In addition to my professional roles, I have also been involved in
-          various other activities:
-        </p>
-        <ul className="mb-2">
-          <li>
-            Core team member for the Eastern India's largest hackathon community
-            "
-            <Tooltip text="Hack4Bengal is a community-driven hackathon community which hosted in-person hackathon with 400+ hackers in West Bengal.">
-              <a
-                className="underline"
-                target="_blank"
-                href="https://www.hack4bengal.tech/"
-              >
-                Hack4Bengal
-              </a>
-            </Tooltip>
-            ", where I played a key role in organizing and managing the event.
-          </li>
-          <li>
-            Wrote a sponsored article for Arcjet:{" "}
-            <a
-              href="/blog/create-a-spotify-playlist-generator-with-arcjet" // Replace with the actual article URL when available
-              target="_blank"
-              className="underline"
-            >
-              "Create a Spotify Playlist Generator with Arcjet Protection"
-            </a>
-          </li>
-          <li>
-            Writing articles for{" "}
-            <Tooltip text="LeadDevRel is a community for Developer Relations professionals to share insights and knowledge on developer relations and community building.">
-              <a className="underline" href="https://leaddevrel.com">
-                LeadDevRel
-              </a>
-            </Tooltip>
-            , sharing insights and knowledge on developer relations and
-            community building.
-          </li>
 
-          <li>
-            Hosting bi-weekly growth meetings with DevRels in the LeadDevRel
-            community.
-          </li>
+        <h3 className="font-medium text-lg mb-1 tracking-tighter mt-4">
+          Technical Content
+        </h3>
+        <p className="mb-2">
+          I work with AI, DevTools, and SaaS teams to ship technical content
+          that developers actually use.
+        </p>
+        <p className="mb-2">This includes:</p>
+        <ul className="mb-2">
+          <li>Technical blogs, deep dives, and SDK guides</li>
+          <li>AI demos and agentic examples</li>
+          <li>Documentation and content system management</li>
         </ul>
-        <p>
-          These experiences have further enriched my skills and provided me with
-          additional platforms to contribute to the developer community.
+        <p className="mb-4">
+          I've handled end to end technical content for teams like{" "}
+          <a href="https://dub.sh/permit" target="_blank" className="underline">
+            Permit.io
+          </a>
+          ,{" "}
+          <a
+            href="https://dub.sh/brightdata"
+            target="_blank"
+            className="underline"
+          >
+            BrightData
+          </a>
+          ,{" "}
+          <a
+            href="https://dub.sh/tensorlake"
+            target="_blank"
+            className="underline"
+          >
+            Tensorlake
+          </a>
+          , Apify, Tolgee, ForgeCode, Webcrumbs, Arcjet, LambdaTest,
+          Entelligence and others.
+        </p>
+        <p className="mb-2">
+          I've also supported Product Hunt launches for products like{" "}
+          <a href="https://dub.sh/permit" target="_blank" className="underline">
+            Permit
+          </a>{" "}
+          and Webcrumbs by creating launch-ready tutorials, demos, and docs that
+          drive early adoption and organic traffic.
+        </p>
+
+        <h3 className="font-medium text-lg mb-1 tracking-tighter mt-4">
+          Developer Relations
+        </h3>
+        <p className="mb-2">
+          I help teams turn products into ecosystems developers want to build
+          on.
+        </p>
+        <p className="mb-2">This includes:</p>
+        <ul className="mb-2">
+          <li>Building real-world demo projects and agentic workflows</li>
+          <li>Developer onboarding and documentation flows</li>
+          <li>Events, workshops, and community programs</li>
+        </ul>
+        <p className="mb-4">
+          I currently help scale developer adoption for{" "}
+          <a href="https://dub.sh/nebius" target="_blank" className="underline">
+            Nebius Token Factory
+          </a>
+          ,{" "}
+          <a
+            href="https://dub.sh/memorilabs"
+            target="_blank"
+            className="underline"
+          >
+            MemoriLabs
+          </a>
+          ,{" "}
+          <a
+            href="https://dub.sh/ittybit"
+            target="_blank"
+            className="underline"
+          >
+            Ittybit
+          </a>
+          , and{" "}
+          <a
+            href="https://dub.sh/jozu-ml"
+            target="_blank"
+            className="underline"
+          >
+            Jozu
+          </a>
+          .
+        </p>
+        <p className="mb-2">
+          This work spans technical content, community management, developer
+          onboarding, documentation, and ongoing DevRel strategy.
         </p>
       </div>
       <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
