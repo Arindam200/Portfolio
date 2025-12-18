@@ -1,118 +1,120 @@
-import fs from "fs";
-import path from "path";
+// DEV.to API Types
+export interface DevToArticle {
+  type_of: string;
+  id: number;
+  title: string;
+  description: string;
+  readable_publish_date: string;
+  slug: string;
+  path: string;
+  url: string;
+  comments_count: number;
+  public_reactions_count: number;
+  collection_id: number | null;
+  published_timestamp: string;
+  positive_reactions_count: number;
+  cover_image: string | null;
+  social_image: string;
+  canonical_url: string;
+  created_at: string;
+  edited_at: string | null;
+  crossposted_at: string | null;
+  published_at: string;
+  last_comment_at: string;
+  reading_time_minutes: number;
+  tag_list: string[];
+  tags: string;
+  user: {
+    name: string;
+    username: string;
+    twitter_username: string | null;
+    github_username: string | null;
+    user_id: number;
+    website_url: string | null;
+    profile_image: string;
+    profile_image_90: string;
+  };
+  flare_tag?: {
+    name: string;
+    bg_color_hex: string;
+    text_color_hex: string;
+  } | null;
+  organization?: {
+    name: string;
+    username: string;
+    slug: string;
+    profile_image: string;
+    profile_image_90: string;
+  } | null;
+}
 
-type Metadata = {
+export interface BlogPost {
   title: string;
   datePublished: string;
-  seoDescription: string;
-  image?: string;
-  cover?: string;
-  tags?: string;
-};
-
-function parseFrontmatter(fileContent: string) {
-  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
-  let match = frontmatterRegex.exec(fileContent);
-  let frontMatterBlock = match![1];
-  let content = fileContent.replace(frontmatterRegex, "").trim();
-  let frontMatterLines = frontMatterBlock.trim().split("\n");
-  let metadata: Partial<Metadata> = {};
-
-  frontMatterLines.forEach((line) => {
-    let [key, ...valueArr] = line.split(": ");
-    let value = valueArr.join(": ").trim();
-    value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value;
-  });
-
-  content = removeAlignProperty(content);
-  content = formatCallout(content);
-  content = embedYouTubeLink(content);
-  return { metadata: metadata as Metadata, content };
+  url: string;
+  description: string;
+  coverImage: string | null;
+  tags: string[];
 }
 
-function removeAlignProperty(markdown: string): string {
-  const regex = /(!\[.*?\]\(.*?\s+align=".*?"\))/g;
+const DEV_TO_API_BASE = "https://dev.to/api";
+const DEV_TO_USERNAME = process.env.DEV_TO_USERNAME || "arindam_1729";
 
-  return markdown.replace(regex, (match) => {
-    return match.replace(/\s+align=".*?"/, "");
-  });
-}
-
-function formatCallout(markdown: string): string {
-  const calloutRegex =
-    /<div data-node-type="callout">\s*<div data-node-type="callout-emoji">(.*?)<\/div>\s*<div data-node-type="callout-text">([\s\S]*?)<\/div>\s*<\/div>/g;
-
-  return markdown.replace(calloutRegex, (match) => {
-    const emojiMatch = match.match(
-      /<div data-node-type="callout-emoji">(.*?)<\/div>/,
+async function fetchDevToArticles(): Promise<DevToArticle[]> {
+  try {
+    const response = await fetch(
+      `${DEV_TO_API_BASE}/articles?username=${DEV_TO_USERNAME}&per_page=100`,
+      {
+        next: { revalidate: 3600 }, // Revalidate every hour
+        headers: {
+          "api-key": process.env.DEV_TO_API_KEY || "",
+        },
+      },
     );
-    const textMatch = match.match(
-      /<div data-node-type="callout-text">([\s\S]*?)<\/div>/,
-    );
-    if (emojiMatch && textMatch) {
-      const emoji = emojiMatch[1].trim();
-      const text = textMatch[1].trim();
-      return `<Callout emoji="${emoji}">${text}</Callout>`;
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch DEV.to articles: ${response.statusText}`,
+      );
     }
 
-    return match;
+    const articles: DevToArticle[] = await response.json();
+    return articles;
+  } catch (error) {
+    console.error("Error fetching DEV.to articles:", error);
+    return [];
+  }
+}
+
+export async function getBlogPosts(): Promise<BlogPost[]> {
+  const articles = await fetchDevToArticles();
+
+  return articles
+    .filter((article) => !article.title.includes("[Boost]"))
+    .map((article) => ({
+      title: article.title,
+      datePublished: article.published_at,
+      url: article.url,
+      description: article.description,
+      coverImage: article.cover_image,
+      tags: article.tag_list || [],
+    }));
+}
+
+export function searchBlogPosts(
+  articles: BlogPost[],
+  query: string,
+): BlogPost[] {
+  if (!query) return articles;
+
+  const lowerQuery = query.toLowerCase();
+  return articles.filter((post) => {
+    return (
+      post.title.toLowerCase().includes(lowerQuery) ||
+      post.description.toLowerCase().includes(lowerQuery) ||
+      post.tags.some((tag) => tag.toLowerCase().includes(lowerQuery))
+    );
   });
-}
-
-function embedYouTubeLink(content: string) {
-  const youtubeRegex = /%?\[?https?:\/\/(?:www\.)?youtu\.?be\/([\w-]{11})\]?/g;
-
-  return content.replace(youtubeRegex, (match) => {
-    const videoIdMatch = match.match(/(?:youtu\.?be\/)([\w-]{11})/);
-    if (videoIdMatch) {
-      const videoId = videoIdMatch[1];
-      return `<YouTubeEmbed videoid="${videoId}" params="controls=0" />`;
-    }
-    return match;
-  });
-}
-
-function getMDXFiles(dir: string): string[] {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
-}
-
-function readMDXFile(filePath: string): { metadata: Metadata; content: string } {
-  const rawContent = fs.readFileSync(filePath, "utf-8");
-  return parseFrontmatter(rawContent);
-}
-
-interface BlogPost {
-  metadata: Metadata;
-  slug: string;
-  content: string;
-}
-
-function getMDXData(dir: string): BlogPost[] {
-  const mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map((file) => {
-    const { metadata, content } = readMDXFile(path.join(dir, file));
-    const slug = path.basename(file, path.extname(file));
-
-    return {
-      metadata,
-      slug,
-      content,
-    };
-  });
-}
-
-export function getBlogPosts(): BlogPost[] {
-  return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
-}
-
-export function searchBlogPosts(query: string): BlogPost[] {
-  const blogPosts = getBlogPosts();
-  const filteredPosts = blogPosts.filter((post) => {
-    return post.metadata.title.toLowerCase().includes(query.toLowerCase());
-  });
-
-  return filteredPosts;
 }
 
 export function formatDate(date: string, includeRelative = true): string {
@@ -139,7 +141,7 @@ export function formatDate(date: string, includeRelative = true): string {
   }
 
   let fullDate = targetDate.toLocaleString("en-us", {
-    month: "long",
+    month: "short",
     day: "numeric",
     year: "numeric",
   });

@@ -6,9 +6,7 @@ export async function GET() {
 
   const itemsXml = allBlogs
     .sort((a, b) => {
-      if (
-        new Date(a.metadata.datePublished) > new Date(b.metadata.datePublished)
-      ) {
+      if (new Date(a.datePublished) > new Date(b.datePublished)) {
         return -1;
       }
       return 1;
@@ -16,10 +14,10 @@ export async function GET() {
     .map(
       (post) =>
         `<item>
-          <title>${escapeXml(post.metadata.title)}</title>
-          <link>${baseUrl}/blog/${post.slug}</link>
-          <description>${escapeXml(post.metadata.seoDescription || "")}</description>
-          <pubDate>${new Date(post.metadata.datePublished).toUTCString()}</pubDate>
+          <title>${escapeXml(post.title)}</title>
+          <link>${post.url}</link>
+          <description>${escapeXml(post.description || "")}</description>
+          <pubDate>${new Date(post.datePublished).toUTCString()}</pubDate>
         </item>`,
     )
     .join("\n");
@@ -45,7 +43,7 @@ export async function GET() {
 }
 
 // Function to escape special XML characters
-function escapeXml(unsafe) {
+function escapeXml(unsafe: string): string {
   return unsafe.replace(/[<>&'"]/g, (c) => {
     switch (c) {
       case "<":

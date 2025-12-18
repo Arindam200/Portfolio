@@ -14,18 +14,18 @@ const navItems = {
   // "/agency": {
   //   name: "Agency",
   // },
-  // "/blog": {
-  //   name: "Blog",
-  // },
+  "/blog": {
+    name: "Blog",
+  },
   "/videos": {
     name: "Videos",
   },
   "/events": {
     name: "Talks",
   },
-  "/testimonials": {
-    name: "Testimonials",
-  },
+  // "/testimonials": {
+  //   name: "Testimonials",
+  // },
   "/contact-me": {
     name: "Contact me",
   },

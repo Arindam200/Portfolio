@@ -50,7 +50,11 @@ function CustomLink({ href, children, ...props }: CustomLinkProps) {
   }
 
   if (href.startsWith("#")) {
-    return <a href={href} {...props}>{children}</a>;
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    );
   }
 
   return (
@@ -240,7 +244,10 @@ interface CustomMDXProps {
   components?: Record<string, React.ComponentType<any>>;
 }
 
-export function CustomMDX({ source, components: customComponents }: CustomMDXProps) {
+export function CustomMDX({
+  source,
+  components: customComponents,
+}: CustomMDXProps) {
   return (
     <MDXRemote
       source={source}

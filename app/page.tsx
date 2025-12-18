@@ -119,14 +119,9 @@ export default function Page() {
             Reach out
           </Link>{" "}
           if that sounds useful. You can read my{" "}
-          <a
-            href="https://dub.sh/arindam-devto"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
-          >
+          <Link href="/blog" className="underline">
             writing
-          </a>
+          </Link>
           , explore my{" "}
           <Link href="/videos" className="underline">
             demos
@@ -138,7 +133,7 @@ export default function Page() {
           , or follow me online.
         </p>
       </div>
-      <div className="my-8 flex h-12 w-full flex-row space-x-2 overflow-x-auto">
+      <div className="my-6 flex h-12 w-full flex-row space-x-2 overflow-x-auto">
         <SocialLink href="https://git.new/Arindam" ariaLabel="GitHub Profile">
           <GitHubIcon />
         </SocialLink>

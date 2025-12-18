@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { YouTubeEmbed } from "@next/third-parties/google";
+import { Link } from "next-view-transitions";
 
 export const metadata: Metadata = {
   title: "Videos",
@@ -85,13 +86,9 @@ export default function VideosPage() {
           </a>{" "}
           where I regularly publish new tutorials and insights. You can also
           explore my{" "}
-          <a
-            href="https://dub.sh/arindam-devto"
-            target="_blank"
-            className="underline"
-          >
+          <Link href="/blog" className="underline">
             blog posts
-          </a>{" "}
+          </Link>{" "}
           for written deep-dives on similar topics.
         </p>
       </div>

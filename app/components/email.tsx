@@ -68,7 +68,9 @@ export default function EmailForm() {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || "Failed to send message. Please try again.");
+        throw new Error(
+          errorData.message || "Failed to send message. Please try again.",
+        );
       }
 
       setName("");
@@ -77,12 +79,15 @@ export default function EmailForm() {
       setMessage("");
       setErrors({});
       setSuccess(true);
-      
+
       // Reset success message after 5 seconds
       setTimeout(() => setSuccess(false), 5000);
     } catch (error) {
       setErrors({
-        submit: error instanceof Error ? error.message : "An unexpected error occurred. Please try again.",
+        submit:
+          error instanceof Error
+            ? error.message
+            : "An unexpected error occurred. Please try again.",
       });
     } finally {
       setIsLoading(false);
@@ -103,7 +108,10 @@ export default function EmailForm() {
             aria-describedby={errors.name ? "name-error" : undefined}
           />
           {errors.name && (
-            <p id="name-error" className="text-red-600 dark:text-red-400 text-sm mt-1">
+            <p
+              id="name-error"
+              className="text-red-600 dark:text-red-400 text-sm mt-1"
+            >
               {errors.name}
             </p>
           )}
@@ -119,7 +127,10 @@ export default function EmailForm() {
             aria-describedby={errors.email ? "email-error" : undefined}
           />
           {errors.email && (
-            <p id="email-error" className="text-red-600 dark:text-red-400 text-sm mt-1">
+            <p
+              id="email-error"
+              className="text-red-600 dark:text-red-400 text-sm mt-1"
+            >
               {errors.email}
             </p>
           )}
@@ -137,7 +148,10 @@ export default function EmailForm() {
           aria-describedby={errors.subject ? "subject-error" : undefined}
         />
         {errors.subject && (
-          <p id="subject-error" className="text-red-600 dark:text-red-400 text-sm mt-1">
+          <p
+            id="subject-error"
+            className="text-red-600 dark:text-red-400 text-sm mt-1"
+          >
             {errors.subject}
           </p>
         )}
@@ -152,7 +166,10 @@ export default function EmailForm() {
           aria-describedby={errors.message ? "message-error" : undefined}
         />
         {errors.message && (
-          <p id="message-error" className="text-red-600 dark:text-red-400 text-sm mt-1">
+          <p
+            id="message-error"
+            className="text-red-600 dark:text-red-400 text-sm mt-1"
+          >
             {errors.message}
           </p>
         )}
