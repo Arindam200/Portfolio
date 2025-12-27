@@ -9,9 +9,11 @@ const INITIAL_POSTS = 30;
 export function BlogPosts({
   posts,
   query,
+  hideResultsCount = false,
 }: {
   posts: BlogPost[];
   query: string;
+  hideResultsCount?: boolean;
 }) {
   const [itemsToShow, setItemsToShow] = useState(INITIAL_POSTS);
 
@@ -84,9 +86,11 @@ export function BlogPosts({
       )}
 
       {/* Results Count */}
-      <div className="mt-6 text-center text-sm text-neutral-600 dark:text-neutral-400">
-        Showing {displayedBlogs.length} of {filteredBlogs.length} articles
-      </div>
+      {!hideResultsCount && (
+        <div className="mt-6 text-center text-sm text-neutral-600 dark:text-neutral-400">
+          Showing {displayedBlogs.length} of {filteredBlogs.length} articles
+        </div>
+      )}
     </div>
   );
 }

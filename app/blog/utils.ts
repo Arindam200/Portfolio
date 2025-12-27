@@ -55,10 +55,20 @@ export interface BlogPost {
   description: string;
   coverImage: string | null;
   tags: string[];
+  featured?: boolean;
 }
 
 const DEV_TO_API_BASE = "https://dev.to/api";
 const DEV_TO_USERNAME = process.env.DEV_TO_USERNAME || "arindam_1729";
+
+// Local list of featured blog post titles
+// Add or remove post titles here to feature/unfeature them
+const FEATURED_POST_TITLES: string[] = [
+  // "How to Fine-Tune and Deploy an Open-Source Model",
+  // "Scraping Is Dead. Navigation Is the New API",
+  // Example: "My Amazing Blog Post Title"
+  // Add your featured post titles here
+];
 
 async function fetchDevToArticles(): Promise<DevToArticle[]> {
   try {
@@ -98,6 +108,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       description: article.description,
       coverImage: article.cover_image,
       tags: article.tag_list || [],
+      featured: FEATURED_POST_TITLES.includes(article.title),
     }));
 }
 
