@@ -10,10 +10,12 @@ export function BlogPosts({
   posts,
   query,
   hideResultsCount = false,
+  variant = "default",
 }: {
   posts: BlogPost[];
   query: string;
   hideResultsCount?: boolean;
+  variant?: "default" | "featured";
 }) {
   const [itemsToShow, setItemsToShow] = useState(INITIAL_POSTS);
 
@@ -45,14 +47,45 @@ export function BlogPosts({
 
   if (filteredBlogs.length === 0) {
     return (
-      <p className="text-neutral-600 dark:text-neutral-400">
-        No articles found matching your search.
-      </p>
+      <div className="py-8 text-center">
+        <p className="text-neutral-600 dark:text-neutral-400">
+          {query
+            ? `No articles found matching "${query}".`
+            : "No articles found."}
+        </p>
+      </div>
     );
   }
 
+  const highlightText = (text: string, searchQuery: string) => {
+    if (!searchQuery) return text;
+    // Escape special regex characters
+    const escapedQuery = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const parts = text.split(new RegExp(`(${escapedQuery})`, "gi"));
+    return parts.map((part, i) =>
+      part.toLowerCase() === searchQuery.toLowerCase() ? (
+        <mark
+          key={i}
+          className="bg-yellow-200 dark:bg-yellow-900/30 px-0.5 rounded"
+        >
+          {part}
+        </mark>
+      ) : (
+        part
+      ),
+    );
+  };
+
   return (
     <div>
+      {/* Search Results Info */}
+      {query && filteredBlogs.length > 0 && (
+        <div className="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
+          Found {filteredBlogs.length} article
+          {filteredBlogs.length !== 1 ? "s" : ""} matching "{query}"
+        </div>
+      )}
+
       {/* Blog Posts List */}
       <div>
         {displayedBlogs.map((post) => (
@@ -61,13 +94,24 @@ export function BlogPosts({
             href={post.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-row items-center mb-4 hover:opacity-70 transition-opacity gap-2"
+            className={`group flex flex-row items-center mb-6 hover:opacity-80 transition-opacity gap-2 ${
+              variant === "featured"
+                ? "p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/50"
+                : ""
+            }`}
+            aria-label={`Read article: ${post.title}`}
           >
-            <p className="text-neutral-600 dark:text-neutral-400 w-[110px] tabular-nums flex-shrink-0">
+            <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:w-[110px] tabular-nums flex-shrink-0">
               {formatDate(post.datePublished, false)}
             </p>
-            <p className="text-neutral-900 dark:text-neutral-100 tracking-tight whitespace-nowrap overflow-hidden text-ellipsis flex-1 min-w-0">
-              {post.title}
+            <p
+              className={`text-neutral-900 dark:text-neutral-100 tracking-tight whitespace-nowrap overflow-hidden text-ellipsis flex-1 min-w-0 ${
+                variant === "featured"
+                  ? "font-medium text-base"
+                  : "text-sm sm:text-base"
+              }`}
+            >
+              {highlightText(post.title, query)}
             </p>
           </a>
         ))}

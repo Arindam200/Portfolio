@@ -55,6 +55,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html
         lang="en"
+        suppressHydrationWarning
         className={cx(
           "text-black bg-white dark:text-white dark:bg-black",
           GeistSans.className,

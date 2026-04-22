@@ -40,7 +40,7 @@ export default function Page() {
         Hey, I'm Arindam 👋
       </h1>
       <p className="prose prose-neutral dark:prose-invert">
-        {`I’m a developer advocate, AI engineer, and technical writer. I’m the co-founder of `}
+        {`I’m an AI engineer and developer advocate building tools, tutorials, and demos around AI agents. I co-founded `}
         <span className="not-prose">
           <Link
             href="/agency"
@@ -56,8 +56,8 @@ export default function Page() {
             Studio1
           </Link>
         </span>
-        , where we help SaaS, DevTools, AI startups, and Enterprises with
-        technical content, AI demos, and developer advocacy.
+        , where we help SaaS, DevTools, and AI startups with technical content,
+        agent demos, and developer advocacy.
       </p>
       <div className="flex items-start md:items-center my-8 gap-2 flex-row md:flex-row">
         <Image
@@ -72,7 +72,7 @@ export default function Page() {
             <span>
               <GitHubIcon />
             </span>
-            75+ Agentic Examples built
+            95+ Agentic Examples built
           </p>
           <p className="flex items-center gap-2">
             <span>
@@ -91,8 +91,8 @@ export default function Page() {
 
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          My work focuses on making fast moving AI systems easier to understand
-          and easier to build with. I create hands on{" "}
+          I make fast-moving AI systems easier to understand and build with. I
+          create hands-on{" "}
           <a
             href="https://ggl.link/arindam-youtube"
             target="_blank"
@@ -100,9 +100,26 @@ export default function Page() {
             className="underline"
           >
             YouTube tutorials
+          </a>
+          , ship open source projects like{" "}
+          <a
+            href="https://github.com/Arindam200/awesome-ai-apps"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            awesome-ai-apps
           </a>{" "}
-          around AI agents and modern web tooling. I contribute to open source
-          and was featured in the{" "}
+          and{" "}
+          <a
+            href="https://github.com/Arindam200/termui"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            termui
+          </a>
+          , and write about what I learn. I was featured in the{" "}
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -110,7 +127,8 @@ export default function Page() {
             className="underline"
           >
             Next.js 15 RC release blog
-          </a>{" "}
+          </a>
+          .
         </p>
         <p>
           I also help teams with developer education, content systems, and
@@ -125,6 +143,10 @@ export default function Page() {
           , explore my{" "}
           <Link href="/videos" className="underline">
             demos
+          </Link>
+          , browse my{" "}
+          <Link href="/projects" className="underline">
+            projects
           </Link>
           , check out my{" "}
           <Link href="/events" className="underline">

@@ -34,12 +34,10 @@ export default async function BlogPage({
   const posts = await getBlogPosts();
 
   // Sort posts by date (newest first) on the server side for consistent rendering
-  const sortedPosts = [...posts].sort((a, b) => {
-    if (new Date(a.datePublished) > new Date(b.datePublished)) {
-      return -1;
-    }
-    return 1;
-  });
+  const sortedPosts = [...posts].sort(
+    (a, b) =>
+      new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime(),
+  );
 
   // Separate featured and normal posts
   const featuredPosts = sortedPosts.filter((post) => post.featured);
@@ -54,7 +52,12 @@ export default async function BlogPage({
           <h2 className="font-semibold text-xl mb-6 tracking-tighter">
             Featured Posts
           </h2>
-          <BlogPosts posts={featuredPosts} query={query} hideResultsCount />
+          <BlogPosts
+            posts={featuredPosts}
+            query={query}
+            hideResultsCount
+            variant="featured"
+          />
         </div>
       )}
       {normalPosts.length > 0 && (
@@ -68,6 +71,13 @@ export default async function BlogPage({
             </>
           )}
           <BlogPosts posts={normalPosts} query={query} />
+        </div>
+      )}
+      {posts.length === 0 && (
+        <div className="mt-8 text-center">
+          <p className="text-neutral-600 dark:text-neutral-400">
+            No blog posts available at the moment.
+          </p>
         </div>
       )}
     </section>

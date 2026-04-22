@@ -20,6 +20,9 @@ const navItems = {
   "/videos": {
     name: "Videos",
   },
+  "/projects": {
+    name: "Projects",
+  },
   "/events": {
     name: "Talks",
   },

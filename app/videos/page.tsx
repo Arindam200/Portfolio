@@ -15,7 +15,7 @@ interface VideoSection {
 const videoSections: VideoSection[] = [
   {
     title: "Technical tutorials",
-    videos: ["gqCZ_sFha7E", "pdsk6yldZGI", "9ryQ4Nb32zk", "zNTWmw72BDs"],
+    videos: ["gqCZ_sFha7E", "pdsk6yldZGI", "9ryQ4Nb32zk", "edkMrPMAzGA"],
   },
   {
     title: "Ai Insights",

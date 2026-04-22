@@ -20,6 +20,18 @@ interface Event {
 
 const events: Event[] = [
   {
+    id: "event-gdg-kolkata-2026",
+    banner: "/gdg-kolkata.png",
+    title: "GDG Kolkata presents Build with AI: Be Future Ready",
+    talkTitle:
+      "Building Realtime Voice Agents with LiveKit and Gemini 3.1 Flash Live Preview",
+    talkDescription:
+      "A walkthrough of building low-latency voice agents with LiveKit and Gemini 3.1 Flash Live Preview, streaming audio directly to the model instead of relying on the slower STT → LLM → TTS pipeline.",
+    place: "Kolkata, India",
+    date: "25th April, 2026",
+    link: "https://gdg.community.dev/events/details/google-gdg-kolkata-presents-build-with-ai-kolkata-be-future-ready/",
+  },
+  {
     id: "event-1",
     banner: "/mongo-db-memori.jpg",
     title: "Vectors, Vibes & Victory: The MongoDB AI Revolution",
