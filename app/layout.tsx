@@ -79,6 +79,15 @@ export default function RootLayout({
             <Analytics />
             <SpeedInsights />
           </main>
+          <div
+            data-raah-live
+            data-pid="proj_0ogf1shgdwmgugm9"
+            data-domain="arindammajumder.com"
+            data-theme="dark"
+            data-sticky="true"
+            data-position="bottom-right"
+          />
+          <Script async src="https://t.raah.dev/badge.js" />
         </body>
       </html>
     </ViewTransitions>
