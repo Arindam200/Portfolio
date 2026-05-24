@@ -1,5 +1,6 @@
 import "./global.css";
 import type { Metadata } from "next";
+import Script from "next/script";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Navbar } from "./components/nav";
@@ -62,6 +63,13 @@ export default function RootLayout({
           GeistMono.variable,
         )}
       >
+        <Script
+          defer
+          src="https://t.raah.dev/script.js"
+          data-pid="proj_0ogf1shgdwmgugm9"
+          data-domain="arindammajumder.com"
+          strategy="beforeInteractive"
+        />
         <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
           <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
             <Navbar />
