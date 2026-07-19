@@ -10,6 +10,7 @@ import {
   YoutubeIcon,
   LinkedInIcon,
   HashnodeIconGrey,
+  InstagramIcon,
 } from "./components/icons";
 
 interface SocialLinkProps {
@@ -20,17 +21,15 @@ interface SocialLinkProps {
 
 function SocialLink({ href, ariaLabel, children }: SocialLinkProps) {
   return (
-    <div className="flex min-w-0 flex-1 items-center justify-center rounded border border-neutral-200 bg-neutral-50 px-2 py-4 transition-all hover:bg-neutral-100 sm:px-6 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
-      <a
-        className="flex items-center justify-center"
-        target="_blank"
-        rel="noopener noreferrer"
-        href={href}
-        aria-label={ariaLabel}
-      >
-        {children}
-      </a>
-    </div>
+    <a
+      className="flex h-12 w-[4.5rem] flex-none items-center justify-center rounded border border-neutral-200 bg-neutral-50 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700"
+      target="_blank"
+      rel="noopener noreferrer"
+      href={href}
+      aria-label={ariaLabel}
+    >
+      {children}
+    </a>
   );
 }
 
@@ -158,7 +157,7 @@ export default function Page() {
         </p>
       </div>
 
-      <div className="my-6 flex h-12 w-full flex-row gap-2">
+      <div className="my-6 flex w-full flex-row flex-wrap gap-2">
         <SocialLink href="https://git.new/Arindam" ariaLabel="GitHub Profile">
           <GitHubIcon />
         </SocialLink>
@@ -179,6 +178,12 @@ export default function Page() {
           ariaLabel="YouTube Channel"
         >
           <YoutubeIcon />
+        </SocialLink>
+        <SocialLink
+          href="https://www.instagram.com/arindam.1729/"
+          ariaLabel="Instagram Profile"
+        >
+          <InstagramIcon />
         </SocialLink>
       </div>
     </section>
