@@ -3,10 +3,20 @@ import { Resend } from "resend";
 import * as React from "react";
 import { v4 as uuid } from "uuid";
 
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
-
 export async function POST(req: Request) {
   try {
+    const resendApiKey =
+      process.env.RESEND_API_KEY ?? process.env.NEXT_PUBLIC_RESEND_API_KEY;
+
+    if (!resendApiKey) {
+      console.error("The Resend API key is not configured.");
+      return Response.json(
+        { error: "The email service is currently unavailable." },
+        { status: 503 },
+      );
+    }
+
+    const resend = new Resend(resendApiKey);
     const body = await req.json();
 
     const { data, error } = await resend.emails.send({
