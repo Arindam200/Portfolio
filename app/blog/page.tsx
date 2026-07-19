@@ -1,8 +1,9 @@
-import { BlogPosts } from "app/components/posts";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { baseUrl } from "../sitemap";
 import Searchbar from "app/components/searchbar";
-import { getBlogPosts } from "./utils";
+import { BlogList } from "./blog-list";
+import BlogLoading from "./loading";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -22,64 +23,29 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function BlogPage({
+// TODO(runtime-prefetch): assess with the user (prefetch = 'allow-runtime')
+function SearchFallback() {
+  return (
+    <div className="mb-4 h-10 w-full animate-pulse rounded border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800" />
+  );
+}
+
+export default function BlogPage({
   searchParams,
 }: {
   searchParams?: Promise<{
     query?: string;
   }>;
 }) {
-  const resolvedSearchParams = await searchParams;
-  const query = resolvedSearchParams?.query || "";
-  const posts = await getBlogPosts();
-
-  // Sort posts by date (newest first) on the server side for consistent rendering
-  const sortedPosts = [...posts].sort(
-    (a, b) =>
-      new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime(),
-  );
-
-  // Separate featured and normal posts
-  const featuredPosts = sortedPosts.filter((post) => post.featured);
-  const normalPosts = sortedPosts.filter((post) => !post.featured);
-
   return (
     <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My Blog</h1>
-      <Searchbar />
-      {featuredPosts.length > 0 && (
-        <div className="mb-12">
-          <h2 className="font-semibold text-xl mb-6 tracking-tighter">
-            Featured Posts
-          </h2>
-          <BlogPosts
-            posts={featuredPosts}
-            query={query}
-            hideResultsCount
-            variant="featured"
-          />
-        </div>
-      )}
-      {normalPosts.length > 0 && (
-        <div>
-          {featuredPosts.length > 0 && (
-            <>
-              <div className="border-t border-neutral-200 dark:border-neutral-700 my-8"></div>
-              <h2 className="font-semibold text-xl mb-6 tracking-tighter">
-                All Posts
-              </h2>
-            </>
-          )}
-          <BlogPosts posts={normalPosts} query={query} />
-        </div>
-      )}
-      {posts.length === 0 && (
-        <div className="mt-8 text-center">
-          <p className="text-neutral-600 dark:text-neutral-400">
-            No blog posts available at the moment.
-          </p>
-        </div>
-      )}
+      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">My Blog</h1>
+      <Suspense fallback={<SearchFallback />}>
+        <Searchbar />
+      </Suspense>
+      <Suspense fallback={<BlogLoading />}>
+        <BlogList searchParams={searchParams} />
+      </Suspense>
     </section>
   );
 }

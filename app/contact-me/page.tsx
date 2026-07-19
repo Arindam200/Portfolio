@@ -3,7 +3,7 @@ import Email from "app/components/email";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Conctact Me",
+  title: "Contact Me",
   description: "Contact me for freelance work or full-time opportunities.",
 };
 

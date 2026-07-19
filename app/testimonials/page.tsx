@@ -14,6 +14,7 @@ import Pratham from "./assets/Pratham.png";
 import Eddie from "./assets/Eddie.png";
 import David from "./assets/David.png";
 import Marketa from "./assets/Marketa.png";
+import Saurav from "./assets/Saurav.png";
 import { ArrowIcon } from "../components/icons";
 import { Link } from "next-view-transitions";
 import type { Metadata } from "next";
@@ -112,6 +113,20 @@ export default function page() {
       </h1>
       <p className="">Here's what people are saying about me:</p>
 
+      <TestimonialCard
+        image={Saurav}
+        name="Saurav Jain"
+        link="https://testimonial.to/arindam-s-blog/all"
+        AuthorDescription="DevRel, Apify"
+        content={`Arindam and his team work really great with technical posts, they are super quick and write deeply technical articles that reaches to the right developer audiences through their absolute fantastic distribution system. Highly recommended. 💯`}
+        highlights={[
+          "super quick",
+          "deeply technical articles",
+          "right developer audiences",
+          "fantastic distribution system",
+          "Highly recommended. 💯",
+        ]}
+      />
       <TestimonialCard
         image={Gabriel}
         name="Gabriel L. Manor"

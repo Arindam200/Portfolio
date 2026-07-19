@@ -1,25 +1,33 @@
-import { getBlogPosts } from "app/blog/utils";
+import { cacheLife } from "next/cache";
+import { getBlogPosts } from "app/blog/data";
+import { getBlogPostPath } from "app/blog/types";
 
-export const baseUrl = "https://www.arindammajumder.com";
+export const baseUrl = "https://arindamm.dev";
 
 export default async function sitemap() {
+  "use cache";
+  cacheLife("days");
+
   const posts = await getBlogPosts();
 
-  let blogs = posts.map((post) => ({
-    url: post.url, // Use DEV.to URL directly
+  const blogs = posts.map((post) => ({
+    url: `${baseUrl}${getBlogPostPath(post.slug)}`,
     lastModified: post.datePublished,
   }));
 
-  let routes = [
+  const routes = [
     "",
     "/work",
     "/blog",
-    "/testimonials",
+    "/videos",
+    "/projects",
+    "/events",
     "/contact-me",
     "/agency",
+    "/resume",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString().split("T")[0],
+    lastModified: posts[0]?.datePublished ?? "2026-01-01",
   }));
 
   return [...routes, ...blogs];

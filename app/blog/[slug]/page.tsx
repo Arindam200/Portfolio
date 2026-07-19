@@ -1,30 +1,57 @@
-import { redirect } from "next/navigation";
-import { getBlogPosts } from "app/blog/utils";
+import { Suspense } from "react";
+import type { Metadata } from "next";
+import { getBlogPost, getBlogPosts } from "app/blog/data";
+import { baseUrl } from "app/sitemap";
+import { BlogPostContent } from "./blog-post-content";
+import BlogPostLoading from "./loading";
 
-export default async function Blog({
+export async function generateStaticParams() {
+  const posts = await getBlogPosts();
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
+
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: `${baseUrl}/blog/${post.slug}`,
+      type: "article",
+      publishedTime: post.datePublished,
+      images: post.coverImage ? [post.coverImage] : undefined,
+    },
+    twitter: {
+      title: post.title,
+      description: post.description,
+      card: "summary_large_image",
+    },
+  };
+}
+
+export default function BlogPostPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params;
-  const posts = await getBlogPosts();
-
-  // Try to find the article by slug and redirect to DEV.to
-  const post = posts.find((post) => {
-    // Extract slug from DEV.to URL (format: https://dev.to/username/slug-xxxx)
-    const urlSlug = post.url
-      .split("/")
-      .pop()
-      ?.split("-")
-      .slice(0, -1)
-      .join("-");
-    return urlSlug === slug;
-  });
-
-  if (post) {
-    redirect(post.url);
-  }
-
-  // If not found, redirect to blog listing
-  redirect("/blog");
+  return (
+    <Suspense fallback={<BlogPostLoading />}>
+      <BlogPostContent params={params} />
+    </Suspense>
+  );
 }

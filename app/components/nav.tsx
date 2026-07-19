@@ -37,20 +37,22 @@ const navItems = {
 export function Navbar() {
   const pathname = usePathname();
   return (
-    <aside className="-ml-[8px] mb-14 md:mb-16 tracking-tight">
+    <aside className="mb-14 tracking-tight md:-ml-2 md:mb-16">
       <div className="lg:sticky lg:top-20">
         <nav
-          className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
+          aria-label="Primary navigation"
+          className="fade relative -mx-1 px-1 pb-1"
           id="nav"
         >
-          <div className="flex flex-row justify-between w-full md:justify-start md:w-auto md:space-x-2 md:pr-10 gap-2 md:gap-0">
+          <div className="flex w-full flex-row items-center justify-between gap-1 sm:w-max sm:justify-start sm:gap-0 sm:space-x-2 sm:pr-10">
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
                 <Link
                   key={path}
                   href={path}
+                  prefetch={true}
                   className={clsx(
-                    "transition-all hover:text-neutral-800 dark:hover:text-neutral-200 text-base md:text-base flex align-middle relative py-1 px-1 md:px-2",
+                    "relative flex whitespace-nowrap py-1 text-xs transition-all hover:text-neutral-800 md:px-2 md:text-base dark:hover:text-neutral-200",
                     {
                       "underline underline-offset-4 transition-all transform-stroke":
                         pathname === path,

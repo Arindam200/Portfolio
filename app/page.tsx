@@ -20,8 +20,9 @@ interface SocialLinkProps {
 
 function SocialLink({ href, ariaLabel, children }: SocialLinkProps) {
   return (
-    <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-6 py-4 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
+    <div className="flex min-w-0 flex-1 items-center justify-center rounded border border-neutral-200 bg-neutral-50 px-2 py-4 transition-all hover:bg-neutral-100 sm:px-6 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
       <a
+        className="flex items-center justify-center"
         target="_blank"
         rel="noopener noreferrer"
         href={href}
@@ -40,7 +41,7 @@ export default function Page() {
         Hey, I'm Arindam 👋
       </h1>
       <p className="prose prose-neutral dark:prose-invert">
-        {`I’m an AI engineer and developer advocate building tools, tutorials, and demos around AI agents. I co-founded `}
+        {`I'm an AI engineer and developer advocate building tools, tutorials, and demos around AI agents. I co-founded `}
         <span className="not-prose">
           <Link
             href="/agency"
@@ -59,15 +60,16 @@ export default function Page() {
         , where we help SaaS, DevTools, and AI startups with technical content,
         agent demos, and developer advocacy.
       </p>
-      <div className="flex items-start md:items-center my-8 gap-2 flex-row md:flex-row">
+
+      <div className="my-8 flex flex-row items-start gap-2 md:items-center">
         <Image
           src={ab}
           alt="Arindam's image"
           width={120}
           height={120}
-          className="rounded-full max-sm:w-24 max-sm:h-24"
+          className="size-[120px] shrink-0 rounded-full object-cover max-sm:size-24"
         />
-        <div className="mt-2 sm:mt-6 md:mt-0 ml-0 md:ml-6 space-y-1 text-neutral-500 dark:text-neutral-400">
+        <div className="ml-0 mt-2 min-w-0 space-y-1 text-sm text-neutral-500 sm:text-base md:ml-6 md:mt-0 dark:text-neutral-400">
           <p className="flex items-center gap-2">
             <span>
               <GitHubIcon />
@@ -155,23 +157,17 @@ export default function Page() {
           , or follow me online.
         </p>
       </div>
-      <div className="my-6 flex h-12 w-full flex-row space-x-2 overflow-x-auto">
+
+      <div className="my-6 flex h-12 w-full flex-row gap-2">
         <SocialLink href="https://git.new/Arindam" ariaLabel="GitHub Profile">
           <GitHubIcon />
         </SocialLink>
         <SocialLink href="https://dub.sh/arindam-x" ariaLabel="Twitter Profile">
           <TwitterIcon />
         </SocialLink>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-4 py-1 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://dub.sh/arindam-devto"
-            aria-label="DevTo Blog"
-          >
-            <DevToIcon />
-          </a>
-        </div>
+        <SocialLink href="https://dub.sh/arindam-devto" ariaLabel="DevTo Blog">
+          <DevToIcon />
+        </SocialLink>
         <SocialLink
           href="https://dub.sh/arindam-linkedin"
           ariaLabel="LinkedIn Profile"

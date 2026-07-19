@@ -29,8 +29,19 @@
   }
 }
 
-html {
-  min-width: 360px;
+.fade {
+  animation: fade-in 0.4s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .prose .anchor {
@@ -61,11 +72,16 @@ html {
 }
 
 .prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;
+  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-800 py-2 px-3 text-sm;
 }
 
 .prose code {
   @apply px-1 py-0.5 rounded-lg;
+}
+
+.prose :not(pre) > code {
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .prose pre code {
@@ -81,6 +97,11 @@ html {
 .prose img {
   /* Don't apply styles to next/image */
   @apply m-0;
+}
+
+.prose iframe {
+  display: block;
+  max-width: 100%;
 }
 
 .prose blockquote {
@@ -148,11 +169,45 @@ input[type="email"] {
   appearance: none;
 }
 
-table {
-  display: block;
-  max-width: fit-content;
-  overflow-x: auto;
-  white-space: nowrap;
+.blog-table-wrapper {
+  @apply my-6 w-full overflow-x-auto rounded-lg border border-neutral-300 dark:border-neutral-700;
+}
+
+.blog-table-wrapper table {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+}
+
+.blog-table-wrapper th,
+.blog-table-wrapper td {
+  @apply border-b border-r border-neutral-300 px-4 py-3 text-left align-top dark:border-neutral-700;
+}
+
+.blog-table-wrapper th {
+  @apply bg-neutral-100 font-medium text-neutral-950 dark:bg-neutral-900 dark:text-neutral-50;
+}
+
+.blog-table-wrapper tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.blog-table-wrapper tr > :last-child {
+  border-right: 0;
+}
+
+.blog-code-wrapper {
+  @apply relative my-5 max-w-full;
+}
+
+.blog-code-block {
+  margin: 0 !important;
+  max-width: 100%;
+  padding-top: 2.75rem !important;
+}
+
+.blog-copy-button {
+  @apply absolute right-2 top-2 cursor-pointer rounded border border-neutral-300 bg-white px-2.5 py-1 text-xs leading-5 text-neutral-700 transition-colors hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700;
 }
 
 .title {

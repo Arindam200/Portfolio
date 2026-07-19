@@ -1,19 +1,29 @@
-// next.config.js
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  cacheComponents: true,
+  partialPrefetching: true,
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.hashnode.com",
+        hostname: "dev-to-uploads.s3.amazonaws.com",
         port: "",
-        //   pathname: '/account123/**',
       },
       {
         protocol: "https",
-        hostname: "dev-to-uploads.s3.amazonaws.com",
+        hostname: "dev-to-uploads.s3.us-east-2.amazonaws.com",
         port: "",
-        //   pathname: '/**',
+      },
+      {
+        protocol: "https",
+        hostname: "media2.dev.to",
+        port: "",
       },
     ],
   },
+  turbopack: {
+    root: __dirname,
+  },
 };
+
+module.exports = nextConfig;

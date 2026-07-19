@@ -7,12 +7,12 @@
     "build": "next build",
     "start": "next start",
     "format": "prettier --write .",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
     "@next/third-parties": "^16.0.0",
-    "@tailwindcss/postcss": "4.0.0-alpha.13",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.6",
     "@types/react-dom": "^19.0.2",
@@ -20,7 +20,7 @@
     "@vercel/speed-insights": "^1.1.0",
     "clsx": "^2.1.1",
     "geist": "^1.5.1",
-    "next": "^16.0.0",
+    "next": "^16.3.0-preview.6",
     "next-mdx-remote": "^6.0.0",
     "next-view-transitions": "^0.3.5",
     "postcss": "^8.4.47",
@@ -30,14 +30,15 @@
     "resend": "^4.0.1",
     "sharp": "^0.33.5",
     "sugar-high": "^0.6.1",
-    "tailwindcss": "4.0.0-alpha.13",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.7.2",
     "use-debounce": "^10.0.1",
     "uuid": "^11.0.3",
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.6",
     "eslint": "^9.17.0",
-    "eslint-config-next": "^16.0.0"
+    "eslint-config-next": "^16.3.0-preview.6"
   }
 }

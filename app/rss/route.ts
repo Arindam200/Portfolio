@@ -1,5 +1,6 @@
 import { baseUrl } from "app/sitemap";
-import { getBlogPosts } from "app/blog/utils";
+import { getBlogPosts } from "app/blog/data";
+import { getBlogPostPath } from "app/blog/types";
 
 export async function GET() {
   let allBlogs = await getBlogPosts();
@@ -15,7 +16,7 @@ export async function GET() {
       (post) =>
         `<item>
           <title>${escapeXml(post.title)}</title>
-          <link>${post.url}</link>
+          <link>${baseUrl}${getBlogPostPath(post.slug)}</link>
           <description>${escapeXml(post.description || "")}</description>
           <pubDate>${new Date(post.datePublished).toUTCString()}</pubDate>
         </item>`,

@@ -45,7 +45,7 @@ export default function Footer() {
         </li>
       </ul>
       <p className="mt-8 text-neutral-600 dark:text-neutral-300">
-        © Arindam Majumder {new Date().getFullYear()}. All rights reserved.
+        © Arindam Majumder 2026. All rights reserved.
       </p>
     </footer>
   );

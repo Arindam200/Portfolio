@@ -64,7 +64,7 @@ const projects: Project[] = [
 export default function ProjectsPage() {
   return (
     <section>
-      <h1 className="font-medium text-2xl mb-8 tracking-tighter">Projects</h1>
+      <h1 className="mb-8 text-2xl font-medium tracking-tighter">Projects</h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
           A collection of open source projects and products I've been building
@@ -76,18 +76,18 @@ export default function ProjectsPage() {
         <div className="space-y-6 not-prose">
           {projects.map((project) => (
             <div key={project.name}>
-              <div className="flex items-baseline gap-2 flex-wrap">
+              <div className="flex flex-wrap items-baseline gap-2">
                 {project.href ? (
                   <a
                     href={project.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-lg tracking-tight underline"
+                    className="text-lg font-medium tracking-tight underline"
                   >
                     {project.name}
                   </a>
                 ) : (
-                  <span className="font-medium text-lg tracking-tight">
+                  <span className="text-lg font-medium tracking-tight">
                     {project.name}
                   </span>
                 )}
@@ -97,7 +97,7 @@ export default function ProjectsPage() {
                   </span>
                 )}
               </div>
-              <p className="text-neutral-600 dark:text-neutral-400 mt-1">
+              <p className="mt-1 text-neutral-600 dark:text-neutral-400">
                 {project.description}
               </p>
             </div>

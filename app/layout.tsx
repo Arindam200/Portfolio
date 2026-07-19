@@ -1,6 +1,6 @@
 import "./global.css";
 import type { Metadata } from "next";
-import Script from "next/script";
+import { Suspense } from "react";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Navbar } from "./components/nav";
@@ -63,31 +63,25 @@ export default function RootLayout({
           GeistMono.variable,
         )}
       >
-        <Script
-          defer
-          src="https://t.raah.dev/script.js"
-          data-pid="proj_0ogf1shgdwmgugm9"
-          data-domain="arindammajumder.com"
-          strategy="beforeInteractive"
-        />
-        <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
+        <body className="antialiased mx-4 mt-8 max-w-2xl lg:mx-auto">
           <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-            <Navbar />
+            <Suspense
+              fallback={
+                <div className="mb-14 h-8 animate-pulse rounded bg-neutral-100 dark:bg-neutral-900 md:mb-16" />
+              }
+            >
+              <Navbar />
+            </Suspense>
             {children}
-            <Footer />
-            <ScrollToTop />
+            <Suspense fallback={null}>
+              <Footer />
+            </Suspense>
+            <Suspense fallback={null}>
+              <ScrollToTop />
+            </Suspense>
             <Analytics />
             <SpeedInsights />
           </main>
-          <div
-            data-raah-live
-            data-pid="proj_0ogf1shgdwmgugm9"
-            data-domain="arindammajumder.com"
-            data-theme="dark"
-            data-sticky="true"
-            data-position="bottom-right"
-          />
-          <Script async src="https://t.raah.dev/badge.js" />
         </body>
       </html>
     </ViewTransitions>
