@@ -41,7 +41,7 @@ export function Navbar() {
       <div className="lg:sticky lg:top-20">
         <nav
           aria-label="Primary navigation"
-          className="fade relative -mx-1 px-1 pb-1"
+          className="fade relative -mx-1 overflow-x-auto px-1 pb-1"
           id="nav"
         >
           <div className="flex w-full flex-row items-center justify-between gap-1 sm:w-max sm:justify-start sm:gap-0 sm:space-x-2 sm:pr-10">

@@ -22,6 +22,7 @@ export default async function sitemap() {
     "/videos",
     "/projects",
     "/events",
+    "/collaborations",
     "/contact-me",
     "/agency",
     "/resume",
