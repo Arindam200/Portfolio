@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 
 const customers = [
   { name: "HeyGen", logo: "/customer-logos/heygen.png" },
+  { name: "Higgsfield", logo: "/customer-logos/higgsfield.svg" },
   { name: "CodeRabbit", logo: "/customer-logos/coderabbit.png" },
   { name: "Graphite", logo: "/customer-logos/graphite.png" },
   { name: "MiniMax", logo: "/customer-logos/minimax.png" },
@@ -23,9 +24,19 @@ const customers = [
   { name: "Bright Data", logo: "/customer-logos/brightdata.png" },
   { name: "SerpApi", logo: "/customer-logos/serpapi.png" },
   { name: "TestSprite", logo: "/customer-logos/testsprite.png" },
-  { name: "APILayer", logo: "/customer-logos/apilayer.png" },
+  { name: "APILayer", logo: "/customer-logos/apilayer.svg" },
   { name: "Airtap", logo: "/customer-logos/airtap.png" },
   { name: "EverOS", logo: "/customer-logos/everos.png" },
+  { name: "Permit", logo: "/customer-logos/permit.svg" },
+  { name: "Plane", logo: "/customer-logos/plane.svg" },
+  { name: "Arcjet", logo: "/customer-logos/arcjet.svg" },
+  { name: "InsForge", logo: "/customer-logos/insforge.svg" },
+  { name: "Thesean AI", logo: "/customer-logos/thesean-ai.svg" },
+  { name: "Blackbox AI", logo: "/customer-logos/blackbox-ai.svg" },
+  { name: "Neo", logo: "/customer-logos/neo.svg" },
+  { name: "GoLogin", logo: "/customer-logos/gologin.svg" },
+  { name: "TinyFish", logo: "/customer-logos/tinyfish.svg" },
+  { name: "NeatPrompts", logo: "/customer-logos/neatprompts.svg" },
 ];
 
 const emailHref =
