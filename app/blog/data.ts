@@ -1,7 +1,7 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { cache } from "react";
-import { cacheLife } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
+import { BLOG_POSTS_CACHE_TAG, getBlogPostCacheTag } from "./cache";
 import type { BlogPost, BlogPostDetail, DevToArticle } from "./types";
 import {
   mapDevToArticleToBlogPost,
@@ -12,8 +12,12 @@ const execFileAsync = promisify(execFile);
 
 const DEV_TO_API_BASE = "https://dev.to/api";
 const DEV_TO_USERNAME = process.env.DEV_TO_USERNAME || "arindam_1729";
+const DEV_TO_PAGE_SIZE = 50;
+const DEV_TO_MAX_PAGES = 20;
 
 const FEATURED_POST_TITLES: string[] = [];
+// Retires list entries created before tag-based invalidation was introduced.
+const BLOG_POSTS_CACHE_VERSION = 4;
 
 async function sleep(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
@@ -110,9 +114,9 @@ async function fetchAllDevToArticles(): Promise<DevToArticle[]> {
   const articles: DevToArticle[] = [];
   let page = 1;
 
-  while (page <= 10) {
+  while (page <= DEV_TO_MAX_PAGES) {
     const response = await fetchWithRetry(
-      `${DEV_TO_API_BASE}/articles?username=${DEV_TO_USERNAME}&per_page=100&page=${page}`,
+      `${DEV_TO_API_BASE}/articles?username=${DEV_TO_USERNAME}&per_page=${DEV_TO_PAGE_SIZE}&page=${page}`,
     );
 
     if (!response || response.status < 200 || response.status >= 300) {
@@ -128,7 +132,7 @@ async function fetchAllDevToArticles(): Promise<DevToArticle[]> {
 
       articles.push(...batch);
 
-      if (batch.length < 100) {
+      if (batch.length < DEV_TO_PAGE_SIZE) {
         break;
       }
 
@@ -142,9 +146,15 @@ async function fetchAllDevToArticles(): Promise<DevToArticle[]> {
   return articles;
 }
 
-export async function getBlogPosts(): Promise<BlogPost[]> {
+async function getCachedBlogPosts(cacheVersion: number): Promise<BlogPost[]> {
   "use cache";
-  cacheLife("days");
+  void cacheVersion;
+  cacheLife({
+    stale: 5 * 60,
+    revalidate: 6 * 60 * 60,
+    expire: 24 * 60 * 60,
+  });
+  cacheTag(BLOG_POSTS_CACHE_TAG);
 
   const articles = await fetchAllDevToArticles();
 
@@ -156,16 +166,24 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     }));
 }
 
-// Request-level dedupe. Avoid "use cache" for individual posts so a DEV.to
-// miss can't stick as a cached 404, and cache-fill timeouts don't abort reads.
-export const getBlogPost = cache(
-  async (slug: string): Promise<BlogPostDetail | null> => {
-    const article = await fetchDevToArticleBySlug(slug);
+export async function getBlogPosts(): Promise<BlogPost[]> {
+  return getCachedBlogPosts(BLOG_POSTS_CACHE_VERSION);
+}
 
-    if (!article?.body_html && !article?.body_markdown) {
-      return null;
-    }
+export async function getBlogPost(
+  slug: string,
+): Promise<BlogPostDetail | null> {
+  "use cache";
+  cacheTag(getBlogPostCacheTag(slug));
 
-    return mapDevToArticleToBlogPostDetail(article);
-  },
-);
+  const article = await fetchDevToArticleBySlug(slug);
+
+  if (!article?.body_html && !article?.body_markdown) {
+    // New slugs may be requested before DEV.to finishes publishing them.
+    cacheLife("minutes");
+    return null;
+  }
+
+  cacheLife("days");
+  return mapDevToArticleToBlogPostDetail(article);
+}
