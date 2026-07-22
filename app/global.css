@@ -62,6 +62,10 @@
   @apply transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
 }
 
+.prose .blog-post-body a:not(.anchor) {
+  text-decoration-line: underline;
+}
+
 .prose .anchor:after {
   @apply text-neutral-300 dark:text-neutral-700;
   content: "#";
@@ -96,12 +100,42 @@
 
 .prose img {
   /* Don't apply styles to next/image */
-  @apply m-0;
+  @apply m-0 rounded;
 }
 
 .prose iframe {
   display: block;
   max-width: 100%;
+  overflow: hidden;
+  border-radius: 0.25rem;
+}
+
+.prose iframe.tweet-embed {
+  width: 100%;
+  max-width: 550px;
+  min-height: 150px;
+  margin: 1.5rem auto;
+  border: 0;
+}
+
+.prose h2[id],
+.prose h3[id] {
+  scroll-margin-top: 2rem;
+}
+
+.prose .blog-toc-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.blog-table-of-contents {
+  display: none;
+}
+
+@media (min-width: 80rem) {
+  .blog-table-of-contents {
+    display: block;
+  }
 }
 
 .prose blockquote {

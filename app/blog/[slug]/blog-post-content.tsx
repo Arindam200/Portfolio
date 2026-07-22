@@ -31,14 +31,14 @@ export async function BlogPostContent({
       </p>
 
       {post.coverImage && (
-        <div className="relative mb-8 aspect-[2/1] w-full overflow-hidden rounded border border-neutral-200 dark:border-neutral-800">
+        <div className="relative mb-8 aspect-[50/21] w-full overflow-hidden rounded border border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950">
           <Image
             src={post.coverImage}
-            alt=""
+            alt={`${post.title} cover image`}
             fill
             priority
             sizes="(max-width: 768px) 100vw, 672px"
-            className="object-cover"
+            className="object-contain"
           />
         </div>
       )}
