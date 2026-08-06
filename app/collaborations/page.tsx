@@ -28,6 +28,7 @@ const customers = [
   { name: "Airtap", logo: "/customer-logos/airtap.png" },
   { name: "EverOS", logo: "/customer-logos/everos.png" },
   { name: "Permit", logo: "/customer-logos/permit.svg" },
+  { name: "Cerbos", logo: "/customer-logos/cerbos.png" },
   { name: "Plane", logo: "/customer-logos/plane.svg" },
   { name: "Arcjet", logo: "/customer-logos/arcjet.svg" },
   { name: "InsForge", logo: "/customer-logos/insforge.svg" },
