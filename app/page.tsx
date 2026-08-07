@@ -9,8 +9,8 @@ import {
   DevToIcon,
   YoutubeIcon,
   LinkedInIcon,
-  HashnodeIconGrey,
   InstagramIcon,
+  SubstackIcon,
 } from "./components/icons";
 
 interface SocialLinkProps {
@@ -40,7 +40,7 @@ export default function Page() {
         Hey, I'm Arindam 👋
       </h1>
       <p className="prose prose-neutral dark:prose-invert">
-        {`I'm an AI engineer and developer advocate building tools, tutorials, and demos around AI agents. I co-founded `}
+        {`I'm an AI engineer and developer advocate who turns fast-moving AI ideas into practical tools, tutorials, and demos. I co-founded `}
         <span className="not-prose">
           <Link
             href="/agency"
@@ -51,7 +51,7 @@ export default function Page() {
               alt="Studio1 Logo"
               width={14}
               height={14}
-              className="!mr-1 rounded-md"
+              className="!mr-1 rounded-[3px]"
             />
             Studio1
           </Link>
@@ -77,9 +77,9 @@ export default function Page() {
           </p>
           <p className="flex items-center gap-2">
             <span>
-              <HashnodeIconGrey />
+              <YoutubeIcon />
             </span>
-            100+ blog posts all time
+            150K+ views on YouTube
           </p>
           <p className="flex items-center">
             <span>
@@ -92,8 +92,7 @@ export default function Page() {
 
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          I make fast-moving AI systems easier to understand and build with. I
-          create hands-on{" "}
+          AI moves quickly; I make it practical. I create hands-on{" "}
           <a
             href="https://ggl.link/arindam-youtube"
             target="_blank"
@@ -102,7 +101,16 @@ export default function Page() {
           >
             YouTube tutorials
           </a>
-          , ship open source projects like{" "}
+          , and build in the open. I shipped{" "}
+          <a
+            href="https://www.formaly.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            Formaly
+          </a>
+          , a SaaS for conversational forms, alongside open source projects like{" "}
           <a
             href="https://github.com/Arindam200/awesome-ai-apps"
             target="_blank"
@@ -111,7 +119,16 @@ export default function Page() {
           >
             awesome-ai-apps
           </a>{" "}
-          and{" "}
+          (13K+ stars),{" "}
+          <a
+            href="https://github.com/Arindam200/cc-lens"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            CC-Lens
+          </a>{" "}
+          for real-time Claude Code monitoring, and{" "}
           <a
             href="https://github.com/Arindam200/termui"
             target="_blank"
@@ -120,24 +137,24 @@ export default function Page() {
           >
             termui
           </a>
-          , and write about what I learn. I was featured in the{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://nextjs.org/blog/next-15-rc"
-            className="underline"
-          >
-            Next.js 15 RC release blog
-          </a>
           .
         </p>
         <p>
-          I also help teams with developer education, content systems, and
-          advocacy strategy.{" "}
-          <Link href="/agency" className="underline">
-            Reach out
+          Through Studio1, I help AI, SaaS, and DevTools teams earn developer
+          trust through clear docs, technical content, launches, and developer
+          education. I also help shape developer advocacy strategies that turn
+          interest into lasting adoption.{" "}
+          <Link href="/work" className="underline">
+            See my work
           </Link>{" "}
-          if that sounds useful. You can read my{" "}
+          or{" "}
+          <Link href="/agency" className="underline">
+            reach out
+          </Link>{" "}
+          if that sounds useful.
+        </p>
+        <p>
+          You can read my{" "}
           <Link href="/blog" className="underline">
             writing
           </Link>
@@ -178,6 +195,12 @@ export default function Page() {
           ariaLabel="YouTube Channel"
         >
           <YoutubeIcon />
+        </SocialLink>
+        <SocialLink
+          href="https://arindam1729.substack.com/"
+          ariaLabel="Substack Newsletter"
+        >
+          <SubstackIcon />
         </SocialLink>
         <SocialLink
           href="https://www.instagram.com/arindam.1729/"

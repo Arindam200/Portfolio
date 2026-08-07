@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <div>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">
+      <h1 className="mb-8 text-2xl font-medium tracking-tighter">
         Work with me
       </h1>
       <p className="mb-4">

@@ -14,12 +14,16 @@ interface VideoSection {
 
 const videoSections: VideoSection[] = [
   {
+    title: "Explainers",
+    videos: ["_BD2zq3R4lg", "5yojWE-DsWU", "BwB1Jcw8Z-8", "hrciMR7e7Fk"],
+  },
+  {
     title: "Technical tutorials",
     videos: ["gqCZ_sFha7E", "pdsk6yldZGI", "9ryQ4Nb32zk", "edkMrPMAzGA"],
   },
   {
-    title: "Ai Insights",
-    videos: ["LzLcvlwM64g", "UiYc8Nd38tI", "nItVDeJZCRo", "6pcBBLXxOEc"],
+    title: "AI Insights",
+    videos: ["LzLcvlwM64g", "UiYc8Nd38tI", "nItVDeJZCRo", "9_eZOLkGg-w"],
   },
   //   {
   //     title: "Talks",

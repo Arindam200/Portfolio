@@ -45,16 +45,18 @@ const Tooltip: React.FC<TooltipProps> = ({ children, text }) => {
       ref={tooltipRef}
     >
       {children}
-      <span
-        className={`absolute z-10 p-2 w-64 text-wrap rounded border border-neutral-200 bg-neutral-50 text-sm leading-4 text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 rounded shadow-lg whitespace-nowrap transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-        style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-          transform: "translate(-50%, -100%)",
-        }}
-      >
-        {text}
-      </span>
+      {isVisible ? (
+        <span
+          className="absolute z-10 w-64 rounded border border-neutral-200 bg-neutral-50 p-2 text-sm leading-4 text-wrap text-neutral-900 shadow-lg dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
+          style={{
+            left: `${position.x}px`,
+            top: `${position.y}px`,
+            transform: "translate(-50%, -100%)",
+          }}
+        >
+          {text}
+        </span>
+      ) : null}
     </span>
   );
 };

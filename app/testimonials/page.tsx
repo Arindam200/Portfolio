@@ -1,5 +1,8 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import React from "react";
-// import Image from "next/image";
+import { Link } from "next-view-transitions";
+import { ArrowIcon } from "../components/icons";
 import Alexandr from "./assets/Alexandr.png";
 import Dani from "./assets/Dani.png";
 import Ferran from "./assets/Ferran.png";
@@ -15,13 +18,10 @@ import Eddie from "./assets/Eddie.png";
 import David from "./assets/David.png";
 import Marketa from "./assets/Marketa.png";
 import Saurav from "./assets/Saurav.png";
-import { ArrowIcon } from "../components/icons";
-import { Link } from "next-view-transitions";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Testimonials",
-  description: "See what people thinks about me.",
+  description: "See what people think about me.",
 };
 
 function TestimonialCard({
@@ -32,7 +32,7 @@ function TestimonialCard({
   content,
   highlights = [],
 }: {
-  image: any;
+  image: { src: string };
   name: string;
   link: string;
   AuthorDescription: string;
@@ -40,66 +40,61 @@ function TestimonialCard({
   highlights?: string[];
 }): React.JSX.Element {
   return (
-    <div className="">
-      <div className="rounded border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800 my-5">
-        <div className="relative">
-          <Link href={link} className="flex items-center gap-2">
-            <div className="h-14 w-14 overflow-hidden rounded-full border border-control">
-              {/* <Image
-                alt="Author Image"
-                loading="lazy"
-                width="64"
-                height="64"
-                decoding="async"
-                data-nimg="1"
-                src={image}
-              /> */}
-              <img
-                src={image.src}
-                alt="Author Image"
-                width="64"
-                data-nimg="1"
-                height="64"
-              />
-            </div>
-            <div className="flex flex-col">
-              <p className="font-medium text-neutral-900 dark:text-neutral-100">
-                {name}
-              </p>
-              <div className="text-xs"> {AuthorDescription}</div>
-            </div>
-            <div className="transform absolute right-0 top-2 text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 dark:text-neutral-300">
-              <ArrowIcon />
-            </div>
-          </Link>
-        </div>
-        <div className="text-foreground-muted text-base pl-2 mt-2">
-          {content.split("\n").map((line, index) => (
-            <p key={index} className="mb-2">
-              {highlights.reduce(
-                (acc, highlight) =>
-                  acc.flatMap((part) =>
-                    typeof part === "string" && part.includes(highlight)
-                      ? part.split(highlight).flatMap((subPart, j) =>
-                          j < part.split(highlight).length - 1
-                            ? [
-                                subPart,
-                                <span
-                                  key={`${highlight}-${j}`}
-                                  className="text-green-800 dark:text-green-300"
-                                >
-                                  {highlight}
-                                </span>,
-                              ]
-                            : [subPart],
-                        )
-                      : [part],
-                  ),
-                [line],
-              )}
+    <div className="group my-5 rounded border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800">
+      <div className="relative">
+        <Link href={link} className="flex items-center gap-2">
+          <div className="h-14 w-14 overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-700">
+            <Image
+              alt=""
+              src={image.src}
+              width={64}
+              height={64}
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="flex flex-col">
+            <p className="font-medium text-neutral-900 dark:text-neutral-100">
+              {name}
             </p>
-          ))}
-        </div>
+            <div className="text-xs text-neutral-500 dark:text-neutral-400">
+              {AuthorDescription}
+            </div>
+          </div>
+          <div className="absolute top-2 right-0 text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 dark:text-neutral-300">
+            <ArrowIcon />
+          </div>
+        </Link>
+      </div>
+      <div className="mt-2 pl-2 text-base text-neutral-700 dark:text-neutral-300">
+        {content.split("\n").map((line, index) => {
+          let parts: Array<string | React.ReactElement> = [line];
+          for (const highlight of highlights) {
+            parts = parts.flatMap((part) => {
+              if (typeof part !== "string" || !part.includes(highlight)) {
+                return [part];
+              }
+              const split = part.split(highlight);
+              return split.flatMap((subPart, j) =>
+                j < split.length - 1
+                  ? [
+                      subPart,
+                      <span
+                        key={`${highlight}-${j}`}
+                        className="text-green-800 dark:text-green-300"
+                      >
+                        {highlight}
+                      </span>,
+                    ]
+                  : [subPart],
+              );
+            });
+          }
+          return (
+            <p key={index} className="mb-2">
+              {parts}
+            </p>
+          );
+        })}
       </div>
     </div>
   );
@@ -108,10 +103,12 @@ function TestimonialCard({
 export default function page() {
   return (
     <div>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">
+      <h1 className="mb-8 text-2xl font-medium tracking-tighter">
         My Testimonials
       </h1>
-      <p className="">Here's what people are saying about me:</p>
+      <p className="mb-2 text-neutral-700 dark:text-neutral-300">
+        Here&apos;s what people are saying about me:
+      </p>
 
       <TestimonialCard
         image={Saurav}
@@ -220,8 +217,8 @@ export default function page() {
         link="https://davidmytton.blog/"
         AuthorDescription="CEO of Arcjet"
         content={`We worked with Arindam on a writeup of the Arcjet beta release. The goal was to introduce the SDK to developers and show off how you can use Arcjet to protect an interesting application. 
-          Arindam was responsive to feedback and helped us achieve those goals`}
-        highlights={["Arindam was responsive", "helped us achieve those goals"]}
+          Arindam was responsive to feedback and helped us achieve those goals`}
+        highlights={["Arindam was responsive", "helped us achieve those goals"]}
       />
       <TestimonialCard
         image={Cole}
@@ -291,7 +288,7 @@ export default function page() {
 
           Ari consistently goes above and beyond what is expected of him, setting a new standard for professionalism and commitment. His proactive approach means that he not only meets deadlines but often exceeds expectations, delivering results that are truly impressive. 
           
-          Managing Ari at Lead DevRel has been inspiring, as his drive and determination motivate those around him to elevate their own performance. His dedication, combined with his meticulous nature and willingness to go the extra mile, makes Ari an invaluable asset to any team or project he's involved with.`}
+          Managing Ari at Lead DevRel has been inspiring, as his drive and determination motivate those around him to elevate their own performance. His dedication, combined with his meticulous nature and willingness to go the extra mile, makes Ari an invaluable asset to any team or project he's involved with.`}
         highlights={[
           "absolute pleasure and a truly enriching experience",
           "enthusiasm",

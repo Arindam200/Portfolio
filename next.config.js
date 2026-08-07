@@ -19,6 +19,11 @@ const nextConfig = {
         hostname: "media2.dev.to",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "www.google.com",
+        pathname: "/s2/favicons/**",
+      },
     ],
   },
   turbopack: {

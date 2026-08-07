@@ -96,7 +96,7 @@ export default function EmailForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex-col flex space-y-2">
-      <div className="flex w-full gap-2">
+      <div className="flex w-full flex-col gap-2 sm:flex-row">
         <div className="w-full">
           <input
             type="text"
@@ -186,7 +186,7 @@ export default function EmailForm() {
       )}
       <button
         type="submit"
-        className="justify-center py-2 border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm inline-flex items-center leading-4 text-neutral-900 dark:text-neutral-100 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="mb-4 inline-flex items-center justify-center rounded bg-neutral-950 px-4 py-2.5 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-black"
         disabled={isLoading}
         aria-busy={isLoading}
       >

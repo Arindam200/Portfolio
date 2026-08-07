@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Link } from "next-view-transitions";
 import Meeting from "app/components/cal";
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <div>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Studio1</h1>
+      <h1 className="mb-8 text-2xl font-medium tracking-tighter">Studio1</h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p className="mb-4">
           <a
@@ -84,6 +85,23 @@ export default function page() {
             practitioners
           </li>
         </ul>
+        <p className="mb-4">
+          Read detailed outcomes for LiteLLM, Memori, Permit.io, Webcrumbs, and
+          more in the{" "}
+          <a
+            href="https://docs.studio1hq.com/case-studies/overview"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            Studio1 case studies
+          </a>
+          , or see them highlighted on my{" "}
+          <Link href="/work" className="underline">
+            work page
+          </Link>
+          .
+        </p>
 
         <h2 className="font-medium text-xl mb-4 tracking-tighter mt-6">
           Why Studio1
