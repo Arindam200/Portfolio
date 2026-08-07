@@ -9,6 +9,28 @@ type TableOfContentsItem = {
   text: string;
 };
 
+const copyIcon =
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>';
+const copiedIcon =
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>';
+
+function setCopyButtonState(
+  button: HTMLButtonElement,
+  state: "copy" | "copied" | "failed",
+) {
+  const isCopied = state === "copied";
+  button.innerHTML = isCopied ? copiedIcon : copyIcon;
+  button.setAttribute(
+    "aria-label",
+    isCopied
+      ? "Code copied to clipboard"
+      : state === "failed"
+        ? "Unable to copy code. Try again"
+        : "Copy code to clipboard",
+  );
+  button.setAttribute("data-copy-state", state);
+}
+
 async function copyText(text: string): Promise<void> {
   if (navigator.clipboard?.writeText) {
     try {
@@ -64,10 +86,25 @@ export function BlogPostBody({ html }: { html: string }) {
       button.type = "button";
       button.className = "blog-copy-button";
       button.dataset.copyCode = "";
-      button.setAttribute("aria-label", "Copy code to clipboard");
       button.setAttribute("aria-live", "polite");
-      button.textContent = "Copy";
+      setCopyButtonState(button, "copy");
       wrapper.appendChild(button);
+
+      let next = wrapper.nextElementSibling;
+
+      while (
+        next &&
+        (next.tagName === "BR" ||
+          (next.tagName === "P" &&
+            !next.textContent?.trim() &&
+            !next.querySelector("img, picture, video, iframe")))
+      ) {
+        const spacer = next;
+        next = next.nextElementSibling;
+        spacer.remove();
+      }
+
+      next?.classList.add("blog-code-following-content");
     });
 
     body.querySelectorAll("table").forEach((table) => {
@@ -169,14 +206,14 @@ export function BlogPostBody({ html }: { html: string }) {
 
     try {
       await copyText(code.textContent || "");
-      button.textContent = "Copied";
+      setCopyButtonState(button, "copied");
     } catch {
-      button.textContent = "Copy failed";
+      setCopyButtonState(button, "failed");
     }
 
     window.setTimeout(() => {
       if (button.isConnected) {
-        button.textContent = "Copy";
+        setCopyButtonState(button, "copy");
       }
     }, 2000);
   }
