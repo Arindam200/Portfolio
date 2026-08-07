@@ -68,21 +68,21 @@ export default function Page() {
           height={120}
           className="size-[120px] shrink-0 rounded-full object-cover max-sm:size-24"
         />
-        <div className="ml-0 mt-2 min-w-0 space-y-1 text-sm text-neutral-500 sm:text-base md:ml-6 md:mt-0 dark:text-neutral-400">
-          <p className="flex items-center gap-2">
-            <span>
+        <div className="ml-0 mt-2 grid min-w-0 gap-y-2 text-sm text-neutral-500 sm:text-base md:ml-6 md:mt-0 dark:text-neutral-400">
+          <p className="flex min-h-5 items-center gap-2 leading-5">
+            <span className="flex size-5 shrink-0 items-center justify-center">
               <GitHubIcon />
             </span>
-            95+ Agentic Examples built
+            100+ Agentic Examples built
           </p>
-          <p className="flex items-center gap-2">
-            <span>
+          <p className="flex min-h-5 items-center gap-2 leading-5">
+            <span className="flex size-5 shrink-0 items-center justify-center">
               <YoutubeIcon />
             </span>
             150K+ views on YouTube
           </p>
-          <p className="flex items-center">
-            <span>
+          <p className="flex min-h-5 items-center gap-2 leading-5">
+            <span className="flex size-5 shrink-0 items-center justify-center">
               <ViewsIcon />
             </span>
             1M+ blog views across platforms

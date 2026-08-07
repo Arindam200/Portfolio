@@ -29,8 +29,8 @@ const navItems = {
   // "/testimonials": {
   //   name: "Testimonials",
   // },
-  "/contact-me": {
-    name: "Contact me",
+  "/collaborations": {
+    name: "Colabs",
   },
 };
 

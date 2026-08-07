@@ -53,8 +53,8 @@ export default function CollaborationsPage() {
       <div className="prose prose-neutral dark:prose-invert">
         <p>
           I work with AI, SaaS, and DevTools companies to create practical
-          content for developers and people building with AI. I publish
-          hands-on tutorials and product stories across{" "}
+          content for developers and people building with AI. I publish hands-on
+          tutorials and product stories across{" "}
           <a
             href="https://ggl.link/arindam-youtube"
             target="_blank"
@@ -121,7 +121,17 @@ export default function CollaborationsPage() {
             </a>
           </li>
           <li>1M+ blog views across platforms</li>
-          <li>95+ practical AI and agent demos built</li>
+          <li>
+            70K-80K monthly views on{" "}
+            <a
+              href="https://www.instagram.com/arindam.1729/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              Instagram
+            </a>
+          </li>
         </ul>
 
         <hr className="my-8 border-neutral-100 dark:border-neutral-800" />
