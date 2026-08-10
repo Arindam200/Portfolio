@@ -2,6 +2,7 @@
 
 import type { MouseEvent } from "react";
 import { useEffect, useRef, useState } from "react";
+import { highlight } from "sugar-high";
 
 type TableOfContentsItem = {
   id: string;
@@ -69,6 +70,10 @@ export function BlogPostBody({ html }: { html: string }) {
     if (!body) {
       return;
     }
+
+    body.querySelectorAll<HTMLElement>("pre > code").forEach((code) => {
+      code.innerHTML = highlight(code.textContent || "");
+    });
 
     body.querySelectorAll("pre").forEach((pre) => {
       if (pre.parentElement?.classList.contains("blog-code-wrapper")) {
