@@ -1,6 +1,6 @@
 import "./global.css";
 import type { Metadata } from "next";
-import { Suspense } from "react";
+import { Suspense, ViewTransition } from "react";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Navbar } from "./components/nav";
@@ -8,7 +8,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import ScrollToTop from "./components/scroll-to-top";
-import { ViewTransitions } from "next-view-transitions";
 import { baseUrl } from "./sitemap";
 
 export const metadata: Metadata = {
@@ -53,37 +52,41 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ViewTransitions>
-      <html
-        lang="en"
-        suppressHydrationWarning
-        className={cx(
-          "text-black bg-white dark:text-white dark:bg-black",
-          GeistSans.className,
-          GeistMono.variable,
-        )}
-      >
-        <body className="antialiased mx-4 mt-8 max-w-2xl lg:mx-auto">
-          <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-            <Suspense
-              fallback={
-                <div className="mb-14 h-8 animate-pulse rounded bg-neutral-100 dark:bg-neutral-900 md:mb-16" />
-              }
-            >
-              <Navbar />
-            </Suspense>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cx(
+        "text-black bg-white dark:text-white dark:bg-black",
+        GeistSans.className,
+        GeistMono.variable,
+      )}
+    >
+      <body className="antialiased mx-4 mt-8 max-w-2xl lg:mx-auto">
+        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+          <Suspense
+            fallback={
+              <div className="mb-14 h-8 animate-pulse rounded bg-neutral-100 dark:bg-neutral-900 md:mb-16" />
+            }
+          >
+            <Navbar />
+          </Suspense>
+          <ViewTransition
+            name="page-content"
+            update="page-transition"
+            default="none"
+          >
             {children}
-            <Suspense fallback={null}>
-              <Footer />
-            </Suspense>
-            <Suspense fallback={null}>
-              <ScrollToTop />
-            </Suspense>
-            <Analytics />
-            <SpeedInsights />
-          </main>
-        </body>
-      </html>
-    </ViewTransitions>
+          </ViewTransition>
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
+          <Suspense fallback={null}>
+            <ScrollToTop />
+          </Suspense>
+          <Analytics />
+          <SpeedInsights />
+        </main>
+      </body>
+    </html>
   );
 }

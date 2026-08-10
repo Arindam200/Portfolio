@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import Meeting from "app/components/cal";
 
 export const metadata: Metadata = {

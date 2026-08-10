@@ -23,7 +23,6 @@ export const metadata: Metadata = {
   },
 };
 
-// TODO(runtime-prefetch): assess with the user (prefetch = 'allow-runtime')
 function SearchFallback() {
   return (
     <div className="mb-4 h-10 w-full animate-pulse rounded border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800" />
@@ -35,6 +34,7 @@ export default function BlogPage({
 }: {
   searchParams?: Promise<{
     query?: string;
+    page?: string;
   }>;
 }) {
   return (

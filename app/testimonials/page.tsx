@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import React from "react";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { ArrowIcon } from "../components/icons";
 import Alexandr from "./assets/Alexandr.png";
 import Dani from "./assets/Dani.png";

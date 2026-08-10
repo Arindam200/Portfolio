@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import Tooltip from "../components/tooltip-wrapper";
 import Gabriel from "../testimonials/assets/Gabriel.png";
 import Julia from "../testimonials/assets/Julia.png";

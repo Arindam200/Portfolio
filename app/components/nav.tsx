@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import clsx from "clsx";
 
 const navItems = {
@@ -37,7 +37,10 @@ const navItems = {
 export function Navbar() {
   const pathname = usePathname();
   return (
-    <aside className="mb-14 tracking-tight md:-ml-2 md:mb-16">
+    <aside
+      className="mb-14 tracking-tight md:-ml-2 md:mb-16"
+      style={{ viewTransitionName: "site-navigation" }}
+    >
       <div className="lg:sticky lg:top-20">
         <nav
           aria-label="Primary navigation"

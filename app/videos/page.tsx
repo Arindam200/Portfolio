@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { YouTubeEmbed } from "@next/third-parties/google";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Videos",

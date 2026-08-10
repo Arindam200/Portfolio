@@ -5,12 +5,19 @@ import { baseUrl } from "app/sitemap";
 import { BlogPostContent } from "./blog-post-content";
 import BlogPostLoading from "./loading";
 
+const STATIC_BLOG_POST_COUNT = 40;
+
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
 
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  return posts
+    .sort(
+      (a, b) =>
+        new Date(b.datePublished).getTime() -
+        new Date(a.datePublished).getTime(),
+    )
+    .slice(0, STATIC_BLOG_POST_COUNT)
+    .map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
