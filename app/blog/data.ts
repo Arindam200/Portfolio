@@ -150,9 +150,9 @@ async function getCachedBlogPosts(cacheVersion: number): Promise<BlogPost[]> {
   "use cache";
   void cacheVersion;
   cacheLife({
-    stale: 5 * 60,
-    revalidate: 6 * 60 * 60,
-    expire: 24 * 60 * 60,
+    stale: 60 * 60,
+    revalidate: 60 * 60,
+    expire: 2 * 60 * 60,
   });
   cacheTag(BLOG_POSTS_CACHE_TAG);
 
@@ -168,6 +168,10 @@ async function getCachedBlogPosts(cacheVersion: number): Promise<BlogPost[]> {
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   return getCachedBlogPosts(BLOG_POSTS_CACHE_VERSION);
+}
+
+export function preloadBlogPosts(): void {
+  void getBlogPosts();
 }
 
 export async function getBlogPost(

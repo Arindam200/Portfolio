@@ -2,6 +2,7 @@ import { Link } from "next-view-transitions";
 import Image from "next/image";
 import Studio1Logo from "../assets/Studio1.png";
 import ab from "./testimonials/assets/Arindam.png";
+import { preloadBlogPosts } from "./blog/data";
 import {
   TwitterIcon,
   GitHubIcon,
@@ -34,6 +35,8 @@ function SocialLink({ href, ariaLabel, children }: SocialLinkProps) {
 }
 
 export default function Page() {
+  preloadBlogPosts();
+
   return (
     <section>
       <h1 className="mb-8 text-2xl font-medium tracking-tighter">
