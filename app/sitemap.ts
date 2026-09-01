@@ -26,6 +26,9 @@ export default async function sitemap() {
     "/contact-me",
     "/agency",
     "/resume",
+    "/about",
+    "/contact",
+    "/privacy",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: posts[0]?.datePublished ?? "2026-01-01",

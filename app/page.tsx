@@ -37,8 +37,47 @@ function SocialLink({ href, ariaLabel, children }: SocialLinkProps) {
 export default function Page() {
   preloadBlogPosts();
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        name: "Arindam Majumder",
+        url: "https://arindamm.dev",
+        description:
+          "AI engineer, developer advocate, technical writer, and co-founder of Studio1.",
+        email: "arindammajumder2020@gmail.com",
+        jobTitle: "AI Engineer and Developer Advocate",
+        sameAs: [
+          "https://github.com/Arindam200",
+          "https://www.linkedin.com/in/arindam2004/",
+          "https://www.youtube.com/@Arindam_1729",
+        ],
+      },
+      {
+        "@type": "Organization",
+        name: "Studio1",
+        url: "https://studio1hq.com",
+        description:
+          "Technical content and developer relations agency for AI, SaaS, and DevTools teams.",
+        founder: { "@type": "Person", name: "Arindam Majumder" },
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: "arindammajumder2020@gmail.com",
+          contactType: "business inquiries",
+          availableLanguage: "English",
+        },
+        address: { "@type": "PostalAddress", addressCountry: "IN" },
+      },
+    ],
+  };
+
   return (
     <section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <h1 className="mb-8 text-2xl font-medium tracking-tighter">
         Hey, I'm Arindam 👋
       </h1>
