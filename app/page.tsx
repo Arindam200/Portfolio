@@ -13,6 +13,7 @@ import {
   InstagramIcon,
   SubstackIcon,
 } from "./components/icons";
+import { withUtmSource } from "./utils/utm";
 
 interface SocialLinkProps {
   href: string;
@@ -26,7 +27,7 @@ function SocialLink({ href, ariaLabel, children }: SocialLinkProps) {
       className="flex h-12 w-[4.5rem] flex-none items-center justify-center rounded border border-neutral-200 bg-neutral-50 transition-all hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700"
       target="_blank"
       rel="noopener noreferrer"
-      href={href}
+      href={withUtmSource(href)}
       aria-label={ariaLabel}
     >
       {children}
@@ -136,7 +137,7 @@ export default function Page() {
         <p>
           AI moves quickly; I make it practical. I create hands-on{" "}
           <a
-            href="https://ggl.link/arindam-youtube"
+            href={withUtmSource("https://ggl.link/arindam-youtube")}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
@@ -145,7 +146,7 @@ export default function Page() {
           </a>
           , and build in the open. I shipped{" "}
           <a
-            href="https://www.formaly.io/"
+            href={withUtmSource("https://www.formaly.io/")}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
@@ -154,7 +155,9 @@ export default function Page() {
           </a>
           , a SaaS for conversational forms, alongside open source projects like{" "}
           <a
-            href="https://github.com/Arindam200/awesome-ai-apps"
+            href={withUtmSource(
+              "https://github.com/Arindam200/awesome-ai-apps",
+            )}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
@@ -163,7 +166,7 @@ export default function Page() {
           </a>{" "}
           (13K+ stars),{" "}
           <a
-            href="https://github.com/Arindam200/cc-lens"
+            href={withUtmSource("https://github.com/Arindam200/cc-lens")}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
@@ -172,7 +175,7 @@ export default function Page() {
           </a>{" "}
           for real-time Claude Code monitoring, and{" "}
           <a
-            href="https://github.com/Arindam200/termui"
+            href={withUtmSource("https://github.com/Arindam200/termui")}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"

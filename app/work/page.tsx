@@ -5,6 +5,7 @@ import Tooltip from "../components/tooltip-wrapper";
 import Gabriel from "../testimonials/assets/Gabriel.png";
 import Julia from "../testimonials/assets/Julia.png";
 import Saurav from "../testimonials/assets/Saurav.png";
+import { withUtmSource } from "app/utils/utm";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -53,7 +54,7 @@ function CompanyChip({
   const src = logo ?? favicon(domain ?? new URL(href).hostname);
   return (
     <a
-      href={href}
+      href={withUtmSource(href)}
       target="_blank"
       rel="noopener noreferrer"
       className="mx-0.5 inline-flex items-center gap-1.5 rounded-md border border-neutral-200 bg-white px-1.5 py-0.5 align-baseline text-sm font-medium text-neutral-800 no-underline shadow-sm transition hover:border-neutral-300 hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-900"
@@ -94,7 +95,7 @@ export default function WorkPage() {
           At{" "}
           <Tooltip text="Studio1 is a technical content and developer advocacy agency helping startups, SaaS, and DevTool companies scale with developer-focused strategies.">
             <a
-              href="https://studio1hq.com/"
+              href={withUtmSource("https://studio1hq.com/")}
               target="_blank"
               rel="noopener noreferrer"
               className="underline"
@@ -254,7 +255,7 @@ export default function WorkPage() {
             Developed a CLI tool &quot;
             <Tooltip text="pieces-cli is a command-line interface that helps developers interact with the Pieces SDK.">
               <a
-                href="https://www.npmjs.com/package/pieces-cli"
+                href={withUtmSource("https://www.npmjs.com/package/pieces-cli")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline"
@@ -268,7 +269,9 @@ export default function WorkPage() {
             <Tooltip text="We received 900+ upvotes, 250+ feedbacks, 8k+ website visits, 1k+ downloads, and also became #4 for the week.">
               Contributed to Pieces becoming the{" "}
               <a
-                href="https://www.producthunt.com/posts/pieces-copilot-2"
+                href={withUtmSource(
+                  "https://www.producthunt.com/posts/pieces-copilot-2",
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline"
@@ -282,7 +285,9 @@ export default function WorkPage() {
             Created a &quot;
             <Tooltip text="This is a Sample Nextjs Chatbot with the integration of Pieces npm package.">
               <a
-                href="https://github.com/Arindam200/example-Nextjs"
+                href={withUtmSource(
+                  "https://github.com/Arindam200/example-Nextjs",
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline"
@@ -300,7 +305,7 @@ export default function WorkPage() {
             Improved the{" "}
             <Tooltip text="I created Glossary and improved the SDK documentations to improve Developer Experience">
               <a
-                href="https://docs.pieces.app/build/"
+                href={withUtmSource("https://docs.pieces.app/build/")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline"
@@ -345,7 +350,7 @@ export default function WorkPage() {
           <li>
             Authored{" "}
             <a
-              href="https://keploy.io/blog/authors/Arindam"
+              href={withUtmSource("https://keploy.io/blog/authors/Arindam")}
               target="_blank"
               rel="noopener noreferrer"
               className="underline"
@@ -358,7 +363,7 @@ export default function WorkPage() {
             Helped host events such as{" "}
             <Tooltip text="GitTogether is an in-person Open Source Event hosted by Keploy on 29 February 2024 at Google RMZ, Bengaluru.">
               <a
-                href="https://keploy.io/gittogether"
+                href={withUtmSource("https://keploy.io/gittogether")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline"
@@ -372,7 +377,7 @@ export default function WorkPage() {
             Managed and contributed to their{" "}
             <Tooltip text="I managed Keploy's Blog Site, sample applications, Created Good First Issues and reviewed PRs.">
               <a
-                href="https://github.com/keploy/keploy"
+                href={withUtmSource("https://github.com/keploy/keploy")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline"
@@ -418,7 +423,9 @@ export default function WorkPage() {
             Assisted in hosting a hackathon &quot;
             <Tooltip text="Showwcase HackFest is a 4 week long virtual hackathon organized by Showwcase, aimed at driving innovation and collaboration.">
               <a
-                href="https://www.showwcase.com/article/34719/introducing-showwcase-hackfest-2023"
+                href={withUtmSource(
+                  "https://www.showwcase.com/article/34719/introducing-showwcase-hackfest-2023",
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline"
@@ -433,7 +440,9 @@ export default function WorkPage() {
             such as &quot;
             <Tooltip text="Blog-a-Thon is a monthlong community-driven initiative by Showwcase in collaboration with GrowInCommunity to encourage content creation and sharing.">
               <a
-                href="https://x.com/GrowInComm/status/1665233663645347841"
+                href={withUtmSource(
+                  "https://x.com/GrowInComm/status/1665233663645347841",
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline"

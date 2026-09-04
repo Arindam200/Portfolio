@@ -6,6 +6,7 @@ import {
   TwitterIcon,
   YoutubeIcon,
 } from "app/components/icons";
+import { withUtmSource } from "app/utils/utm";
 
 export const metadata: Metadata = {
   title: "Collaborations",
@@ -14,36 +15,141 @@ export const metadata: Metadata = {
 };
 
 const customers = [
-  { name: "HeyGen", logo: "/customer-logos/heygen.png" },
-  { name: "Higgsfield", logo: "/customer-logos/higgsfield.svg" },
-  { name: "CodeRabbit", logo: "/customer-logos/coderabbit.png" },
-  { name: "Graphite", logo: "/customer-logos/graphite.png" },
-  { name: "MiniMax", logo: "/customer-logos/minimax.png" },
-  { name: "Martian", logo: "/customer-logos/martian.png" },
-  { name: "Cline", logo: "/customer-logos/cline.png" },
-  { name: "ScrapeGraphAI", logo: "/customer-logos/scrapegraphai.png" },
-  { name: "Bright Data", logo: "/customer-logos/brightdata.png" },
-  { name: "ScrapingDog", logo: "/customer-logos/scrapingdog.svg" },
-  { name: "SerpApi", logo: "/customer-logos/serpapi.png" },
-  { name: "TestSprite", logo: "/customer-logos/testsprite.png" },
+  {
+    name: "HeyGen",
+    logo: "/customer-logos/heygen.png",
+    href: "https://www.heygen.com/",
+  },
+  {
+    name: "Higgsfield",
+    logo: "/customer-logos/higgsfield.svg",
+    href: "https://higgsfield.ai/",
+  },
+  {
+    name: "CodeRabbit",
+    logo: "/customer-logos/coderabbit.png",
+    href: "https://www.coderabbit.ai/",
+  },
+  {
+    name: "Graphite",
+    logo: "/customer-logos/graphite.png",
+    href: "https://graphite.com/",
+  },
+  {
+    name: "MiniMax",
+    logo: "/customer-logos/minimax.png",
+    href: "https://www.minimax.io/",
+  },
+  {
+    name: "Martian",
+    logo: "/customer-logos/martian.png",
+    href: "https://withmartian.com/",
+  },
+  {
+    name: "Cline",
+    logo: "/customer-logos/cline.png",
+    href: "https://cline.bot/",
+  },
+  {
+    name: "ScrapeGraphAI",
+    logo: "/customer-logos/scrapegraphai.png",
+    href: "https://scrapegraphai.com/",
+  },
+  {
+    name: "Bright Data",
+    logo: "/customer-logos/brightdata.png",
+    href: "https://brightdata.com/",
+  },
+  {
+    name: "ScrapingDog",
+    logo: "/customer-logos/scrapingdog.svg",
+    href: "https://www.scrapingdog.com/",
+  },
+  {
+    name: "SerpApi",
+    logo: "/customer-logos/serpapi.png",
+    href: "https://serpapi.com/",
+  },
+  {
+    name: "TestSprite",
+    logo: "/customer-logos/testsprite.png",
+    href: "https://www.testsprite.com/",
+  },
   {
     name: "DevToolsAcademy",
     logo: "/customer-logos/devtoolsacademy.ico",
+    href: "https://www.devtoolsacademy.com/",
   },
-  { name: "APILayer", logo: "/customer-logos/apilayer.svg" },
-  { name: "Airtap", logo: "/customer-logos/airtap.png" },
-  { name: "EverOS", logo: "/customer-logos/everos.png" },
-  { name: "Permit", logo: "/customer-logos/permit.svg" },
-  { name: "Cerbos", logo: "/customer-logos/cerbos.png" },
-  { name: "Plane", logo: "/customer-logos/plane.svg" },
-  { name: "Arcjet", logo: "/customer-logos/arcjet.svg" },
-  { name: "InsForge", logo: "/customer-logos/insforge.svg" },
-  { name: "Thesean AI", logo: "/customer-logos/thesean-ai.svg" },
-  { name: "Blackbox AI", logo: "/customer-logos/blackbox-ai.svg" },
-  { name: "Neo", logo: "/customer-logos/neo.svg" },
-  { name: "GoLogin", logo: "/customer-logos/gologin.svg" },
-  { name: "TinyFish", logo: "/customer-logos/tinyfish.svg" },
-  { name: "NeatPrompts", logo: "/customer-logos/neatprompts.svg" },
+  {
+    name: "APILayer",
+    logo: "/customer-logos/apilayer.svg",
+    href: "https://apilayer.com/",
+  },
+  {
+    name: "Airtap",
+    logo: "/customer-logos/airtap.png",
+    href: "https://airtap.ai/",
+  },
+  {
+    name: "EverOS",
+    logo: "/customer-logos/everos.png",
+    href: "https://evermind.ai/everos",
+  },
+  {
+    name: "Permit",
+    logo: "/customer-logos/permit.svg",
+    href: "https://www.permit.io/",
+  },
+  {
+    name: "Cerbos",
+    logo: "/customer-logos/cerbos.png",
+    href: "https://www.cerbos.dev/",
+  },
+  {
+    name: "Plane",
+    logo: "/customer-logos/plane.svg",
+    href: "https://plane.so/",
+  },
+  {
+    name: "Arcjet",
+    logo: "/customer-logos/arcjet.svg",
+    href: "https://arcjet.com/",
+  },
+  {
+    name: "InsForge",
+    logo: "/customer-logos/insforge.svg",
+    href: "https://insforge.dev/",
+  },
+  {
+    name: "Thesean AI",
+    logo: "/customer-logos/thesean-ai.svg",
+    href: "https://thesean.ai/",
+  },
+  {
+    name: "Blackbox AI",
+    logo: "/customer-logos/blackbox-ai.svg",
+    href: "https://www.blackbox.ai/",
+  },
+  {
+    name: "Neo",
+    logo: "/customer-logos/neo.svg",
+    href: "https://www.heyneo.com/",
+  },
+  {
+    name: "GoLogin",
+    logo: "/customer-logos/gologin.svg",
+    href: "https://gologin.com/",
+  },
+  {
+    name: "TinyFish",
+    logo: "/customer-logos/tinyfish.svg",
+    href: "https://www.tinyfish.ai/",
+  },
+  {
+    name: "NeatPrompts",
+    logo: "/customer-logos/neatprompts.svg",
+    href: "https://www.neatprompts.com/",
+  },
 ];
 
 const emailHref =
@@ -62,7 +168,7 @@ export default function CollaborationsPage() {
           content for developers and people building with AI. I publish hands-on
           tutorials and product stories across{" "}
           <a
-            href="https://ggl.link/arindam-youtube"
+            href={withUtmSource("https://ggl.link/arindam-youtube")}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
@@ -71,7 +177,7 @@ export default function CollaborationsPage() {
           </a>
           ,{" "}
           <a
-            href="https://dub.sh/arindam-linkedin"
+            href={withUtmSource("https://dub.sh/arindam-linkedin")}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
@@ -80,7 +186,7 @@ export default function CollaborationsPage() {
           </a>
           ,{" "}
           <a
-            href="https://dub.sh/arindam-x"
+            href={withUtmSource("https://dub.sh/arindam-x")}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
@@ -89,7 +195,7 @@ export default function CollaborationsPage() {
           </a>
           , and{" "}
           <a
-            href="https://www.instagram.com/arindam.1729/"
+            href={withUtmSource("https://www.instagram.com/arindam.1729/")}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
@@ -107,7 +213,7 @@ export default function CollaborationsPage() {
           <li>
             11K+ followers on{" "}
             <a
-              href="https://dub.sh/arindam-linkedin"
+              href={withUtmSource("https://dub.sh/arindam-linkedin")}
               target="_blank"
               rel="noopener noreferrer"
               className="underline"
@@ -118,7 +224,7 @@ export default function CollaborationsPage() {
           <li>
             150K+ views on{" "}
             <a
-              href="https://ggl.link/arindam-youtube"
+              href={withUtmSource("https://ggl.link/arindam-youtube")}
               target="_blank"
               rel="noopener noreferrer"
               className="underline"
@@ -130,7 +236,7 @@ export default function CollaborationsPage() {
           <li>
             70K-80K monthly views on{" "}
             <a
-              href="https://www.instagram.com/arindam.1729/"
+              href={withUtmSource("https://www.instagram.com/arindam.1729/")}
               target="_blank"
               rel="noopener noreferrer"
               className="underline"
@@ -285,9 +391,12 @@ export default function CollaborationsPage() {
 
       <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
         {customers.map((customer) => (
-          <div
+          <a
             key={customer.name}
-            className="flex min-h-16 items-center gap-3 rounded border border-neutral-200 bg-neutral-50 px-3 dark:border-neutral-800 dark:bg-neutral-900"
+            href={withUtmSource(customer.href)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex min-h-16 items-center gap-3 rounded border border-neutral-200 bg-neutral-50 px-3 transition-colors hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-600 dark:hover:bg-neutral-800"
           >
             <div className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded bg-white p-1 dark:bg-neutral-800">
               <Image
@@ -299,7 +408,7 @@ export default function CollaborationsPage() {
               />
             </div>
             <span className="text-sm font-medium">{customer.name}</span>
-          </div>
+          </a>
         ))}
       </div>
 
@@ -325,7 +434,7 @@ export default function CollaborationsPage() {
           </a>
           . You can also find all my profiles on{" "}
           <a
-            href="https://linktr.ee/arindam_1729"
+            href={withUtmSource("https://linktr.ee/arindam_1729")}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"

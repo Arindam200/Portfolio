@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import Link from "next/link";
+import { withUtmSource } from "app/utils/utm";
 
 export const metadata: Metadata = {
   title: "Videos",
@@ -82,7 +83,7 @@ export default function VideosPage() {
         <p className="mb-4">
           For more content, check out my{" "}
           <a
-            href="https://ggl.link/arindam-youtube"
+            href={withUtmSource("https://ggl.link/arindam-youtube")}
             target="_blank"
             className="underline"
           >

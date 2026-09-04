@@ -5,6 +5,7 @@ import { getBlogPost } from "app/blog/data";
 import { sanitizeDevToMarkdown } from "app/blog/markdown";
 import { formatDate } from "app/blog/types";
 import { BlogPostBody } from "./blog-post-body";
+import { withUtmSource, withUtmSourceInHtml } from "app/utils/utm";
 
 export async function BlogPostContent({
   params,
@@ -45,7 +46,7 @@ export async function BlogPostContent({
 
       <div className="prose prose-neutral dark:prose-invert">
         {post.contentHtml ? (
-          <BlogPostBody html={post.contentHtml} />
+          <BlogPostBody html={withUtmSourceInHtml(post.contentHtml)} />
         ) : (
           <CustomMDX source={sanitizeDevToMarkdown(post.content)} />
         )}
@@ -67,7 +68,7 @@ export async function BlogPostContent({
       <p className="mt-12 text-sm text-neutral-500 dark:text-neutral-400">
         Also published on{" "}
         <a
-          href={post.externalUrl}
+          href={withUtmSource(post.externalUrl)}
           target="_blank"
           rel="noopener noreferrer"
           className="underline"

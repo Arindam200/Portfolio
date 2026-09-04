@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { withUtmSource } from "app/utils/utm";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -92,7 +93,7 @@ export default function ProjectsPage() {
             <div className="flex flex-wrap items-baseline gap-2">
               {project.href ? (
                 <a
-                  href={project.href}
+                  href={withUtmSource(project.href)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-lg font-medium tracking-tight underline underline-offset-2"

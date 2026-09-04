@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { withUtmSource } from "app/utils/utm";
 import Meeting from "app/components/cal";
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export default function page() {
       <div className="prose prose-neutral dark:prose-invert">
         <p className="mb-4">
           <a
-            href="https://studio1hq.com"
+            href={withUtmSource("https://studio1hq.com")}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
@@ -89,7 +90,9 @@ export default function page() {
           Read detailed outcomes for LiteLLM, Memori, Permit.io, Webcrumbs, and
           more in the{" "}
           <a
-            href="https://docs.studio1hq.com/case-studies/overview"
+            href={withUtmSource(
+              "https://docs.studio1hq.com/case-studies/overview",
+            )}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"

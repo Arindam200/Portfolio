@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { ArrowIcon } from "../components/icons";
+import { withUtmSource } from "app/utils/utm";
 import Alexandr from "./assets/Alexandr.png";
 import Dani from "./assets/Dani.png";
 import Ferran from "./assets/Ferran.png";
@@ -42,7 +43,7 @@ function TestimonialCard({
   return (
     <div className="group my-5 rounded border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800">
       <div className="relative">
-        <Link href={link} className="flex items-center gap-2">
+        <Link href={withUtmSource(link)} className="flex items-center gap-2">
           <div className="h-14 w-14 overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-700">
             <Image
               alt=""

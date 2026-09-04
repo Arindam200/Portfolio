@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { withUtmSource } from "app/utils/utm";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -113,7 +114,7 @@ export default function EventsPage() {
               </h3>
               <p className="mb-4">{event.talkDescription}</p>
               <Link
-                href={event.link}
+                href={withUtmSource(event.link)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm underline text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100"
